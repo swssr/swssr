@@ -12,8 +12,8 @@
       <canvas class="intro__bg"></canvas>
       <div class="intro__body">
         <h1 class="head">Hi! I'm Simo.</h1>
-        <p>
-          Full-stack web developer with a passion for creating robust &
+        <p class="body__text">
+          I'm a full-stack web developer with a passion for creating robust &
           intuitive applications.
         </p>
       </div>
@@ -24,7 +24,195 @@
       </a>
     </div>
     <img src="Assets/images/img--bg.png" class="img img--bg fixed" />
-    <nav class="nav fixed fixed--bottom">
+    <div class="overlay overlay--menu"></div>
+    <main class="main">
+      <header id="header" class="header"></header>
+      <section class="container container--intro">
+        <div class="sect-head">
+          <h6 class="prehead">INTRO</h6>
+          <h1>WHO AM I</h1>
+          <div class="subhead">why you should care</div>
+        </div>
+        <div class="sect-main card">
+          <div class="inner card__inner flex flex--col">
+            <h1 class="head">Creative Developer</h1>
+            <p class="body-text">
+              Front-end developer, UX/UI ninja wannabe and keyboard lover.
+              <br />
+              I can dance throughout the stack too.
+            </p>
+            <a href="#skills" class="btn btn--outline with-line">
+              <span>SEE SKILLS</span>
+            </a>
+          </div>
+          <div class="img img--me">
+            <img src="Assets/images/img--me.png" alt="" class="img" />
+          </div>
+        </div>
+      </section>
+      <section class="container">
+        <div class="sect-head">
+          <h6 class="prehead">PROJECTS</h6>
+          <h1>MY WORK</h1>
+          <div class="subhead">some of the work I've done</div>
+        </div>
+        <div class="sect-main">
+          <div class="preview">
+            <img src="Assets/images/ProjPreview.png" class="preview__img img" />
+          </div>
+          <ul class="inner list list--projects">
+            <li class="list__item">
+              <h2 class="item__name with-line">TUMISONG.DJ</h2>
+              <div class="item__subtext">
+                Official website for event and music
+              </div>
+            </li>
+            <li class="list__item">
+              <h2 class="item__name with-line">MELIICEBO GROUP</h2>
+              <div class="item__subtext">Landing page</div>
+            </li>
+            <li class="list__item">
+              <h2 class="item__name with-line">RAINCHECK</h2>
+              <div class="item__subtext">Weather app for PC & mobile</div>
+            </li>
+            <li class="list__item">
+              <h2 class="item__name with-line">AIPLAY</h2>
+              <div class="item__subtext">Music streaming app</div>
+            </li>
+            <li class="list__item">
+              <h2 class="item__name with-line">Bawaz</h2>
+              <div class="item__subtext">eCommerce website</div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section id="skills" class="container container--skills">
+        <div class="sect-head">
+          <h6 class="prehead">SUPERPOWERS</h6>
+          <h1>IN A SHELL</h1>
+          <div class="subhead">Things I'm good at</div>
+        </div>
+        <div class="sect-main">
+          <div class="card flex card--skills">
+            <div class="card__item card__body flex flex--col">
+              <h1 class="head skills__head">
+                I'M FLEXIBLE THROUGHOUT THE STACK.
+              </h1>
+              <p class="body__text">
+                My biggest blessing was learning <b>JavaScript</b> and
+                <b>UI Design</b> while having a solid background in strongly
+                type languages like <b>C#</b> and <b>Java</b>. This has allowed
+                me to work fluidly across the entirety of the application.
+              </p>
+            </div>
+            <div class="card__item skills">
+              <div class="skill with-line">
+                <h1 class="skill__name">FRONT-END</h1>
+              </div>
+              <div class="skill with-line">
+                <h1 class="skill__name">BACK-END</h1>
+              </div>
+              <div class="skill with-line">
+                <h1 class="skill__name">UX/UI DESIGN</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="container container--social">
+        <div class="sect-head">
+          <h6 class="prehead">CONTACT</h6>
+          <h1>GET IN TOUCH</h1>
+          <div class="subhead">FOLLOW ME ON THESE</div>
+        </div>
+        <div class="sect-main social__links">
+          <a href="https://www.twitter.com/swssr" class="card card--social"
+            ><img
+              class="social__icon-img"
+              src="Assets/images/icons8-twitter-104.png"
+              alt="social icon"
+          /></a>
+          <a href="https://www.linkedin.com/swssr" class="card card--social"
+            ><img
+              class="social__icon-img"
+              src="Assets/images/linkedin.svg"
+              alt="social icon"
+          /></a>
+          <a href="https://www.instragram.com/swssr" class="card card--social"
+            ><img
+              class="social__icon-img"
+              src="Assets/images/instagram-logo.png"
+              alt="social icon"
+          /></a>
+          <a href="https://www.reddit.com/swssr" class="card card--social"
+            ><img
+              class="social__icon-img"
+              src="Assets/images/reddit.svg"
+              alt="social icon"
+          /></a>
+        </div>
+      </section>
+    </main>
+    <nav class="nav fixed fixed--top">
+      <ul class="list links">
+        <li class="link">
+          <a href="https://github.com/swssr" class="link with-line">GitHub</a>
+        </li>
+        <li class="link">
+          <a href="https://Behance.com/swssr" class="link with-line">Behance</a>
+        </li>
+      </ul>
+      <a
+        href="http://source.cloudinary.com/swssr/resume"
+        class="link with-line link--primary"
+        >Resume</a
+      >
+    </nav>
+    <div class="overlay modal card">
+      <div class="modal__body">
+        <h1 class="head">Front-End Developement</h1>
+        <p class="body-text">
+          Aah! My soulmate the reason I hardly sleep. Everything I love about
+          this one is what give me headaches. I'm self-thaught, My weapon of
+          choise is <b>ReactJS</b>, but I think <b>VueJS</b> is really cool too.
+        </p>
+        <button class="btn btn--icon btn--close">
+          <svg width="16.264" height="16.264" viewBox="0 0 16.264 16.264">
+            <defs>
+              <clipPath id="a">
+                <rect width="16.264" height="16.264" fill="none" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#a)">
+              <g
+                transform="translate(14.849 0) rotate(45)"
+                fill="none"
+                stroke="#000"
+                stroke-width="1"
+              >
+                <rect width="2" height="21" stroke="none" />
+                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
+              </g>
+              <g
+                transform="translate(0 1.414) rotate(-45)"
+                fill="none"
+                stroke="#000"
+                stroke-width="1"
+              >
+                <rect width="2" height="21" stroke="none" />
+                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+      <a href="#header" class="btn btn--icon btn--scroll">
+        <span
+          ><img src="Assets/images/Scroll Icon.svg" alt="scroll down indicator"
+        /></span>
+      </a>
+    </div>
+    <nav class="nav fixed fixed--bottom alpha">
       <button class="btn btn--icon btn--menu">
         <span>
           <svg
@@ -86,186 +274,6 @@
         </span>
       </button>
     </nav>
-    <div class="overlay overlay--menu"></div>
-    <main class="main">
-      <header id="header" class="header"></header>
-      <!-- <header class="container"></header> -->
-      <section class="container container--intro">
-        <div class="sect-head">
-          <h6 class="prehead">WHO AM I</h6>
-          <h1 class="head">INTRO</h1>
-          <div class="subhead">why you should care</div>
-        </div>
-        <div class="sect-main card">
-          <div class="inner card__inner">
-            <h1 class="head head--name">Creative Developer</h1>
-            <p class="body-text">
-              Front-end developer, UX/UI ninja wannabe and keyboard lover.
-              <br />
-              Should know... <br />
-              I can dance throughout the stack too.
-            </p>
-            <button class="btn btn--outline with-line">
-              <span>SEE SKILLS</span>
-            </button>
-          </div>
-          <div class="img img--me">
-            <img src="Assets/images/img--me.png" alt="" class="img" />
-          </div>
-        </div>
-      </section>
-      <section class="container">
-        <div class="sect-head">
-          <h6 class="prehead">MY WORK</h6>
-          <h1 class="head">PROJECTS</h1>
-          <div class="subhead">some of the work I've done</div>
-        </div>
-        <div class="sect-main">
-          <div class="preview">
-            <img src="Assets/images/ProjPreview.png" class="preview__img img" />
-          </div>
-          <ul class="inner list list--projects">
-            <li class="list__item">
-              <h2 class="item__name with-line">TUMISONG.DJ</h2>
-              <div class="item__subtext">
-                Official website for event and music
-              </div>
-            </li>
-            <li class="list__item">
-              <h2 class="item__name with-line">MELIICEBO GROUP</h2>
-              <div class="item__subtext">Landing page</div>
-            </li>
-            <li class="list__item">
-              <h2 class="item__name with-line">RAINCHECK</h2>
-              <div class="item__subtext">Weather app for PC & mobile</div>
-            </li>
-            <li class="list__item">
-              <h2 class="item__name with-line">AIPLAY</h2>
-              <div class="item__subtext">Music streaming app</div>
-            </li>
-            <li class="list__item">
-              <h2 class="item__name with-line">Bawaz</h2>
-              <div class="item__subtext">eCommerce website</div>
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section id="skills" class="container container--skills">
-        <div class="sect-head">
-          <h6 class="prehead">IN A SHELL</h6>
-          <h1 class="head">SUPERPOWERS</h1>
-          <div class="subhead">Things I'm good at</div>
-        </div>
-        <div class="sect-main">
-          <div class="card flex card--skills">
-            <div class="card__item card__body flex flex--col">
-              <h1 class="head skills__head">
-                I'M FLEXIBLE THROUGHOUT THE STACK.
-              </h1>
-              <p class="body__text">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                justo duo dolores
-              </p>
-            </div>
-            <div class="card__item skills">
-              <div class="skill with-line">
-                <h1 class="skill__name">FRONT-END</h1>
-              </div>
-              <div class="skill with-line">
-                <h1 class="skill__name">BACK-END</h1>
-              </div>
-              <div class="skill with-line">
-                <h1 class="skill__name">UX/UI DESIGN</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="container container--social">
-        <div class="sect-head">
-          <h6 class="prehead">GET IN TOUCH</h6>
-          <h1 class="head">CONTACT</h1>
-          <div class="subhead">FOLLOW ME ON THESE</div>
-        </div>
-        <div class="sect-main social__links">
-          <a href="https://www.twitter.com/swssr" class="card card--social"
-            ><img class="social__icon-img" src="Assets/images/icons8-twitter-104.png" alt="social icon"
-          /></a>
-          <a href="https://www.instragram.com/swssr" class="card card--social"
-            ><img class="social__icon-img" src="Assets/images/instagram-logo.png" alt="social icon"
-          /></a>
-          <a href="https://www.reddit.com/swssr" class="card card--social"
-            ><img class="social__icon-img" src="Assets/images/reddit.svg" alt="social icon"
-          /></a>
-        </div>
-      </section>
-    </main>
-    <nav class="nav fixed fixed--top">
-      <ul class="list links">
-        <li class="link">
-          <a href="https://github.com/swssr" class="link with-line">GitHub</a>
-        </li>
-        <li class="link">
-          <a href="https://Behance.com/swssr" class="link with-line">Behance</a>
-        </li>
-      </ul>
-      <a
-        href="http://source.cloudinary.com/swssr/resume"
-        class="link with-line link--primary"
-        >Resume</a
-      >
-    </nav>
-    <div class="modal card">
-      <div class="modal__body">
-        <h1 class="head">Front-End Developement</h1>
-        <p class="body-text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-          sint ad velit sit doloremque consequatur quam recusandae quasi ut
-          excepturi vitae iure laborum, quos quibusdam nulla necessitatibus
-          quidem eaque reprehenderit.
-        </p>
-        <button class="btn btn--icon btn--close">
-          <svg
-            width="16.264"
-            height="16.264"
-            viewBox="0 0 16.264 16.264"
-          >
-            <defs>
-              <clipPath id="a">
-                <rect width="16.264" height="16.264" fill="none" />
-              </clipPath>
-            </defs>
-            <g clip-path="url(#a)">
-              <g
-                transform="translate(14.849 0) rotate(45)"
-                fill="none"
-                stroke="#000"
-                stroke-width="1"
-              >
-                <rect width="2" height="21" stroke="none" />
-                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
-              </g>
-              <g
-                transform="translate(0 1.414) rotate(-45)"
-                fill="none"
-                stroke="#000"
-                stroke-width="1"
-              >
-                <rect width="2" height="21" stroke="none" />
-                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
-              </g>
-            </g>
-          </svg>
-        </button>
-      </div>
-      <a href="#header" class="btn btn--icon btn--scroll">
-        <span
-          ><img src="Assets/images/Scroll Icon.svg" alt="scroll down indicator"
-        /></span>
-      </a>
-    </div>
     <script src="Assets/scripts/index.js"></script>
     <script src="Assets/scripts/canvas.js"></script>
   </body>
