@@ -4,6 +4,7 @@ const btn_menu = document.querySelector(".btn--menu");
 
 //Handle btn_menu click event: toggle menu visibility
 function toggleShow(el) {
+  // const force = arguments[1] || true;
   el.classList.toggle("visible") ? showItem(el) : hideItem(el);
 }
 function showItem(el) {
@@ -21,12 +22,19 @@ const skill_pills = document.querySelectorAll(".skill");
 const modal = document.querySelector(".modal");
 
 skill_pills.forEach(pill => {
-  pill.addEventListener("click", () => toggleShow(modal));
+  pill.addEventListener("click", () => {
+    toggleShow(overlay);
+    toggleShow(modal);
+    navbar.classList.toggle("navdown");
+  });
 });
 
 //Remove modal
 document.querySelector(".btn--close").addEventListener("click", () => {
   toggleShow(modal);
+  toggleShow(overlay);
+  navbar.classList.toggle("navdown");
+  // toggleShow(overlay, true);
 });
 
 //Hide bottom nav when intro is visible
@@ -40,7 +48,6 @@ let options = {
   rootMargin: `-${margin}px`,
   treshold: 1.0
 };
-
 let toggleNav = entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -54,3 +61,28 @@ let toggleNav = entries => {
 let IO = new IntersectionObserver(toggleNav, options);
 
 IO.observe(intro);
+
+//Switch Project preview IMG
+const preview = document.querySelector("canvas.img--preview");
+const projects_lis = document.querySelectorAll("li.list__item");
+
+const sources = [
+  { color: "gold", src: "https://project.swss.now.sh" },
+  { color: "navy", src: "https://project.swss.now.sh" },
+  { color: "powderblue", src: "https://project.swss.now.sh" },
+  { color: "yellow", src: "https://project.swss.now.sh" },
+  { color: "black", src: "https://project.swss.now.sh" },
+  { color: "pink", src: "https://project.swss.now.sh" }
+];
+
+projects_lis.forEach((item, index, arr) => {
+  item.addEventListener("click", e => {
+    //Toggle active
+    projects_lis.forEach(li => li.classList.remove("list__item--active"));
+    e.currentTarget.classList.add("list__item--active");
+    console.log(e.currentTarget);
+    //Change preview image
+    const color = sources[index].color;
+    preview.style.backgroundColor = color;
+  });
+});
