@@ -63,7 +63,7 @@ let IO = new IntersectionObserver(toggleNav, options);
 IO.observe(intro);
 
 //Switch Project preview IMG
-const preview = document.querySelector("canvas.img--preview");
+const preview = document.querySelector("canvas#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
 const sources = [
@@ -75,14 +75,24 @@ const sources = [
   { color: "pink", src: "https://project.swss.now.sh" }
 ];
 
+//Default bg
+switchImage(0);
+
 projects_lis.forEach((item, index, arr) => {
   item.addEventListener("click", e => {
-    //Toggle active
-    projects_lis.forEach(li => li.classList.remove("list__item--active"));
-    e.currentTarget.classList.add("list__item--active");
-    console.log(e.currentTarget);
-    //Change preview image
-    const color = sources[index].color;
-    preview.style.backgroundColor = color;
+    toggleActive(e, arr, index);
+    switchImage(index);
   });
 });
+
+function toggleActive(e, arr, index) {
+  //Toggle active
+  projects_lis.forEach(li => li.classList.remove("list__item--active"));
+  e.currentTarget.classList.add("list__item--active");
+}
+
+function switchImage(index) {
+  //Change preview image
+  const color = sources[index].color;
+  preview.style.backgroundColor = color;
+}

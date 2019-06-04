@@ -94,12 +94,6 @@ function animate() {
   c.fillStyle = "rgba(255,255,255,0.2)";
   c.fillRect(0, 0, innerWidth, innerHeight);
 
-  const item = new Item(cursor.x, cursor.y, innerWidth / 10, 2, {
-    color: "rgba(0,0,0, .1)"
-  });
-
-  item.draw();
-  item.update();
   requestAnimationFrame(animate);
 }
 
