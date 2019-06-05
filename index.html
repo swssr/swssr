@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="Assets/styles/main.css" />
   </head>
   <body>
-    <div class="overlay overlay--intro">
+    <div class="overlay overlay--intro loading">
       <canvas class="intro__bg"></canvas>
       <img
         class="img img--mg-overlay"
@@ -32,13 +32,8 @@
           intuitive applications.
         </p>
       </div>
-      <a href="#header" class="btn btn--icon btn--scroll">
-        <span
-          ><img
-            src="Assets/images/Scroll Icon.svg"
-            alt="scroll dowd icon"
-            alt="scroll down indicator"
-        /></span>
+      <a href="#header" class="scroll">
+        <span>SCROLL DOWN</span>
       </a>
     </div>
     <img
@@ -48,8 +43,20 @@
     />
     <div class="overlay overlay--menu"></div>
     <main class="main">
-      <header id="header" class="header"></header>
-      <section class="container container--intro">
+      <header id="header" class="header">
+        <div class="mobile-only">
+          <div class="hero hero--mobile">
+            <h1 class="head">I'm Simo.</h1>
+            <p class="body__text body__text--head">
+              I look at screen for a living. If you're here. You probably care.
+            </p>
+            <a href="#intro" class="scroll">
+              <span>SCROLL DOWN</span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <section id="intro" class="container container--intro">
         <div class="sect-head">
           <h6 class="prehead">INTRO</h6>
           <h1>WHO AM I</h1>
@@ -58,9 +65,8 @@
         <div class="sect-main card sect-main--short">
           <div class="inner card__inner flex flex--col">
             <h1 class="head">Creative Developer</h1>
-            <p class="body-text">
-              Front-end developer, UX/UI ninja wannabe and keyboard lover.
-              <br />
+            <p class="body__text">
+              Front-end developer, UX/UI ninja wannabe and keyboard lover. <br>
               I can dance throughout the stack too.
             </p>
             <a href="#bio" class="btn btn--outline with-line">
@@ -179,25 +185,37 @@
           <div class="subhead">FOLLOW ME ON THESE</div>
         </div>
         <div class="sect-main social__links">
-          <a href="https://www.twitter.com/swssr" class="card card--social"
+          <a
+            target="_blank"
+            href="https://www.twitter.com/swssr"
+            class="card card--social"
             ><img
               class="social__icon-img"
               src="Assets/images/icons8-twitter-104.png"
               alt="social icon"
           /></a>
-          <a href="https://www.linkedin.com/swssr" class="card card--social"
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/swssr"
+            class="card card--social"
             ><img
               class="social__icon-img"
               src="Assets/images/linkedin.svg"
               alt="social icon"
           /></a>
-          <a href="https://www.instragram.com/swssr" class="card card--social"
+          <a
+            target="_blank"
+            href="https://www.instragram.com/swssr"
+            class="card card--social"
             ><img
               class="social__icon-img"
               src="Assets/images/instagram-logo.png"
               alt="social icon"
           /></a>
-          <a href="https://www.reddit.com/swssr" class="card card--social"
+          <a
+            target="_blank"
+            href="https://www.reddit.com/swssr"
+            class="card card--social"
             ><img
               class="social__icon-img"
               src="Assets/images/reddit.svg"
@@ -216,6 +234,7 @@
         </li>
       </ul>
       <a
+        target="_blank"
         href="http://source.cloudinary.com/swssr/resume"
         class="link with-line link--primary"
         >Resume</a
@@ -224,7 +243,7 @@
     <div class="overlay modal card">
       <div class="modal__body">
         <h1 class="head">Front-End Developement</h1>
-        <p class="body-text">
+        <p class="body__text">
           Aah! My soulmate the reason I hardly sleep. Everything I love about
           this one is what give me headaches. I'm self-thaught, My weapon of
           choise is <b>ReactJS</b>, but I think <b>VueJS</b> is really cool too.

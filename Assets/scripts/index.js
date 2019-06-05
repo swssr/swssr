@@ -96,3 +96,19 @@ function switchImage(index) {
   const color = sources[index].color;
   preview.style.backgroundColor = color;
 }
+//Handle load
+const introduction = document.querySelector(".overlay--intro");
+
+const debounce = 500;
+(() => {
+  if (localStorage.getItem("init")) {
+    setTimeout(() => {
+      introduction.classList.remove("loading");
+      console.log("nth time");
+    }, debounce);
+  } else {
+    localStorage.setItem("init", "once");
+    introduction.classList.remove("loading");
+    console.log("first time");
+  }
+})();
