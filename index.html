@@ -30,6 +30,7 @@
 
     <link rel="manifest" href="/manifest.json" />
     <title>Simo | Swssr</title>
+    <link rel="stylesheet" href="Assets/fonts/fonts.css" />
     <link rel="stylesheet" type="text/css" href="Assets/styles/main.css" />
   </head>
   <body>
@@ -63,7 +64,8 @@
           <div class="hero hero--mobile">
             <h1 class="head">I'm Simo.</h1>
             <p class="body__text body__text--head">
-              I look at screen for a living. If you're here. You probably care.
+              I look at a screen for a living. If you're here. You probably
+              care.
             </p>
             <a href="#intro" class="scroll">
               <span>SCROLL DOWN</span>
@@ -358,17 +360,18 @@
       </button>
     </nav>
     <script>
+      // Check that service workers are registered
       if ("serviceWorker" in navigator) {
+        // Use the window load event to keep the page load performant
         window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/service-worker.js").then(reg => {
-            console.log("Service worker registered.", reg);
-          });
+          navigator.serviceWorker.register("/service-worker.js");
         });
       }
     </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script> -->
+    
     <script src="Assets/scripts/index.js"></script>
     <script src="Assets/scripts/canvas.js"></script>
   </body>
