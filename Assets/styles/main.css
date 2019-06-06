@@ -240,6 +240,15 @@ body {
   opacity: .56;
   animation: bounce infinite 4s forwards;
 }
+.scroll::after{
+  content: "";
+  position: absolute;
+  bottom: -7vh;
+  left: 50%;
+  width: 2px;
+  height: 6vh;
+  background-color: var(--accent);
+}
 .overlay--menu {
   display: none;
 }
