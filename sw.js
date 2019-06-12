@@ -109,144 +109,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "804f730048194fa0d8bf9e59c8e0decc"
   },
   {
-    "url": "Assets/images/icons/1x/big.png",
-    "revision": "40050f220cf8e8a52c54fde3a53a46ef"
-  },
-  {
-    "url": "Assets/images/icons/1x/icon-128x128.png",
-    "revision": "e0061c6cd18c4d0cf02c0ed2cfd02fe8"
-  },
-  {
-    "url": "Assets/images/icons/1x/icon-144x144.png",
-    "revision": "ab00c341210484cbdb9b8b7644881562"
-  },
-  {
-    "url": "Assets/images/icons/1x/icon-152x152.png",
-    "revision": "9d29705a76ff409f8d610ce21123c34c"
-  },
-  {
-    "url": "Assets/images/icons/1x/icon-192x192.png",
-    "revision": "dae92713fd2ea50d49b53e1f58d47aea"
-  },
-  {
-    "url": "Assets/images/icons/1x/icon-256x256.png",
-    "revision": "93f7a4f0bd4856059548f4f58766c969"
-  },
-  {
-    "url": "Assets/images/icons/2x/big@2x.png",
-    "revision": "ee8c0169981596f2aef69d9ba418ba40"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-144x144_1@2x.png",
-    "revision": "d45523a41b02c175483fbe51fc938644"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-144x144@2x.png",
-    "revision": "697054bb15e31ab30e4cbd4ad9aadab9"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-152x152_1@2x.png",
-    "revision": "38baf362cf48f5a3c87500b27e6e6365"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-152x152_2@2x.png",
-    "revision": "d85a2d08fa860ddfb4783f4e50dfc49e"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-152x152_3@2x.png",
-    "revision": "60c5899172beef51fc2f67db1ed44296"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-152x152@2x.png",
-    "revision": "47227afbe7ad4b8545599fd0b0406a77"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-192x192_1@2x.png",
-    "revision": "9762273c0c99cc9a59d1f2af4365940b"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-192x192@2x.png",
-    "revision": "ae5a7b274c36a2470abd23d7fda95980"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-256x256_1@2x.png",
-    "revision": "26c3b5b2a730c4a059f588a352dcafcd"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-256x256@2x.png",
-    "revision": "ecc477228dc86d964bed8ba4ce870098"
-  },
-  {
-    "url": "Assets/images/icons/2x/icon-512x512@2x.png",
-    "revision": "8b37eba5f0f9a07c451a77f3f5d9960d"
-  },
-  {
-    "url": "Assets/images/icons/SVG/big.svg",
-    "revision": "41e0b7578b0c61979b555ce5b8ec7380"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-144x144_1.svg",
-    "revision": "59986550471fa0718b945e55119f3b02"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-144x144.svg",
-    "revision": "1da646df4a6d0d736c321f432aac78f3"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-152x152_1.svg",
-    "revision": "80ef4877049b8ab5460f55e17e6ec624"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-152x152_2.svg",
-    "revision": "757bb63b012d692b00c09b6e3e4d9cc6"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-152x152_3.svg",
-    "revision": "cd50a131fddcf14956daf1c02cf35d47"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-152x152.svg",
-    "revision": "374a1357cbf6dec4f87cc3cf3fcc9d07"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-192x192_1.svg",
-    "revision": "98b7de218a6b0abfa66da53c7953808a"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-192x192.svg",
-    "revision": "419132ef5c5ecb549c477c8f9ec0107c"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-256x256_1.svg",
-    "revision": "aaa8fa675fb6fac8691fa86450870f2a"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-256x256.svg",
-    "revision": "5e3e08e8f3a99df2e1da26567f6be11b"
-  },
-  {
-    "url": "Assets/images/icons/SVG/icon-512x512.svg",
-    "revision": "a83a0931a156c3848282c4d896581eb9"
-  },
-  {
     "url": "Assets/images/icons8-twitter-104.png",
     "revision": "c6946dec140d5be55aa9f5aff7e3a5e4"
   },
   {
     "url": "Assets/images/icons8-twitter-104@2x.png",
     "revision": "518f5726e1ea6645b3cadb3dee441491"
-  },
-  {
-    "url": "Assets/images/img--bg.png",
-    "revision": "f1cd0ba2e58a75b188d9b7ee91caab4a"
-  },
-  {
-    "url": "Assets/images/img--me.png",
-    "revision": "55769e23ea81ee93d6389cd8a5c08354"
-  },
-  {
-    "url": "Assets/images/img--me@2x.png",
-    "revision": "fb44938645004bae206509fc2baf7772"
   },
   {
     "url": "Assets/images/instagram-logo.png",
@@ -329,56 +197,12 @@ workbox.precaching.precacheAndRoute([
     "revision": "1951dc0a534c8defe62fae7ea70ca834"
   },
   {
-    "url": "dist/canvas.26572fb0.js",
-    "revision": "3a4b50ebac98ae0bae130c1154e57444"
-  },
-  {
-    "url": "dist/icons8-twitter-104.b6a03c78.png",
-    "revision": "c6946dec140d5be55aa9f5aff7e3a5e4"
-  },
-  {
-    "url": "dist/img--bg.c76ced32.png",
-    "revision": "f1cd0ba2e58a75b188d9b7ee91caab4a"
-  },
-  {
-    "url": "dist/index.html",
-    "revision": "bfbfdd0bf6b0dcea0c2dfb9bb350b79a"
-  },
-  {
-    "url": "dist/instagram-logo.d6ed63a4.png",
-    "revision": "7eb2b43b894d90b12fe116c51cf510d0"
-  },
-  {
-    "url": "dist/linkedin.75704ea4.svg",
-    "revision": "5965bdc99f5d9d916acad2b650b12dc0"
-  },
-  {
-    "url": "dist/logo.08e3109a.png",
-    "revision": "98f3ec20e27738d13893470a92d99187"
-  },
-  {
-    "url": "dist/main.d0089873.css",
-    "revision": "49ac7ef2e68f38e52fa5b0570158b9db"
-  },
-  {
-    "url": "dist/reddit.bbc8b383.svg",
-    "revision": "ad8d10cef9cf2108486aeda4debf48e7"
-  },
-  {
-    "url": "dist/scripts.873363ee.js",
-    "revision": "7abefa4078e7298ed320049b9fd56f66"
-  },
-  {
-    "url": "dist/Scroll Icon.a052a949.svg",
-    "revision": "c553b43e1f0ca27851a09d6c181facbd"
-  },
-  {
     "url": "index.html",
     "revision": "44a2a0a29d2c76e764596103248ec345"
   },
   {
     "url": "manifest.json",
-    "revision": "6fecdc5faaff4d640f2774852ffb73ff"
+    "revision": "ba57baaf62ad05bc28e4bb22df3026dd"
   },
   {
     "url": "now.json",

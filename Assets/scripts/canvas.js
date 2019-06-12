@@ -90,12 +90,12 @@ function setup() {
 }
 let speed = 0;
 
-function animate() {
-  c.fillStyle = "rgba(255,255,255,0.2)";
-  c.fillRect(0, 0, innerWidth, innerHeight);
+// function animate() {
+//   c.fillStyle = "rgba(255,255,255,0.2)";
+//   c.fillRect(0, 0, innerWidth, innerHeight);
 
-  requestAnimationFrame(animate);
-}
+//   requestAnimationFrame(animate);
+// }
 
 setup();
-animate();
+// animate();

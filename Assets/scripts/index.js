@@ -94,7 +94,7 @@ function toggleActive(e, arr, index) {
 function switchImage(index) {
   //Change preview image
   const color = sources[index].color;
-  preview.style.backgroundColor = color;
+  // preview.style.src = color;
 }
 //Handle load
 const introduction = document.querySelector(".overlay--intro");
