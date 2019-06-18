@@ -58,15 +58,6 @@ class Item {
     const isAtEdge = () => {
       let test = true;
       if (this.y > window.innerHeight || this.x > window.innerWidth) {
-        console.log({
-          self: {
-            x: this.x
-          },
-          world: {
-            innerWidth,
-            innerHeight
-          }
-        });
         test = true;
       }
       return test;

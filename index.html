@@ -47,7 +47,7 @@
       <span>SCROLL DOWN</span>
     </a>
   </header>
-  <img src="Assets/images/loader.gif" data-src="Assets/images/opt/img--bg.webp" alt="simo standing on mountain" class="img img--bg fixed" />
+  <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp" alt="simo standing on mountain" class="img img--bg fixed" />
   <div class="overlay overlay--menu"></div>
   <main class="main" role="main">
     <header id="header" class="header">
@@ -184,7 +184,7 @@
             </figcaption>
           </figure> -->
           <figure class="entry">
-            <img src="Assets/images/loader.gif" data-src="Assets/images/clients/igor-rand-1665701-unsplash.jpg" alt="" class="img entry__img">
+            <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/igor-rand-1665701-unsplash.webp" alt="" class="img entry__img">
             <figcaption class="entry__comment">
               <blockquote class="body__text comment"> &OpenCurlyDoubleQuote;Has a personality of an owl... Very talented nontheless."&CloseCurlyDoubleQuote;
               </blockquote> 
@@ -192,7 +192,7 @@
             </figcaption>
           </figure>
           <figure class="entry">
-            <img src="Assets/images/loader.gif" data-src="Assets/images/clients/tumi.jpg" alt="" class="img entry__img">
+            <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/tumi.webp" alt="" class="img entry__img">
             <figcaption class="entry__comment">
               <blockquote class="body__text comment"> &OpenCurlyDoubleQuote; Nocturnal brain... is that a thing? Who cares. &CloseCurlyDoubleQuote;
               </blockquote> 
@@ -200,7 +200,7 @@
             </figcaption>
           </figure>
           <figure class="entry">
-            <img src="Assets/images/loader.gif" data-src="Assets/images/clients/nasa-45076-unsplash.jpg" alt="" class="img entry__img">
+            <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/nasa-45076-unsplash.webp" alt="" class="img entry__img">
             <figcaption class="entry__comment">
               <blockquote class="body__text comment">&OpenCurlyDoubleQuote;[Insert Something Inspiration] will not stroke your ego Simo.&CloseCurlyDoubleQuote;
               </blockquote> 
@@ -208,7 +208,7 @@
             </figcaption>
           </figure>
           <figure class="entry">
-            <img src="Assets/images/loader.gif" data-src="Assets/images/clients/igor-rand-1665699-unsplash.jpg" alt="" class="img entry__img">
+            <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/igor-rand-1665699-unsplash.webp" alt="" class="img entry__img">
             <figcaption class="entry__comment">
               <blockquote class="body__text comment">&OpenCurlyDoubleQuote;Very innovative mind. I really admire his work!&CloseCurlyDoubleQuote;
               </blockquote> 
@@ -224,7 +224,6 @@
         <h6 class="prehead">like my work?</h6>
         <h1>IMPRESSED</h1>
         <div class="subhead">HIT ME UP HERE</div>
-
         <div class="sect-main social__links">
           <a target="_blank" href="https://www.linkedin.com/in/swssr" class="card card--social">
             <img
@@ -352,13 +351,6 @@
         if(isIntersecting){
           target.src = target.dataset.src;
           self.unobserve(target);
-
-          console.log(`${target} is intersecting`);
-          console.log({target: {
-            src: target.src,
-            dt: target.dataset.src,
-            
-          }});
         }
       });
     }
