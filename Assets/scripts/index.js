@@ -14,6 +14,7 @@ function hideItem(el) {
   setTimeout(() => {
     el.style.display = "none";
   }, 250);
+  clearTimeout();
 }
 btn_menu.addEventListener("click", () => toggleShow(overlay));
 
@@ -45,13 +46,13 @@ const intro = document.querySelector(".overlay");
 const margin = Math.round(innerHeight / 2.5);
 let options = {
   root: null,
-  rootMargin: `-${margin}px`,
+  rootMargin: `-${margin}px 0px 0px 0px`,
   treshold: 1.0
 };
 let toggleNav = entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      navbar.classList.toggle("navdown");
+      navbar.classList.add("navdown");
     } else {
       navbar.classList.remove("navdown");
     }

@@ -52,7 +52,8 @@ li:hover {
   opacity: 0.86;
 }
 html {
-  font-family: "Jost";
+  font-family: "Jost", sans-serif;
+  font-display: swap;
   scroll-behavior: smooth;
   transition: scroll-behavior 2s ease;
   overflow-y: scroll;
@@ -239,6 +240,7 @@ body {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   z-index: 3;
 }
+
 .intro__body {
   position: absolute;
   top: 50%;
@@ -251,7 +253,6 @@ body {
 }
 .scroll {
   position: absolute;
-  width: 100px;
   left: calc(50vw - 50px);
   bottom: calc(var(--nav-height) + 10vh);
   background-color: transparent;
@@ -643,14 +644,16 @@ body {
 }
 .entry__img {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 1px;
+  left: 1px;
   width: inherit;
   height: inherit;
   filter: brightness(30%) grayscale(100%);
   transition: transform, filter;
   transition-duration: 500ms;
   transition-timing-function: ease-out;
+  background-color: red;
+  border: 1px solid red;
 }
 .entry:hover {
   z-index: 2;

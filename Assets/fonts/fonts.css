@@ -3,9 +3,8 @@
   src: url("https://res.cloudinary.com/tumi/raw/upload/v1560815514/fonts/Jost-200.ttf")
     format("truetype");
   font-weight: 200;
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
-  font-display: auto;
 }
 
 @font-face {
@@ -13,9 +12,8 @@
   src: url("https://res.cloudinary.com/tumi/raw/upload/v1560815514/fonts/Jost-300-Light.ttf")
     format("truetype");
   font-weight: 300;
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
-  font-display: auto;
 }
 
 @font-face {
@@ -23,9 +21,8 @@
   src: url("https://res.cloudinary.com/tumi/raw/upload/v1560815514/fonts/Jost-400-Book.ttf")
     format("truetype");
   font-weight: 400;
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
-  font-display: auto;
 }
 
 @font-face {
@@ -33,9 +30,8 @@
   src: url("https://res.cloudinary.com/tumi/raw/upload/v1560815514/fonts/Jost-500-Medium.ttf")
     format("truetype");
   font-weight: 500;
-  font-display: auto;
+  font-display: swap;
   font-style: normal;
-  font-display: auto;
 }
 
 @font-face {
@@ -44,7 +40,6 @@
     format("truetype");
   font-weight: 600;
   font-style: normal;
-  font-display: auto;
 }
 
 @font-face {
@@ -52,6 +47,6 @@
   src: url("https://res.cloudinary.com/tumi/raw/upload/v1560815514/fonts/Jost-700-Bold.ttf")
     format("truetype");
   font-weight: 700;
+  font-display: swap;
   font-style: normal;
-  font-display: auto;
 }
