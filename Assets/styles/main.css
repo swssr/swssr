@@ -433,24 +433,10 @@ body {
   overflow: hidden;
   z-index: 1;
 }
-.list__item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: calc(50vw - var(--padding));
-  height: 100%;
-  z-index: -1;
-  opacity: 0;
-  background-color: var(--color-dark);
-  transition: opacity 400ms ease-out;
-}
 .list__item:hover::before {
   opacity: 0.86;
 }
-.list__item:hover {
-  color: var(--color-white);
-}
+.list__item:hover,
 .list__item--active,
 .list__item:focus-within {
   background-color: var(--color-dark);
