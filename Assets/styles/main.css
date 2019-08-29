@@ -33,6 +33,10 @@ a {
   color: var(--color-dark);
   text-decoration: none;
 }
+dialog{
+  outline: none;
+  border: none;
+}
 /* Typography */
 .body__text {
   font-size: calc(13px + 0.4vmin);
@@ -632,6 +636,7 @@ body {
   z-index: 6;
 }
 .modal__head {
+  font-size: 2rem;
   margin-bottom: 1.8rem;
 }
 .modal__body {

@@ -33,7 +33,7 @@ const modalDataList = [
   {
     header: "BACK-END DEVELOPMENT",
     bodyText:
-      "Brain food. This is were my 3 year of learning software engineering becomes useful. I'm working with NodeJS and .NET Core when building server. There's always room too learn new stuff",
+      "Brain food. This is were my 3 year of learning software engineering becomes useful. I use with NodeJS and .NET Core when building server. There's always room too learn new stuff",
     items: ["NodeJS", "C#", "ASP.NET MVC", "ASP.NET Core"]
   },
   {
