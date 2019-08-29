@@ -96,6 +96,8 @@ body {
   z-index: -1;
 }
 .preview {
+  filter: grayscale(1) blur(1px);
+  opacity: .56;
   background-color: transparent !important;
   height: 80vh;
 }

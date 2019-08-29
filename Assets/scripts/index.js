@@ -64,7 +64,7 @@ let IO = new IntersectionObserver(toggleNav, options);
 IO.observe(intro);
 
 //Switch Project preview IMG
-const preview = document.querySelector("canvas#proj-preview");
+const preview = document.querySelector("#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
 const sources = [
@@ -77,12 +77,12 @@ const sources = [
 ];
 
 //Default bg
-switchImage(0);
+switchImage(preview, 0);
 
 projects_lis.forEach((item, index, arr) => {
   item.addEventListener("click", e => {
     toggleActive(e, arr, index);
-    switchImage(index);
+    switchImage(preview, index);
   });
 });
 
@@ -92,10 +92,10 @@ function toggleActive(e, arr, index) {
   e.currentTarget.classList.add("list__item--active");
 }
 
-function switchImage(index) {
+function switchImage(target, index) {
   //Change preview image
-  const color = sources[index].color;
-  // preview.style.src = color;
+  const { src } = sources[index];
+  target.src = src;
 }
 //Handle load
 const introduction = document.querySelector(".overlay--intro");

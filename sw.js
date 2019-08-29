@@ -18,7 +18,6 @@ workbox.routing.registerRoute(
   new workbox.strategies.StaleWhileRevalidate({
     // Use a custom cache name.
     cacheName: 'css-cache',
-  })
 );
 
 workbox.routing.registerRoute(
