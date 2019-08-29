@@ -62,8 +62,19 @@
     </a>
   </header>
   <img src="Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp" alt="simo standing on mountain" class="img img--bg fixed" />
-  <div class="overlay overlay--menu"></div>
+  <div class="overlay overlay--menu">
+    <div class="menu__inner">
+      <div class="menu__links">
+        <a class="link" href="#intro">WHO AM I</a>
+        <a class="link" href="#work">WORK</a>
+        <a class="link" href="#connect">CONNECT</a>
+        <a class="link" href="https://github.com/swssr" target="_blank" rel="noopener">GitHub</a>
+        <a class="link" href="https://Behance.com/swssr" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+  </div>
   <main class="main" role="main">
+    <div class="target"></div>
     <header id="header" class="header">
       <div class="mobile-only">
         <div class="hero hero--mobile">
@@ -85,23 +96,21 @@
         <h1>WHO AM I</h1>
         <div class="subhead">why you should care</div>
       </div>
-      <div class="sect-main card sect-main--short">
+      <div class="sect-main card sect-main--alt">
         <div class="inner card__inner flex flex--col">
           <h1 class="head">Creative Developer</h1>
           <p class="body__text">
-            Front-end developer, UX/UI ninja wannabe and keyboard lover.
-            <br />
-            I can dance throughout the stack too.
+            I'm a Developer, UX/UI future ninja, people and tech lover. <br>In love yet?
           </p>
           <a href="#bio" class="btn btn--outline with-line">
-            <span>READ BIO</span>
+            <span>RESUME</span>
           </a>
         </div>
         <!-- add photo that illustrate and summarize what you do -->
         <img src="Assets/images/loader.gif" data-src="Assets/images/loader.gif" class="img img--preview"/>
       </div>
     </section>
-    <section class="container">
+    <section id="work" class="container">
       <div class="sect-head">
         <h6 class="prehead">PROJECTS</h6>
         <h1>MY WORK</h1>
@@ -121,7 +130,7 @@
             <a href="https://tumi.now.sh" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
           </li>
           <li class="list__item">
-            <h2 class="item__name with-line">MELIICEBO GROUP</h2>
+            <h2 class="item__name with-line">MERIT BRANDING</h2>
             <div class="item__subtext">Landing page</div>
             <a href="https://melii.now.sh" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
           </li>
@@ -133,12 +142,12 @@
           <li class="list__item">
             <h2 class="item__name with-line">AIPLAY</h2>
             <div class="item__subtext">Music streaming app</div>
-            <a href="https://alplay.now.sh" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
+            <a href="https://alplay.co.za" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
           </li>
           <li class="list__item">
-            <h2 class="item__name with-line">BAWAZ</h2>
-            <div class="item__subtext">eCommerce website</div>
-            <a href="https://bawaz.now.sh" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
+            <h2 class="item__name with-line">FILR</h2>
+            <div class="item__subtext">WebAPI content manager</div>
+            <a href="https://filr.co.za" class="link link--ext" target="_blank" rel="noopener">VISIT</a>
           </li>
         </ul>
       </div>
@@ -152,14 +161,12 @@
       <div class="sect-main">
         <div class="card flex card--skills">
           <div class="card__item card__body flex flex--col">
-            <h1 class="head skills__head">
+            <h2 class="head skills__head">
               I'M FLEXIBLE THROUGHOUT THE STACK.
-            </h1>
+            </h2>
             <p class="body__text">
-              My biggest blessing was learning <b>JavaScript</b> and
-              <b>UI Design</b> while having a solid background in strongly
-              type languages like <b>C#</b> and <b>Java</b>. This has allowed
-              me to work fluidly across the entirety of the application.
+              My biggest blessing was learning
+              <mark>UX/UI Design</mark> & <mark>JavaScript</mark> while having a solid background programming with <mark>C#</mark> and <mark>Java</mark>.
             </p>
           </div>
           <div class="card__item skills">
@@ -180,7 +187,7 @@
       </div>
     </section>
   
-    <section class="container container--short">
+    <section id="reviews" class="container container--alt">
       <div class="sect-head">
         <h6 class="prehead">WHAT OTHER SAY?</h6>
         <h1>REVIEWS</h1>
@@ -224,7 +231,7 @@
       </div>
       </div>
     </section>
-    <section class="container container--short bg--translucent">
+    <section id="connect" class="container container--alt bg--translucent">
       <div class="sect-head">
         <h6 class="prehead">like my work?</h6>
         <h1>IMPRESSED</h1>
@@ -374,8 +381,7 @@
     const imgs = document.querySelectorAll(".img");
     const review_imgs = document.querySelectorAll(".entry");
 
-    imgs.forEach(img => imgIO.observe(img));
-    review_imgs.forEach(img => imgIO.observe(img));
+    imgs.forEach(img => imgIO.observe(img.parentNode));
   </script>
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>

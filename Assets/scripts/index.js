@@ -3,9 +3,9 @@ const overlay = document.querySelector(".overlay--menu");
 const btn_menu = document.querySelector(".btn--menu");
 
 //Handle btn_menu click event: toggle menu visibility
-function toggleShow(el) {
+function toggleShow(el, force) {
   // const force = arguments[1] || true;
-  el.classList.toggle("visible") ? showItem(el) : hideItem(el);
+  el.classList.toggle("visible", force) ? showItem(el) : hideItem(el);
 }
 function showItem(el) {
   el.style.display = "block";
@@ -16,7 +16,6 @@ function hideItem(el) {
   }, 250);
   clearTimeout();
 }
-btn_menu.addEventListener("click", () => toggleShow(overlay));
 
 //Show/hide Skill modal
 const skill_pills = document.querySelectorAll(".skill");
@@ -31,39 +30,53 @@ skill_pills.forEach(pill => {
 });
 
 //Remove modal
-document.querySelector(".btn--close").addEventListener("click", () => {
-  toggleShow(modal);
-  toggleShow(overlay);
-  navbar.classList.toggle("navdown");
+function removeOverlay(e) {
+  overlay.classList.remove("visible");
+  modal.classList.remove("visible");
+  bottomNav.classList.remove("navdown");
+  hideItem(overlay);
   // toggleShow(overlay, true);
-});
+}
+overlay.addEventListener("click", removeOverlay);
 
 //Hide bottom nav when intro is visible
-const navbar = document.querySelector(".nav.alpha");
-const intro = document.querySelector(".overlay");
+const bottomNav = document.querySelector(".nav.fixed--bottom");
+const topmNav = document.querySelector(".nav.fixed--top");
+const sect1 = document.querySelector(".main");
+
+//Show hide menu
+btn_menu.addEventListener("click", () => {
+  toggleShow(overlay);
+  bottomNav.classList.add("navdown");
+});
 
 //Intersection observer setup
-const margin = Math.round(innerHeight / 2.5);
+const margin = 0;
+
 let options = {
-  root: null,
-  rootMargin: `-${margin}px 0px 0px 0px`,
-  treshold: 1.0
+  rootMargin: "-10px",
+  treshold: 1
 };
+
 let toggleNav = entries => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navbar.classList.add("navdown");
+    console.log(entry.target);
+    if (!entry.isIntersecting) {
+      topmNav.classList.add("navup");
+      bottomNav.classList.add("navdown");
     } else {
-      navbar.classList.remove("navdown");
+      console.log("notIntersecting");
+      topmNav.classList.remove("navup");
+      bottomNav.classList.remove("navdown");
     }
   });
 };
 
 let IO = new IntersectionObserver(toggleNav, options);
 
-IO.observe(intro);
+IO.observe(sect1);
 
-//Switch Project preview IMG
+//Switch Project preview images
 const preview = document.querySelector("#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
@@ -111,3 +124,10 @@ const debounce = 500;
     introduction.classList.remove("loading");
   }
 })();
+
+//Menu item click
+const menuLink = document.querySelectorAll(".menu__links .link");
+
+menuLink.forEach(link => {
+  link.addEventListener("click", removeOverlay);
+});
