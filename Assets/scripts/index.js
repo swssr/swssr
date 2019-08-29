@@ -12,6 +12,7 @@ function showItem(el) {
 }
 function hideItem(el) {
   setTimeout(() => {
+    // debugger;
     el.style.display = "none";
   }, 250);
   clearTimeout();
@@ -20,25 +21,64 @@ function hideItem(el) {
 //Show/hide Skill modal
 const skill_pills = document.querySelectorAll(".skill");
 const modal = document.querySelector(".modal");
+const btnModalClose = document.querySelector(".btn--close");
 
-skill_pills.forEach(pill => {
+const modalDataList = [
+  {
+    header: "FRONT-END DEVELOPMENT",
+    bodyText:
+      "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
+    items: ["ReactJS", "VueJS", "Sass", "Pug"]
+  },
+  {
+    header: "BACK-END DEVELOPMENT",
+    bodyText:
+      "Brain food. This is were my 3 year of learning software engineering becomes useful. I'm working with NodeJS and .NET Core when building server. There's always room too learn new stuff",
+    items: ["NodeJS", "C#", "ASP.NET MVC", "ASP.NET Core"]
+  },
+  {
+    header: "UX/UI Design",
+    bodyText:
+      "I've always loved designing and illustrating, even before I got into software development, this was only natural and I love every bit of it. I still have a lot to learn though. ",
+    items: ["AdobeXD", "Adobe PhotoShop", "Adobe Illustrator", "Figma"]
+  }
+];
+
+skill_pills.forEach((pill, index) => {
   pill.addEventListener("click", () => {
     toggleShow(overlay);
     toggleShow(modal);
-    navbar.classList.toggle("navdown");
+    bottomNav.classList.toggle("navdown");
+
+    //Fill modal
+    populateModal(modal, modalDataList[index]);
   });
 });
 
+//Populate modal with the right content based on pill clicked
+
+function populateModal(_modal, _data) {
+  const modalHead = _modal.querySelector(".head");
+  const modalBody = _modal.querySelector(".body__text");
+  const modalList = _modal.querySelector(".modal__list");
+
+  modalHead.textContent = _data.header;
+  modalBody.textContent = _data.bodyText;
+  modalList.innerHTML = _data.items
+    .map(x => `<li class="tool">${x}</li>`)
+    .join("");
+}
 //Remove modal
 function removeOverlay(e) {
   overlay.classList.remove("visible");
   modal.classList.remove("visible");
   bottomNav.classList.remove("navdown");
   hideItem(overlay);
+  hideItem(modal);
   // toggleShow(overlay, true);
 }
 overlay.addEventListener("click", removeOverlay);
-
+btnModalClose.addEventListener("click", removeOverlay);
 //Hide bottom nav when intro is visible
 const bottomNav = document.querySelector(".nav.fixed--bottom");
 const topmNav = document.querySelector(".nav.fixed--top");
@@ -61,6 +101,7 @@ let options = {
 let toggleNav = entries => {
   entries.forEach(entry => {
     console.log(entry.target);
+    glitch();
     if (!entry.isIntersecting) {
       topmNav.classList.add("navup");
       bottomNav.classList.add("navdown");
@@ -131,3 +172,11 @@ const menuLink = document.querySelectorAll(".menu__links .link");
 menuLink.forEach(link => {
   link.addEventListener("click", removeOverlay);
 });
+
+//Easter egg
+function glitch() {
+  const scrollTexts = document.querySelectorAll(".scroll span");
+
+  scrollTexts[0].classList.toggle("hidden");
+  scrollTexts[1].classList.toggle("visible");
+}
