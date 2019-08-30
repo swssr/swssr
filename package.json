@@ -1,8 +1,0 @@
-{
-  "scripts": {
-    "now-build": "parcel build index.html"
-  },
-  "devDependencies": {
-    "cssnano": "^4.1.10"
-  }
-}
