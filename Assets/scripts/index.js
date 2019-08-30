@@ -122,12 +122,31 @@ const preview = document.querySelector("#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
 const sources = [
-  { color: "gold", src: "https://project.swss.now.sh" },
-  { color: "navy", src: "https://project.swss.now.sh" },
-  { color: "powderblue", src: "https://project.swss.now.sh" },
-  { color: "yellow", src: "https://project.swss.now.sh" },
-  { color: "black", src: "https://project.swss.now.sh" },
-  { color: "pink", src: "https://project.swss.now.sh" }
+  {
+    color: "navy",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567123286/swssr/pxjecd7m8gophuukm4v5.png"
+  },
+  {
+    color: "powderblue",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567122111/swssr/dixmw6phrrmxzrvhvcvr.png"
+  },
+  {
+    color: "yellow",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567120787/swssr/sdp7tyajnxgsomj45p2b.png"
+  },
+  {
+    color: "black",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/v3edsityrdc6wlyng0oh.png"
+  },
+  {
+    color: "pink",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/zjfedfxofdrwkvtlvakp.png"
+  }
 ];
 
 //Default bg
