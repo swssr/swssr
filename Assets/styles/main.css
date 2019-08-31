@@ -666,6 +666,19 @@ body {
 .modal__body {
   max-width: 800px;
 }
+.modal__list {
+  display: grid;
+  grid-auto-flow: column;
+  width: min-content;
+}
+.tool {
+  width: 10vw;
+  height: 10vw;
+  display: grid;
+  place-content: center;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+}
 .btn--close {
   position: absolute;
   bottom: var(--padding);
