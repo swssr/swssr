@@ -168,6 +168,7 @@ function toggleActive(e, arr, index) {
 function switchImage(target, index) {
   //Change preview image
   const { src } = sources[index];
+  target.dataset.src = src;
   target.src = src;
 }
 //Handle load
