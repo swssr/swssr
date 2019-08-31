@@ -8,7 +8,7 @@
 
   --nav-height: 8.22vh;
 }
-
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 4px;
   background-color: var(--color-base);
@@ -33,7 +33,7 @@ a {
   color: var(--color-dark);
   text-decoration: none;
 }
-dialog{
+dialog {
   outline: none;
   border: none;
 }
@@ -293,6 +293,7 @@ body {
   transform-origin: top;
   animation: growY infinite 4s forwards;
 }
+
 .glitch {
   position: absolute;
   top: 0;
@@ -314,12 +315,18 @@ body {
   align-content: center;
   outline: 1px solid;
   z-index: 99999999;
+  cursor: zoom-out;
 }
 .menu__links .link {
   width: 50vw;
   height: 6rem;
   margin: 0 !important;
   padding: 0;
+  transition: all 100ms ease-out;
+}
+.menu__links .link.with-line::before {
+  transition-duration: 800ms;
+  max-width: 10vw;
 }
 .overlay--menu::before {
   content: "";
@@ -546,7 +553,24 @@ body {
   opacity: 0.86;
 }
 .link--ext {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
   color: transparent;
+  background-color: transparent !important;
+  transition: all 400ms ease-out;
+}
+.link--ext.with-line::before {
+  opacity: 0 !important;
+}
+.list__item--active .link--ext,
+.list__item:hover .link--ext {
+  color: var(--color-white);
+}
+.list__item--active .link--ext.with-line::before,
+.list__item:hover .link--ext.with-line::before {
+  opacity: 1 !important;
 }
 .link:not(:first-child) {
   margin-left: 32px;

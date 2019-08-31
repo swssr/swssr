@@ -125,17 +125,17 @@ const sources = [
   {
     color: "navy",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567123286/swssr/pxjecd7m8gophuukm4v5.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1567208498/swssr/vqghyhvfghcjnk2znivw.webp"
   },
   {
     color: "powderblue",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567122111/swssr/dixmw6phrrmxzrvhvcvr.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1567205438/swssr/sztu5pdvcidcxeneeemy.png"
   },
   {
     color: "yellow",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567120787/swssr/sdp7tyajnxgsomj45p2b.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1567213059/swssr/t6jcolitz8rbdrt0tqxe.webp"
   },
   {
     color: "black",
