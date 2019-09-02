@@ -845,7 +845,12 @@ body {
     min-height: unset;
   }
   .list__item {
+    height: 15vh;
     align-items: center;
+  }
+  .link--ext {
+    position: relative;
+    transform: translate(-25%, -4.5vh);
   }
   .skills {
     width: calc(100vw - var(--padding) * 2);
