@@ -2,22 +2,6 @@
 const overlay = document.querySelector(".overlay--menu");
 const btn_menu = document.querySelector(".btn--menu");
 
-//Handle btn_menu click event: toggle menu visibility
-function toggleShow(el, force) {
-  // const force = arguments[1] || true;
-  el.classList.toggle("visible", force) ? showItem(el) : hideItem(el);
-}
-function showItem(el) {
-  el.style.display = "block";
-}
-function hideItem(el) {
-  setTimeout(() => {
-    // debugger;
-    el.style.display = "none";
-  }, 250);
-  clearTimeout();
-}
-
 //Show/hide Skill modal
 const skill_pills = document.querySelectorAll(".skill");
 const modal = document.querySelector(".modal");
@@ -26,18 +10,21 @@ const btnModalClose = document.querySelector(".btn--close");
 const modalDataList = [
   {
     header: "FRONT-END DEVELOPMENT",
+    subhead: "refactor city. joy!",
     bodyText:
       "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
     items: ["ReactJS", "VueJS", "Sass", "Pug"]
   },
   {
     header: "BACK-END DEVELOPMENT",
+    subhead: "these folks stole all of my sleep",
     bodyText:
       "Brain food. This is were my 3 year of learning software engineering becomes useful. I work mostly with NodeJS but I'll happily dabble with .NET Core when needed.",
     items: ["NodeJS", "C#", "ASP.NET MVC", "ASP.NET Core"]
   },
   {
     header: "UX/UI Design",
+    subhead: "Too fun to be a hassle, you thought...",
     bodyText:
       "I've always loved designing and illustrating, even before I got into software development, transitioning to UX design is only natural and I love every bit of it. I still have a lot to learn though. ",
     items: ["AdobeXD", "Adobe PhotoShop", "Adobe Illustrator", "Figma"]
@@ -46,37 +33,12 @@ const modalDataList = [
 
 skill_pills.forEach((pill, index) => {
   pill.addEventListener("click", () => {
-    toggleShow(overlay);
-    toggleShow(modal);
-    bottomNav.classList.toggle("navdown");
-
+    showOverlay();
+    showItem(modalList, "grid");
     //Fill modal
     populateModal(modal, modalDataList[index]);
   });
 });
-
-//Populate modal with the right content based on pill clicked
-
-function populateModal(_modal, _data) {
-  const modalHead = _modal.querySelector(".head");
-  const modalBody = _modal.querySelector(".body__text");
-  const modalList = _modal.querySelector(".modal__list");
-
-  modalHead.textContent = _data.header;
-  modalBody.textContent = _data.bodyText;
-  modalList.innerHTML = _data.items
-    .map(x => `<li class="tool">${x}</li>`)
-    .join("");
-}
-//Remove modal
-function removeOverlay(e) {
-  overlay.classList.remove("visible");
-  modal.classList.remove("visible");
-  bottomNav.classList.remove("navdown");
-  hideItem(overlay);
-  hideItem(modal);
-  // toggleShow(overlay, true);
-}
 overlay.addEventListener("click", removeOverlay);
 btnModalClose.addEventListener("click", removeOverlay);
 //Hide bottom nav when intro is visible
@@ -193,10 +155,82 @@ menuLink.forEach(link => {
   link.addEventListener("click", removeOverlay);
 });
 
-//Easter egg
+//🐇🐇Easter egg
 function glitch() {
   const scrollTexts = document.querySelectorAll(".scroll span");
 
   scrollTexts[0].classList.toggle("hidden");
   scrollTexts[1].classList.toggle("visible");
+}
+
+//Show resume modal preview
+const btnShowResume = document.getElementById("btnShowResume");
+const linkShowResume = document.getElementById("linkShowResume");
+const form = document.querySelector(".modal__form");
+const emailInput = document.querySelector("[name=email]");
+
+[btnShowResume, linkShowResume].forEach(btn => {
+  btn.addEventListener("click", showResume);
+});
+
+function showResume() {
+  showOverlay();
+  showItem(form, "grid");
+  hideItem(modalList);
+
+  populateModal(modal, {
+    header: "YOU WANT MY RESUME?",
+    subhead: "TELL TALES SIGNS OF TRUE LOVE",
+    bodyText:
+      "I thought about linking my resume here and It's not a good idea. Please submit your email address below and I'll send it to you directly."
+  });
+}
+
+//handle toggle modal
+function showOverlay() {
+  toggleShow(overlay);
+  toggleShow(modal);
+  hideItem(form);
+  bottomNav.classList.toggle("navdown");
+}
+function removeOverlay(e) {
+  overlay.classList.remove("visible");
+  modal.classList.remove("visible");
+  bottomNav.classList.remove("navdown");
+  hideItemDelay(overlay);
+  hideItemDelay(modal);
+  // toggleShow(overlay, true);
+}
+//Handle btn_menu click event: toggle menu visibility
+function toggleShow(el, force) {
+  // const force = arguments[1] || true;
+  el.classList.toggle("visible", force) ? showItem(el) : hideItemDelay(el);
+}
+function showItem(el, display) {
+  el.style.display = display || "block";
+}
+function hideItem(el) {
+  el.style.display = "none";
+}
+function hideItemDelay(el) {
+  setTimeout(() => {
+    // debugger;
+    el.style.display = "none";
+  }, 250);
+  clearTimeout();
+}
+//Populate modal with the right content based on pill clicked
+const modalList = document.querySelector(".modal__list");
+
+function populateModal(_modal, _data) {
+  const modalHead = _modal.querySelector(".head");
+  const modalSubHead = _modal.querySelector(".subhead");
+  const modalBody = _modal.querySelector(".body__text");
+
+  modalHead.textContent = _data.header;
+  modalSubHead.textContent = _data.subhead;
+  modalBody.textContent = _data.bodyText;
+  modalList.innerHTML = _data.items
+    .map(x => `<li class="tool">${x}</li>`)
+    .join("");
 }
