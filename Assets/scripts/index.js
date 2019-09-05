@@ -20,14 +20,14 @@ const modalDataList = [
     subhead: "these folks stole all of my sleep",
     bodyText:
       "Brain food. This is were my 3 year of learning software engineering becomes useful. I work mostly with NodeJS but I'll happily dabble with .NET Core when needed.",
-    items: ["NodeJS", "C#", "ASP.NET MVC", "ASP.NET Core"]
+    items: ["NodeJS", "C#", ".NET MVC", ".NET Core"]
   },
   {
     header: "UX/UI Design",
     subhead: "Too fun to be a hassle, you thought...",
     bodyText:
       "I've always loved designing and illustrating, even before I got into software development, transitioning to UX design is only natural and I love every bit of it. I still have a lot to learn though. ",
-    items: ["AdobeXD", "Adobe PhotoShop", "Adobe Illustrator", "Figma"]
+    items: ["AdobeXD", "PhotoShop", "Illustrator", "Figma"]
   }
 ];
 

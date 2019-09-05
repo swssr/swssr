@@ -823,8 +823,11 @@ body {
   height: 48px;
   display: flex;
   margin-top: 8px;
+  margin-bottom: 16px;
   border: 2px solid var(--color-dark);
   outline: none;
+  padding: 0;
+  flex-direction: row;
   flex-wrap: nowrap;
 }
 .field > * {
@@ -835,7 +838,7 @@ body {
 }
 .input {
   padding: 16px;
-  width: 100%;
+  flex-grow: 1;
 }
 .btn--submit {
   width: 124px;
@@ -846,7 +849,7 @@ body {
 /* MOBILE */
 @media (max-width: 480px) {
   .modal__list {
-    grid-template: repeat(2, 6rem) / repeat(2, minmax(6rem, auto));
+    grid-template: repeat(2, 7rem) / repeat(2, minmax(7rem, auto));
   }
   .tool {
     width: 100%;
