@@ -179,10 +179,10 @@ function showResume() {
   hideItem(modalList);
 
   populateModal(modal, {
-    header: "YOU WANT MY RESUME?",
-    subhead: "TELL TALES SIGNS OF TRUE LOVE",
+    header: "WANT MY RESUME?",
+    subhead: "VETTING ME NEH?",
     bodyText:
-      "I thought about linking my resume here and It's not a good idea. Please submit your email address below and I'll send it to you directly."
+      "Please submit your email below and I'll send my resume to you directly. Linking my resume here wouldn't be the brightest move."
   });
 }
 
