@@ -319,7 +319,7 @@ body {
   transition: background-color 400ms;
 }
 .menu__inner:hover {
-  background-color: rgba(255, 255, 255, 0.86);
+  background-color: rgba(255, 255, 255, 0.96);
 }
 .menu__links .link {
   width: 50vw;
@@ -682,8 +682,8 @@ body {
   width: min-content;
 }
 .tool {
-  width: 10vw;
-  height: 10vw;
+  width: 8vw;
+  height: 8vw;
   display: grid;
   place-content: center;
   background-color: var(--color-dark);
@@ -691,8 +691,9 @@ body {
 }
 .btn--close {
   position: absolute;
-  bottom: var(--padding);
+  bottom: calc(var(--padding) / 2);
   left: var(--padding);
+  transform: translateY(-50%);
   width: min-content;
   height: min-content;
   padding: 16px;
