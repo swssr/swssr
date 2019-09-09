@@ -180,9 +180,8 @@ function showResume() {
 
   populateModal(modal, {
     header: "WANT MY RESUME?",
-    subhead: "VETTING ME NEH?",
-    bodyText:
-      "Please submit your email below and I'll send my resume to you directly. Linking my resume here wouldn't be the brightest move."
+    subhead: "TELLTALE SIGNS YOU FANCY ME",
+    bodyText: `Submit your email below and I'll send it to you directly. Linking it here wouldn't be the smartest move.`
   });
 }
 

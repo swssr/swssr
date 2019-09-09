@@ -95,7 +95,7 @@ body {
   width: 100vw;
   height: 100vh;
   top: 0;
-  left: 0;
+  left: -2vw;
 }
 .img--bg {
   width: 100vw;
@@ -673,8 +673,10 @@ body {
 }
 .modal__body-text {
   width: 80% !important;
-  max-width: 550px;
+  max-width: 400px;
+  font-family: "Jost Book";
   margin-bottom: 32px;
+  font-weight: 400;
 }
 .modal__list {
   display: grid;
@@ -829,6 +831,7 @@ body {
   padding: 0;
   flex-direction: row;
   flex-wrap: nowrap;
+  overflow: hidden;
 }
 .field > * {
   border: none;
