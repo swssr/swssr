@@ -1,0 +1,3 @@
+cert_NQ7ms3ysM7tRFEM
+curl "https://api.zeit.co/v3/now/certs" \
+  -H "Authorization: Bearer NQ7ms3ysM7tRFEM"
