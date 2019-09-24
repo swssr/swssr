@@ -21,6 +21,9 @@
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-dark);
 }
+::placeholder, input {
+  font-family: "Jost";
+}
 /* RESET */
 * {
   box-sizing: border-box;
