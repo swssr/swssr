@@ -9,25 +9,25 @@ const btnModalClose = document.querySelector(".btn--close");
 
 const modalDataList = [
   {
-    header: "FRONT-END DEVELOPMENT",
+    header: "DEVELOPMENT",
     subhead: "refactor city. joy!",
     bodyText:
       "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
     items: ["ReactJS", "VueJS", "Sass", "Pug"]
   },
   {
+    header: "UX/UI Design",
+    subhead: "Too fun to be tough, so I thought...",
+    bodyText:
+      "I've always loved designing and illustrating even before I got into software development, transitioning to UX design was only natural and I love every bit of it. I still have a lot to learn though. ",
+    items: ["AdobeXD", "PhotoShop", "Illustrator", "Figma"]
+  },
+  {
     header: "BACK-END DEVELOPMENT",
-    subhead: "these folks stole all of my sleep",
+    subhead: "These folks stole all of my sleep",
     bodyText:
       "Brain food. This is were my 3 year of learning software engineering becomes useful. I work mostly with NodeJS but I'll happily dabble with .NET Core when needed.",
     items: ["NodeJS", "C#", ".NET MVC", ".NET Core"]
-  },
-  {
-    header: "UX/UI Design",
-    subhead: "Too fun to be a hassle, you thought...",
-    bodyText:
-      "I've always loved designing and illustrating, even before I got into software development, transitioning to UX design is only natural and I love every bit of it. I still have a lot to learn though. ",
-    items: ["AdobeXD", "PhotoShop", "Illustrator", "Figma"]
   }
 ];
 

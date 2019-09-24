@@ -592,6 +592,7 @@ body {
 }
 .skills {
   display: grid;
+  height: 38vh;
   grid-gap: -1px;
   align-items: center;
   perspective: 1000px;
@@ -603,7 +604,7 @@ body {
 .skill {
   position: relative;
   width: 100%;
-  height: 15vh;
+  height: 100%;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -693,7 +694,7 @@ body {
 }
 .btn--close {
   position: absolute;
-  bottom: calc(var(--padding) / 2);
+  bottom: calc(var(--padding) * -0.5);
   left: var(--padding);
   transform: translateY(-50%);
   width: min-content;
@@ -935,7 +936,7 @@ body {
     padding: 0;
   }
   .skill {
-    height: 20vh;
+    height: 100%;
     flex-basis: 100%;
   }
   .card__body {
