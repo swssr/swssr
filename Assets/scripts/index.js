@@ -36,7 +36,7 @@ skill_pills.forEach((pill, index) => {
     showOverlay();
     showItem(modalList, "grid");
     //Fill modal
-    populateModal(modal, modalDataList[index]);
+    populateModal(modal, modalDataList[index], "tool");
   });
 });
 overlay.addEventListener("click", removeOverlay);
@@ -85,26 +85,31 @@ const projects_lis = document.querySelectorAll("li.list__item");
 
 const sources = [
   {
-    color: "navy",
+    name: "BLACKCHILD FAIRCHILD",
+    color: "green",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567208498/swssr/vqghyhvfghcjnk2znivw.webp"
+      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/v3edsityrdc6wlyng0oh.png"
   },
   {
+    name: "MERIT BRANDING",
     color: "powderblue",
     src:
       "https://res.cloudinary.com/swssr/image/upload/v1567205438/swssr/sztu5pdvcidcxeneeemy.png"
   },
   {
+    name: "TUMISONG.DJ",
+    color: "navy",
+    src:
+      "https://res.cloudinary.com/swssr/image/upload/v1567208498/swssr/vqghyhvfghcjnk2znivw.webp"
+  },
+  {
+    name: "MpiloTech",
     color: "yellow",
     src:
       "https://res.cloudinary.com/swssr/image/upload/v1567213059/swssr/t6jcolitz8rbdrt0tqxe.webp"
   },
   {
-    color: "black",
-    src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/v3edsityrdc6wlyng0oh.png"
-  },
-  {
+    name: "FILR",
     color: "pink",
     src:
       "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/zjfedfxofdrwkvtlvakp.png"
@@ -181,7 +186,9 @@ function showResume() {
   populateModal(modal, {
     header: "WANT MY RESUME?",
     subhead: "TELLTALE SIGNS YOU FANCY ME",
-    bodyText: `Submit your email below and I'll send it to you directly. Linking it here wouldn't be the smartest move.`
+    bodyText: `Submit your email below and I'll be sure to send it to you directly.`,
+    more:
+      "I call Durban work-home but always open to the world. Feel free to contact me for a project request."
   });
 }
 
@@ -221,15 +228,17 @@ function hideItemDelay(el) {
 //Populate modal with the right content based on pill clicked
 const modalList = document.querySelector(".modal__list");
 
-function populateModal(_modal, _data) {
+function populateModal(_modal, _data, _itemClass = "list__item") {
   const modalHead = _modal.querySelector(".head");
   const modalSubHead = _modal.querySelector(".subhead");
   const modalBody = _modal.querySelector(".body__text");
 
-  modalHead.textContent = _data.header;
-  modalSubHead.textContent = _data.subhead;
-  modalBody.textContent = _data.bodyText;
-  modalList.innerHTML = _data.items
-    .map(x => `<li class="tool">${x}</li>`)
+  const { header, subhead, bodyText, items } = _data;
+
+  modalHead.textContent = header;
+  modalSubHead.textContent = subhead;
+  modalBody.textContent = bodyText;
+  modalList.innerHTML = items
+    .map(x => `<li class="${_itemClass}">${x}</li>`)
     .join("");
 }
