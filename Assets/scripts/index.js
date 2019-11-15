@@ -238,7 +238,30 @@ function populateModal(_modal, _data, _itemClass = "list__item") {
   modalHead.textContent = header;
   modalSubHead.textContent = subhead;
   modalBody.textContent = bodyText;
-  modalList.innerHTML = items
-    .map(x => `<li class="${_itemClass}">${x}</li>`)
-    .join("");
+  modalList.innerHTML =
+    items && items.map(x => `<li class="${_itemClass}">${x}</li>`).join("");
 }
+
+/**
+ * Start resume request
+ * I don't think this is a good idea, but, I'm doing it anyway.
+ */
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const sender = emailInput.value;
+  const request = {
+    sender,
+    text: "I need your resume bro! like asap!"
+  };
+  const url = "https://filr-server.appspot.com/api/messages";
+
+  let response;
+  isEmail(sender) ? (response = await postr(url, request)) : hasError(form);
+
+  //I need to think of something better than this.
+  if (response) {
+    alert("Email sent");
+    removeOverlay();
+  }
+});
