@@ -88,13 +88,13 @@ const sources = [
     name: "BLACKCHILD FAIRCHILD",
     color: "green",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/v3edsityrdc6wlyng0oh.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1573786290/swssr/vqh4fggzltlennlmy7jz.png"
   },
   {
     name: "MERIT BRANDING",
     color: "powderblue",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567205438/swssr/sztu5pdvcidcxeneeemy.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1573785642/swssr/nj2mnb9nnz52usjeqmai.png"
   },
   {
     name: "TUMISONG.DJ",
@@ -106,13 +106,13 @@ const sources = [
     name: "MpiloTech",
     color: "yellow",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567213059/swssr/t6jcolitz8rbdrt0tqxe.webp"
+      "https://res.cloudinary.com/swssr/image/upload/v1573785375/swssr/b4vazvttrlpdkpsmg6qs.png"
   },
   {
     name: "FILR",
     color: "pink",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1567119024/swssr/zjfedfxofdrwkvtlvakp.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1573785826/swssr/tnbabjped5k5izzn3jp1.png"
   }
 ];
 
