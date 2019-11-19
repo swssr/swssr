@@ -59,9 +59,7 @@
 
 <body>
   <div class="wrapper">
-  
-  <main class="main" role="main">
-    <header class="overlay overlay--intro loading">
+  <header class="overlay overlay--intro loading">
     <canvas class="intro__bg"></canvas>
     <img class="img img--mg-overlay" src="Assets/images/loader.gif" data-src="Assets/images/Group 24.png" alt="swss overlay" />
     <div class="intro__body">
@@ -76,7 +74,8 @@
       <span class="glitch">SCROLL DOWN</span>
     </a>
   </header> 
-    <div class="target"></div>
+  <div class="target"></div>
+  <main class="main" role="main">
     <header id="header" class="header">
       <div class="mobile-only">
         <div class="hero hero--mobile">
@@ -368,7 +367,6 @@
       entries.forEach(({target, isIntersecting}) => {
         if(isIntersecting){
           target.src = target.dataset.src;
-          console.log("Is intersecting");
           self.unobserve(target);
         }
       });

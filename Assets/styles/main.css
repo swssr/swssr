@@ -38,7 +38,7 @@ input {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  /* outline: 1px solid green; */
+  outline: 1px solid green;
 }
 a {
   color: var(--color-dark);
@@ -918,10 +918,6 @@ body {
     place-content: center;
     padding: var(--padding);
     text-align: center;
-  }
-  .overlay--intro {
-    opacity: 0;
-    transform: scaleY(0);
   }
   .header {
     background-color: rgba(255, 255, 255, 0.911);

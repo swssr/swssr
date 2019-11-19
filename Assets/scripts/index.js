@@ -62,13 +62,11 @@ let options = {
 
 let toggleNav = entries => {
   entries.forEach(entry => {
-    console.log(entry.target);
     glitch();
     if (!entry.isIntersecting) {
       topmNav.classList.add("navup");
       bottomNav.classList.add("navdown");
     } else {
-      console.log("notIntersecting");
       topmNav.classList.remove("navup");
       bottomNav.classList.remove("navdown");
     }
@@ -265,3 +263,13 @@ form.addEventListener("submit", async e => {
     removeOverlay();
   }
 });
+
+/**
+ * Animate images on scroll
+ */
+
+// const previewImgs = document.querySelector(".img--preview");
+
+// window.addEventListener("scroll", event => {
+//   console.log({ y: event.target });
+// });
