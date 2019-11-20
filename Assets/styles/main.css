@@ -38,7 +38,7 @@ input {
   margin: 0;
   padding: 0;
   list-style-type: none;
-  outline: 1px solid green;
+  /* outline: 1px solid green; */
 }
 a {
   color: var(--color-dark);
