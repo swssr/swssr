@@ -1,0 +1,24 @@
+{
+  "name": "PORTFOLIO",
+  "version": "1.0.0",
+  "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
+  "dependencies": {
+    "global": "^4.4.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swssr/swss.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/swssr/swss/issues"
+  },
+  "homepage": "https://github.com/swssr/swss#readme"
+}
