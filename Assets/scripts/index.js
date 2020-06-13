@@ -13,22 +13,22 @@ const modalDataList = [
     subhead: "refactor city. joy!",
     bodyText:
       "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
-    items: ["ReactJS", "VueJS", "Sass", "Pug"]
+    items: ["ReactJS", "VueJS", "Sass", "Pug"],
   },
   {
     header: "UX/UI Design",
     subhead: "Too fun to be tough, so I thought...",
     bodyText:
       "I've always loved designing and illustrating even before I got into software development, transitioning to UX design was only natural and I love every bit of it. I still have a lot to learn though. ",
-    items: ["AdobeXD", "PhotoShop", "Illustrator", "Figma"]
+    items: ["AdobeXD", "PhotoShop", "Illustrator", "Figma"],
   },
   {
     header: "BACK-END DEVELOPMENT",
     subhead: "These folks stole all of my sleep",
     bodyText:
       "Brain food. This is were my 3 year of learning software engineering becomes useful. I work mostly with NodeJS but I'll happily dabble with .NET Core when needed.",
-    items: ["NodeJS", "C#", ".NET MVC", ".NET Core"]
-  }
+    items: ["NodeJS", "C#", ".NET MVC", ".NET Core"],
+  },
 ];
 
 skill_pills.forEach((pill, index) => {
@@ -57,11 +57,11 @@ const margin = 0;
 
 let options = {
   rootMargin: "-10px",
-  treshold: 1
+  treshold: 1,
 };
 
-let toggleNav = entries => {
-  entries.forEach(entry => {
+let toggleNav = (entries) => {
+  entries.forEach((entry) => {
     glitch();
     if (!entry.isIntersecting) {
       topmNav.classList.add("navup");
@@ -82,43 +82,71 @@ const preview = document.querySelector("#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
 const sources = [
+  // {
+  //   name: "BLACKCHILD FAIRCHILD",
+  //   color: "green",
+  //   src:
+  //     "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg"
+  // },
   {
-    name: "BLACKCHILD FAIRCHILD",
+    name: "BZN Technologies",
+    subtext: "e-Commerce website & Inventory Manager",
+    tags: ["ReactJS", "NodeJS", "Adobe XD"],
     color: "green",
+    href: "https://bzntechnologies.com",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg"
+      "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg",
   },
   {
     name: "MERIT BRANDING",
+    subtext: "Media company official website, ",
+    tags: ["ReactJS", "Adobe XD"],
     color: "powderblue",
+    href: "https://meritbranding.co.za",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1573785642/swssr/nj2mnb9nnz52usjeqmai.png"
+      "https://res.cloudinary.com/swssr/image/upload/v1573785642/swssr/nj2mnb9nnz52usjeqmai.png",
   },
   {
     name: "TUMISONG.DJ",
+    subtext: "Official website for DJ Tumisong",
+    tags: ["Adobe XD", "Vanilla JS"],
     color: "navy",
+    href: "https://tumi.now.sh",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583929359/swssr/a86efj7azovw5uwffvxt.jpg"
+      "https://res.cloudinary.com/swssr/image/upload/v1583929359/swssr/a86efj7azovw5uwffvxt.jpg",
   },
   {
     name: "MpiloTech",
+    subtext: "Software company landing page",
+    tags: ["Adobe XD"],
     color: "yellow",
+    href: "https://www.behance.net/gallery/87868351/MpiloTech",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583928910/swssr/b1tuf9kalvpzyqwwpib5.jpg"
+      "https://res.cloudinary.com/swssr/image/upload/v1583928910/swssr/b1tuf9kalvpzyqwwpib5.jpg",
   },
   {
     name: "FILR",
+    subtext: "Content manager app concept",
+    tags: ["Adobe XD, Illustrator"],
     color: "pink",
+    href: "https://www.behance.net/gallery/87867291/Filr",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583929437/swssr/anwisltsyokejsfq9pai.jpg"
-  }
+      "https://res.cloudinary.com/swssr/image/upload/v1583929437/swssr/anwisltsyokejsfq9pai.jpg",
+  },
 ];
 
 //Default bg
 switchImage(preview, 0);
 
+//Setup project previews
 projects_lis.forEach((item, index, arr) => {
-  item.addEventListener("click", e => {
+  //Populate project details
+  item.querySelector(".item__name").textContent = sources[index].name;
+  item.querySelector(".item__subtext").textContent = sources[index].subtext;
+  item.querySelector(".link").setAttribute("href", sources[index].href);
+
+  //Handlle switching preview image
+  item.addEventListener("click", (e) => {
     toggleActive(e, arr, index);
     switchImage(preview, index);
   });
@@ -126,7 +154,7 @@ projects_lis.forEach((item, index, arr) => {
 
 function toggleActive(e, arr, index) {
   //Toggle active
-  projects_lis.forEach(li => li.classList.remove("list__item--active"));
+  projects_lis.forEach((li) => li.classList.remove("list__item--active"));
   e.currentTarget.classList.add("list__item--active");
 }
 
@@ -154,7 +182,7 @@ const debounce = 500;
 //Menu item click
 const menuLink = document.querySelectorAll(".menu__links .link");
 
-menuLink.forEach(link => {
+menuLink.forEach((link) => {
   link.addEventListener("click", removeOverlay);
 });
 
@@ -172,7 +200,7 @@ const linkShowResume = document.getElementById("linkShowResume");
 const form = document.querySelector(".modal__form");
 const emailInput = document.querySelector("[name=email]");
 
-[btnShowResume, linkShowResume].forEach(btn => {
+[btnShowResume, linkShowResume].forEach((btn) => {
   btn.addEventListener("click", showResume);
 });
 
@@ -186,7 +214,7 @@ function showResume() {
     subhead: "TELLTALE SIGNS YOU FANCY ME",
     bodyText: `Submit your email below and I'll be sure to send it to you directly.`,
     more:
-      "I call Durban work-home but always open to the world. Feel free to contact me for a project request."
+      "I call Durban work-home but always open to the world. Feel free to contact me for a project request.",
   });
 }
 
@@ -237,7 +265,7 @@ function populateModal(_modal, _data, _itemClass = "list__item") {
   modalSubHead.textContent = subhead;
   modalBody.textContent = bodyText;
   modalList.innerHTML =
-    items && items.map(x => `<li class="${_itemClass}">${x}</li>`).join("");
+    items && items.map((x) => `<li class="${_itemClass}">${x}</li>`).join("");
 }
 
 /**
@@ -245,12 +273,12 @@ function populateModal(_modal, _data, _itemClass = "list__item") {
  * I don't think this is a good idea, but, I'm doing it anyway.
  */
 
-form.addEventListener("submit", async e => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const sender = emailInput.value;
   const request = {
     sender,
-    text: "I need your resume bro! like asap!"
+    text: "I need your resume bro! like asap!",
   };
   const url = "https://filr-server.appspot.com/api/messages";
 

@@ -211,7 +211,7 @@
             />
           </div>
           <ul class="inner list list--projects">
-            <li class="list__item  list__item--active">
+            <li class="list__item list__item--active">
               <h2 class="item__name">BLACKCHILD FAIRCHILD</h2>
               <div class="item__subtext">
                 Non profit organisation website and blog
@@ -553,9 +553,9 @@
           // Register the service worker
           navigator.serviceWorker
             .register("./service-worker.js", {
-              scope: "./"
+              scope: "./",
             })
-            .then(function(reg) {
+            .then(function (reg) {
               console.log(
                 "Service worker has been registered for scope: " + reg.scope
               );
@@ -568,7 +568,7 @@
       const imgOptionsIO = {
         root: null,
         rootMargin: "100px",
-        threshold: 0.5
+        threshold: 0.5,
       };
       const deferImages = (entries, self) => {
         entries.forEach(({ target, isIntersecting }) => {
@@ -584,7 +584,7 @@
       const imgs = document.querySelectorAll(".img");
       const review_imgs = document.querySelectorAll(".entry");
 
-      imgs.forEach(img => imgIO.observe(img));
+      imgs.forEach((img) => imgIO.observe(img));
     </script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
