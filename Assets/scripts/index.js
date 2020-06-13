@@ -81,6 +81,7 @@ IO.observe(sect1);
 const preview = document.querySelector("#proj-preview");
 const projects_lis = document.querySelectorAll("li.list__item");
 
+//Projects
 const sources = [
   // {
   //   name: "BLACKCHILD FAIRCHILD",
@@ -165,18 +166,24 @@ function switchImage(target, index) {
   target.src = src;
 }
 //Handle load
-const introduction = document.querySelector(".overlay--intro");
 
-const debounce = 500;
 (() => {
-  if (localStorage.getItem("init")) {
-    setTimeout(() => {
-      introduction.classList.remove("loading");
-    }, debounce);
-  } else {
-    localStorage.setItem("init", "once");
-    introduction.classList.remove("loading");
-  }
+  const loader = document.querySelector(".loader");
+  const debounce = 2000;
+
+  // if (localStorage.getItem("init")) {
+  //   let timer1 = setTimeout(() => {
+  //     introduction.classList.remove("loading");
+  //   }, debounce);
+  //   clearTimeout(timer1);
+  // } else {
+  //   localStorage.setItem("init", "once");
+  //   introduction.classList.remove("loading");
+  // }
+
+  let timer = setTimeout(() => {
+    loader.classList.add("turn-to-indicator");
+  }, debounce);
 })();
 
 //Menu item click
