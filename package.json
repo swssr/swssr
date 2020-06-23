@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/swssr/swss/issues"
   },
-  "homepage": "https://github.com/swssr/swss#readme"
+  "homepage": "https://github.com/swssr/swss#readme",
+  "dependencies": {
+    "gsap": "^3.3.1"
+  }
 }
