@@ -40,7 +40,7 @@ input {
   list-style-type: none;
   text-decoration: none;
   cursor: initial;
-  outline: 1px solid green;
+  // outline: 1px solid green;
 }
 a {
   color: var(--color-dark);
@@ -54,14 +54,17 @@ dialog {
 .body__text {
   font-size: calc(13px + 0.4vmin);
   opacity: 0.86;
-  line-height: 1.8rem;
+  line-height: 2.2rem;
   margin-bottom: 2rem;
   max-width: 45vw;
+  width: 80%;
+  font-size: 16px;
   break-inside: auto;
 }
 .head {
   font-size: calc(1.6rem + 2.875vmin);
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  line-height: 3rem;
 }
 .subhead {
   opacity: 0.56;
@@ -437,20 +440,29 @@ body {
   align-items: center;
 }
 .sect-main--alt {
-  height: 40vh !important;
+  height: max-content !important;
+  display: grid;
+  grid-auto-flow: column;
+  img {
+    height: 100%;
+  }
 }
 .card--skills {
   width: 100%;
-  height: 60vh;
+  height: max-content;
+  padding: var(--padding);
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
 }
 .card {
   overflow: hidden;
   background-color: var(--color-white);
-  box-shadow: -3px 3px 6px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.1), 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 .card__inner {
-  padding: 0 var(--padding);
+  padding: calc(var(--padding) / 2) var(--padding);
 }
 .card--square {
   width: 44vw;
@@ -459,7 +471,6 @@ body {
 .card__item {
   min-height: 32vh;
   flex: 1;
-  padding: 0 var(--padding);
 }
 .social__links {
   position: relative;
@@ -605,7 +616,7 @@ body {
   }
   &__item {
     padding: 0.5rem;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.671);
     border-radius: 4px;
   }
 }
@@ -670,10 +681,11 @@ body {
 }
 .skills {
   display: grid;
-  height: 38vh;
+  height: 100%;
   grid-gap: -1px;
   align-items: center;
   perspective: 1000px;
+  cursor: pointer !important;
 }
 .pulse {
   opacity: 1;
