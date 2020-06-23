@@ -1,6 +1,8 @@
 import "../styles/index.scss";
 import "./projects";
+import "./fancy-animation";
 // import "./cursor";
+
 //Side nav toggle
 const overlay = document.querySelector(".overlay--menu");
 const btn_menu = document.querySelector(".btn--menu");
@@ -15,8 +17,8 @@ const modalDataList = [
     header: "DEVELOPMENT",
     subhead: "refactor city. joy!",
     bodyText:
-      "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
-    items: ["ReactJS", "VueJS", "Sass", "Pug"],
+      "Developement is my soulmate. Best thing about it is that there's always something new to learn.",
+    items: ["ReactJS", "VueJS", "NodeJS", "ASP.NET"],
   },
   {
     header: "UX/UI Design",
@@ -123,7 +125,7 @@ function showResume() {
   populateModal(modal, {
     header: "WANT MY RESUME?",
     subhead: "TELLTALE SIGNS YOU FANCY ME",
-    bodyText: `Submit your email below and I'll be sure to send it to you directly.`,
+    bodyText: `Email me, simo@swssr.co, or submit your email below and I'll be sure to send it to you directly.`,
     more:
       "I call Durban work-home but always open to the world. Feel free to contact me for a project request.",
   });
