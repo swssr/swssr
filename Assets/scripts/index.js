@@ -1,6 +1,8 @@
 import "../styles/index.scss";
 import "./projects";
+import "./fancy-animation";
 // import "./cursor";
+
 //Side nav toggle
 const overlay = document.querySelector(".overlay--menu");
 const btn_menu = document.querySelector(".btn--menu");

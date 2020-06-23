@@ -134,203 +134,215 @@
     <div class="loader flex">
       <h3 class="centered pulse">LOADING</h3>
     </div>
-    <header class="overlay overlay--intro">
-      <canvas class="intro__bg"></canvas>
-      <img
-        class="img img--mg-overlay"
-        src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png"
-        data-src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png"
-        alt="swss overlay"
-      />
-      <div class="intro__body">
-        <h1 class="head">Hi! I'm Simo.</h1>
-        <p class="body__text">
-          Developer & UX/UI Designer with a passion for creating robust &
-          intuitive applications.
-        </p>
-      </div>
-      <a href="#header" class="scroll">
-        <span>DON'T CARE</span>
-        <span class="glitch">SCROLL DOWN</span>
+    <nav class="nav fixed fixed--bottom alpha">
+      <span class="link btn--menu">
+        MENU
+      </span>
+      <a href="#" class="logo">
+        <img src="Assets/images/logo.png" alt="Simo Ngquseka logo" />
       </a>
-    </header>
-    <div class="target"></div>
-    <main class="main" role="main">
-      <header id="header" class="header">
-        <div class="mobile-only">
-          <div class="hero hero--mobile">
-            <h1 class="head">I'm Simo.</h1>
-            <p class="body__text body__text--head">
-              I look at a screen for a living. If you're here. You probably
-              care.
-            </p>
-            <a href="#intro" class="scroll">
-              <span>SCROLL DOWN</span>
-            </a>
-          </div>
+      <a id="linkShowResume" class="link">
+        RESUME
+      </a>
+    </nav>
+    <div class="super-wrap">
+      <header class="overlay overlay--intro">
+        <canvas class="intro__bg"></canvas>
+        <img
+          class="img img--mg-overlay"
+          src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png"
+          data-src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png"
+          alt="swss overlay"
+        />
+        <div class="intro__body">
+          <h1 class="head">Hi! I'm Simo.</h1>
+          <p class="body__text">
+            Developer & UX/UI Designer with a passion for creating robust &
+            intuitive applications.
+          </p>
         </div>
+        <a href="#header" class="scroll">
+          <span>DON'T CARE</span>
+          <span class="glitch">SCROLL DOWN</span>
+        </a>
       </header>
-      <section id="intro" class="container container--intro">
-        <div class="sect-head">
-          <h6 class="prehead">INTRO</h6>
-          <h1>WHO AM I</h1>
-          <div class="subhead">why you should care</div>
-        </div>
-        <div class="sect-main card sect-main--alt">
-          <div class="inner card__inner flex flex--col">
-            <h1 class="head">Creative Developer</h1>
-            <p class="body__text">
-              I'm a Developer, UX/UI future ninja, people and tech lover. In
-              love yet?
-            </p>
-            <button id="btnShowResume" class="btn btn--outline with-line">
-              <span>RESUME</span>
-            </button>
-          </div>
-          <!-- add photo that illustrate and summarize what you do -->
-          <img
-            title="why do you care how I look?"
-            src="Assets/images/loader.gif"
-            alt="picture of simo ngquseka"
-            data-src="https://res.cloudinary.com/swssr/image/upload/v1567223894/swssr/nozjgursdtbrqvizpknm.jpg"
-            class="img img--preview"
-          />
-        </div>
-      </section>
-      <section id="work" class="container">
-        <div class="sect-head">
-          <h6 class="prehead">PROJECTS</h6>
-          <h1>MY WORK</h1>
-          <div class="subhead">some of the work I've done</div>
-        </div>
-        <div class="sect-main">
-          <div class="card preview">
-            <!-- <canvas id="proj-preview" class="img img--preview preview--lg"></canvas> -->
-            <div class="tags">
-              <div class="tags__head">Used</div>
-              <span class="tags__item"></span>
-              <span class="tags__item"></span>
-              <span class="tags__item"></span>
-              <span class="tags__item"></span>
+      <div class="target"></div>
+      <main class="main" role="main">
+        <header id="header" class="header">
+          <div class="mobile-only">
+            <div class="hero hero--mobile">
+              <h1 class="head">I'm Simo.</h1>
+              <p class="body__text body__text--head">
+                I look at a screen for a living. If you're here. You probably
+                care.
+              </p>
+              <a href="#intro" class="scroll">
+                <span>SCROLL DOWN</span>
+              </a>
             </div>
-
+          </div>
+        </header>
+        <section id="intro" class="container container--intro">
+          <div class="sect-head">
+            <h6 class="prehead">INTRO</h6>
+            <h1>WHO AM I</h1>
+            <div class="subhead">why you should care</div>
+          </div>
+          <div class="sect-main card sect-main--alt">
+            <div class="inner card__inner flex flex--col">
+              <h1 class="head">Creative Developer</h1>
+              <p class="body__text">
+                I'm a Developer, UX/UI future ninja, people and tech lover. In
+                love yet?
+              </p>
+              <button id="btnShowResume" class="btn btn--outline with-line">
+                <span>RESUME</span>
+              </button>
+            </div>
+            <!-- add photo that illustrate and summarize what you do -->
             <img
+              title="why do you care how I look?"
               src="Assets/images/loader.gif"
-              id="proj-preview"
-              class="img img--preview preview--lg"
+              alt="picture of simo ngquseka"
+              data-src="https://res.cloudinary.com/swssr/image/upload/v1567223894/swssr/nozjgursdtbrqvizpknm.jpg"
+              class="img img--preview"
             />
           </div>
-          <ul class="inner list list--projects">
-            <li class="list__item list__item--active">
-              <h2 class="item__name">BLACKCHILD FAIRCHILD</h2>
-              <div class="item__subtext">
-                Non profit organisation website and blog
+        </section>
+        <section id="work" class="container">
+          <div class="sect-head">
+            <h6 class="prehead">PROJECTS</h6>
+            <h1>MY WORK</h1>
+            <div class="subhead">some of the work I've done</div>
+          </div>
+          <div class="sect-main">
+            <div class="card preview">
+              <!-- <canvas id="proj-preview" class="img img--preview preview--lg"></canvas> -->
+              <div class="tags">
+                <div class="tags__head">Used</div>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
               </div>
-              <a
-                href="https://behance.net/swssr"
-                class="link link--ext with-line"
-                target="_blank"
-                rel="noopener"
-                >VIEW</a
-              >
-            </li>
-            <li class="list__item">
-              <h2 class="item__name">MERIT BRANDING</h2>
-              <div class="item__subtext">Media company official website</div>
-              <a
-                href="https://meritbranding.co.za"
-                class="link link--ext with-line"
-                target="_blank"
-                rel="noopener"
-                >VIEW</a
-              >
-            </li>
-            <li class="list__item">
-              <h2 class="item__name">TUMISONG.DJ</h2>
-              <div class="item__subtext">
-                Official website for DJ Tumisong
-              </div>
-              <a
-                href="https://tumi.now.sh"
-                class="link link--ext with-line"
-                target="_blank"
-                rel="noopener"
-                >VIEW</a
-              >
-            </li>
-            <li class="list__item">
-              <h2 class="item__name">MpiloTech</h2>
-              <div class="item__subtext">Software company landing page</div>
-              <a
-                href="https://www.behance.net/gallery/87868351/MpiloTech"
-                class="link link--ext with-line"
-                target="_blank"
-                rel="noopener"
-                >VIEW</a
-              >
-            </li>
-            <li class="list__item">
-              <h2 class="item__name">FILR</h2>
-              <div class="item__subtext">WebAPI content manager</div>
-              <a
-                href="https://www.behance.net/gallery/87867291/Filr"
-                class="link link--ext with-line"
-                target="_blank"
-                rel="noopener"
-                >VIEW</a
-              >
-            </li>
-          </ul>
-        </div>
-      </section>
-      <section id="skills" class="container container--skills">
-        <div class="sect-head">
-          <h6 class="prehead">SUPERPOWERS</h6>
-          <h1>MY SKILLS</h1>
-          <div class="subhead">Things I'm good at</div>
-        </div>
-        <div class="sect-main">
-          <div class="card card--skills">
-            <div class="card__item card__body flex flex--col">
-              <h2 class="head skills__head">
-                FLEXIBLE <br />
-                THROUGHOUT <br />
-                THE STACK.
-              </h2>
-              <p class="body__text">
-                I'm a <mark>Developer</mark> and an aspiring
-                <mark>UX/UI Designer</mark> with a solid academic background in
-                <mark>Software Engineering</mark>, working as a freelance web
-                designer and developer since 2018. <br />
-                My skills peek right
-                <span class="glyph glyph--arrow-right"></span>
-              </p>
+
+              <img
+                src="Assets/images/loader.gif"
+                id="proj-preview"
+                class="img img--preview preview--lg"
+              />
             </div>
-            <div class="card__item skills">
-              <a href="#0" class="skill with-line">
-                <img
-                  class="img skill__bg"
-                  src="Assets/images/loader.gif"
-                  data-src="https://res.cloudinary.com/swssr/image/upload/v1583929681/swssr/dzj0xupzojd0nkjzta1z.jpg"
-                  alt="front-end illustrated"
-                />
-                <h1 class="skill__name">DEVELOPMENT</h1>
-              </a>
-              <a href="#0" class="skill with-line">
-                <img
-                  class="img skill__bg"
-                  src="Assets/images/loader.gif"
-                  data-src="https://res.cloudinary.com/swssr/image/upload/v1583929760/swssr/bxhwlqcnuhjqwf3n4cwx.jpg"
-                  alt="UX/UI illustrated"
-                />
-                <h1 class="skill__name">UX/UI DESIGN</h1>
-              </a>
+            <ul class="inner list list--projects">
+              <li class="list__item list__item--active">
+                <h2 class="item__name">BLACKCHILD FAIRCHILD</h2>
+                <div class="item__subtext">
+                  Non profit organisation website and blog
+                </div>
+                <a
+                  href="https://behance.net/swssr"
+                  class="link link--ext with-line"
+                  target="_blank"
+                  rel="noopener"
+                  >VIEW</a
+                >
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">MERIT BRANDING</h2>
+                <div class="item__subtext">Media company official website</div>
+                <a
+                  href="https://meritbranding.co.za"
+                  class="link link--ext with-line"
+                  target="_blank"
+                  rel="noopener"
+                  >VIEW</a
+                >
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">TUMISONG.DJ</h2>
+                <div class="item__subtext">
+                  Official website for DJ Tumisong
+                </div>
+                <a
+                  href="https://tumi.now.sh"
+                  class="link link--ext with-line"
+                  target="_blank"
+                  rel="noopener"
+                  >VIEW</a
+                >
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">MpiloTech</h2>
+                <div class="item__subtext">Software company landing page</div>
+                <a
+                  href="https://www.behance.net/gallery/87868351/MpiloTech"
+                  class="link link--ext with-line"
+                  target="_blank"
+                  rel="noopener"
+                  >VIEW</a
+                >
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">FILR</h2>
+                <div class="item__subtext">WebAPI content manager</div>
+                <a
+                  href="https://www.behance.net/gallery/87867291/Filr"
+                  class="link link--ext with-line"
+                  target="_blank"
+                  rel="noopener"
+                  >VIEW</a
+                >
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="skills" class="container container--skills">
+          <div class="sect-head">
+            <h6 class="prehead">SUPERPOWERS</h6>
+            <h1>MY SKILLS</h1>
+            <div class="subhead">Things I'm good at</div>
+          </div>
+          <div class="sect-main">
+            <div class="card card--skills">
+              <div class="card__item card__body flex flex--col">
+                <h2 class="head skills__head">
+                  FLEXIBLE <br />
+                  THROUGHOUT <br />
+                  THE STACK.
+                </h2>
+                <p class="body__text">
+                  I'm a <mark>Developer</mark> and an aspiring
+                  <mark>UX/UI Designer</mark> with a solid academic background
+                  in <mark>Software Engineering</mark>, working as a freelance
+                  web designer and developer since 2018. <br />
+                  My skills peek right
+                  <span class="glyph glyph--arrow-right"></span>
+                </p>
+              </div>
+              <div class="card__item skills">
+                <a href="#0" class="skill with-line">
+                  <img
+                    class="img skill__bg"
+                    src="Assets/images/loader.gif"
+                    data-src="https://res.cloudinary.com/swssr/image/upload/v1583929681/swssr/dzj0xupzojd0nkjzta1z.jpg"
+                    alt="front-end illustrated"
+                  />
+                  <h1 class="skill__name">DEVELOPMENT</h1>
+                </a>
+                <a href="#0" class="skill with-line">
+                  <img
+                    class="img skill__bg"
+                    src="Assets/images/loader.gif"
+                    data-src="https://res.cloudinary.com/swssr/image/upload/v1583929760/swssr/bxhwlqcnuhjqwf3n4cwx.jpg"
+                    alt="UX/UI illustrated"
+                  />
+                  <h1 class="skill__name">UX/UI DESIGN</h1>
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      <!-- TODO: Get actual reviews from your clients, then uncomment the fillowing lines -->
-      <!-- <section id="reviews" class="container container--alt">
+        </section>
+        <!-- TODO: Get actual reviews from your clients, then uncomment the fillowing lines -->
+        <!-- <section id="reviews" class="container container--alt">
       <div class="sect-head">
         <h6 class="prehead">WHAT OTHER SAY?</h6>
         <h1>REVIEWS</h1>
@@ -373,100 +385,103 @@
         </div>
       </div>
     </section> -->
-      <section id="connect" class="container container--alt bg--translucent">
-        <img
-          src="Assets/images/loader.gif"
-          data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp"
-          alt="simo standing on mountain"
-          class="img img--bg"
-        />
-        <div class="sect-head">
-          <h6 class="prehead">like my work?</h6>
-          <h1>IMPRESSED</h1>
-          <div class="subhead">HIT ME UP HERE</div>
-          <div class="sect-main social__links">
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://www.linkedin.com/in/swssr"
-              class="card card--social"
-            >
-              <img
-                class="social__icon-img"
-                src="Assets/images/linkedin.svg"
-                alt="social icon"
-              />
-              <span class="card__more">linkedin/swssr</span>
-            </a>
-            <a
-              target="_blank"
-              href="mailto:simo@swssr.co"
-              class="card card--social"
-            >
-              <img
-                class="social__icon-img"
-                src="Assets/images/at.svg"
-                alt="social icon"
-              />
-              <span class="card__more">simo@swssr.co</span>
-            </a>
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://www.github.com/swssr"
-              class="card card--social"
-            >
-              <img
-                class="social__icon-img"
-                src="Assets/images/github.svg"
-                alt="social icon"
-              />
-              <span class="card__more">@swssr</span>
-            </a>
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://www.behance.net/swssr"
-              class="card card--social"
-            >
-              <img
-                class="social__icon-img"
-                src="Assets/images/behance.svg"
-                alt="social icon"
-              />
-              <span class="card__more">@swssr</span>
-            </a>
+        <section id="connect" class="container container--alt bg--translucent">
+          <img
+            src="Assets/images/loader.gif"
+            data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp"
+            alt="simo standing on mountain"
+            class="img img--bg"
+          />
+          <div class="sect-head">
+            <h6 class="prehead">like my work?</h6>
+            <h1>IMPRESSED</h1>
+            <div class="subhead">HIT ME UP HERE</div>
+            <div class="sect-main social__links">
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://www.linkedin.com/in/swssr"
+                class="card card--social"
+              >
+                <img
+                  class="social__icon-img"
+                  src="Assets/images/linkedin.svg"
+                  alt="social icon"
+                />
+                <span class="card__more">linkedin/swssr</span>
+              </a>
+              <a
+                target="_blank"
+                href="mailto:simo@swssr.co"
+                class="card card--social"
+              >
+                <img
+                  class="social__icon-img"
+                  src="Assets/images/at.svg"
+                  alt="social icon"
+                />
+                <span class="card__more">simo@swssr.co</span>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://www.github.com/swssr"
+                class="card card--social"
+              >
+                <img
+                  class="social__icon-img"
+                  src="Assets/images/github.svg"
+                  alt="social icon"
+                />
+                <span class="card__more">@swssr</span>
+              </a>
+              <a
+                target="_blank"
+                rel="noopener"
+                href="https://www.behance.net/swssr"
+                class="card card--social"
+              >
+                <img
+                  class="social__icon-img"
+                  src="Assets/images/behance.svg"
+                  alt="social icon"
+                />
+                <span class="card__more">@swssr</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
-    <nav class="nav fixed fixed--top">
-      <ul class="list links">
-        <li class="link">
-          <a
-            target="_blank"
-            rel="noopener"
-            href="https://github.com/swssr"
-            class="link with-line"
-            >GitHub</a
-          >
-        </li>
-        <li class="link">
-          <a
-            target="_blank"
-            rel="noopener"
-            href="https://Behance.com/swssr"
-            class="link with-line"
-            >Behance</a
-          >
-        </li>
-      </ul>
-      <a href="#0" class="link with-line link--primary">Resume</a>
-    </nav>
+        </section>
+      </main>
+      <nav class="nav fixed fixed--top">
+        <ul class="list links">
+          <li class="link">
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/swssr"
+              class="link with-line"
+              >GitHub</a
+            >
+          </li>
+          <li class="link">
+            <a
+              target="_blank"
+              rel="noopener"
+              href="https://Behance.com/swssr"
+              class="link with-line"
+              >Behance</a
+            >
+          </li>
+        </ul>
+        <a href="#0" class="link with-line link--primary">Resume</a>
+      </nav>
+    </div>
     <dialog class="overlay modal">
       <div class="modal__body">
         <h1 class="head modal__head">YOU WANT MY RESUME?</h1>
-        <div class="subhead modal__subhead">TELL TALES SIGNS OF TRUE LOVE</div>
+        <div class="subhead modal__subhead">
+          TELL TALES SIGNS OF TRUE LOVE
+        </div>
         <p class="body__text modal__body-text"></p>
         <form class="form modal__form">
           <label for="email" class="label">YOUR EMAIL ADDRESS</label>
@@ -535,17 +550,6 @@
         </div>
       </div>
     </div>
-    <nav class="nav fixed fixed--bottom alpha">
-      <span class="link btn--menu">
-        MENU
-      </span>
-      <a href="#" class="logo">
-        <img src="Assets/images/logo.png" alt="Simo Ngquseka logo" />
-      </a>
-      <a id="linkShowResume" class="link">
-        RESUME
-      </a>
-    </nav>
     <!-- </div> -->
     <!-- <script src="https://unpkg.com/smooth-scrollbar@latest/dist/smooth-scrollbar.js"></script> -->
     <!-- <script>
