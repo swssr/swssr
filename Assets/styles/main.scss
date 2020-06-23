@@ -40,6 +40,7 @@ input {
   list-style-type: none;
   text-decoration: none;
   cursor: initial;
+  // transition: all 300ms ease-out;
   // outline: 1px solid green;
 }
 a {
@@ -409,7 +410,7 @@ body {
   position: relative;
   width: 100%;
   background-color: var(--color-base);
-  padding: 6vh var(--padding);
+  padding: 8vh var(--padding);
   overflow: hidden;
   z-index: 0;
 }
@@ -998,7 +999,7 @@ body {
     height: 100%;
   }
   .sect-main {
-    margin-top: 5vh;
+    margin-top: 8vh;
     margin-bottom: 9.89vh;
     height: max-content;
     align-items: unset;

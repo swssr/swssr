@@ -15,8 +15,8 @@ const modalDataList = [
     header: "DEVELOPMENT",
     subhead: "refactor city. joy!",
     bodyText:
-      "Front Developement is my soulmate, my daily bread, I'm obsessed. Best thing about it is that there's always something new to learn. ",
-    items: ["ReactJS", "VueJS", "Sass", "Pug"],
+      "Developement is my soulmate. Best thing about it is that there's always something new to learn.",
+    items: ["ReactJS", "VueJS", "NodeJS", "ASP.NET"],
   },
   {
     header: "UX/UI Design",
