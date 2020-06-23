@@ -123,7 +123,7 @@ function showResume() {
   populateModal(modal, {
     header: "WANT MY RESUME?",
     subhead: "TELLTALE SIGNS YOU FANCY ME",
-    bodyText: `Submit your email below and I'll be sure to send it to you directly.`,
+    bodyText: `Email me, simo@swssr.co, or submit your email below and I'll be sure to send it to you directly.`,
     more:
       "I call Durban work-home but always open to the world. Feel free to contact me for a project request.",
   });
