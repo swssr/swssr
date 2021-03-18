@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
   "devDependencies": {
-    "parcel-bundler": "*"
+    "parcel-bundler": "^1.12.5"
   },
   "scripts": {
     "dev": "parcel index.html",
