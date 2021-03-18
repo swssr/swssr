@@ -1,9 +1,9 @@
 {
-  "name": "PORTFOLIO",
+  "name": "portfolio",
   "version": "1.0.0",
   "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
   "devDependencies": {
-    "parcel-bundler": "^1.12.4"
+    "parcel-bundler": "*"
   },
   "scripts": {
     "dev": "parcel index.html",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/swssr/swss#readme",
   "dependencies": {
-    "gsap": "^3.3.1",
-    "smooth-scrollbar": "^8.5.2"
+    "gsap": "*",
+    "smooth-scrollbar": "*"
   }
 }
