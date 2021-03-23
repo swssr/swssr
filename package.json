@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
   "devDependencies": {
-    "parcel-bundler": "*",
+    "@parcel/transformer-sass": "2.0.0-beta.2",
+    "parcel": "^2.0.0-beta.2",
     "sass": "^1.32.8"
   },
   "scripts": {

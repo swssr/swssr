@@ -1,0 +1,2 @@
+!function(){const e=document.querySelector("canvas");e.getContext("2d");function n(){e.width=innerWidth,e.height=innerHeight}const t={x:100,y:100};n(),window.addEventListener("resize",n),window.addEventListener("mousemove",(e=>{t.x=e.clientX,t.y=e.clientY}))}();
+//# sourceMappingURL=index.HASH_REF_b4b14898711279480d1de6ad7fc7283b.js.map
