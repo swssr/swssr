@@ -10,13 +10,22 @@ const sources = [
   //     "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg"
   // },
   {
+    name: "BFT Services",
+    subtext: "Social media company marketing landing page.",
+    tags: ["VanillaJS", "Figma"],
+    color: "green",
+    href: "https://bftservices.co.za",
+    src:
+      "https://res.cloudinary.com/tumi/image/upload/v1616503147/Instagram_Post_-_6.jpg",
+  },
+  {
     name: "BZN Technologies",
     subtext: "e-Commerce website & Inventory Manager",
     tags: ["React", "Node", "AdobeXD"],
     color: "green",
     href: "https://bzntechnologies.com",
     src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg",
+      "https://res.cloudinary.com/tumi/image/upload/v1616503581/Screenshot_2021-03-23_144530.png",
   },
   {
     name: "MERIT BRANDING",

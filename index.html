@@ -126,7 +126,12 @@
 
     <link rel="manifest" href="/manifest.json" />
     <title>Simo Ngquseka</title>
-    <link rel="stylesheet" prefetch href="Assets/fonts/fonts.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" prefetch href="Assets/fonts/fonts.css" /> -->
   </head>
 
   <body>
@@ -135,15 +140,11 @@
       <h3 class="centered pulse">LOADING</h3>
     </div>
     <nav class="nav fixed fixed--bottom alpha">
-      <span class="link btn--menu">
-        MENU
-      </span>
+      <span class="link btn--menu"> MENU </span>
       <a href="#" class="logo">
         <img src="Assets/images/logo.png" alt="Simo Ngquseka logo" />
       </a>
-      <a id="linkShowResume" class="link">
-        RESUME
-      </a>
+      <a id="linkShowResume" class="link"> RESUME </a>
     </nav>
     <div class="super-wrap">
       <header class="overlay overlay--intro">
@@ -479,9 +480,7 @@
     <dialog class="overlay modal">
       <div class="modal__body">
         <h1 class="head modal__head">YOU WANT MY RESUME?</h1>
-        <div class="subhead modal__subhead">
-          TELL TALES SIGNS OF TRUE LOVE
-        </div>
+        <div class="subhead modal__subhead">TELL TALES SIGNS OF TRUE LOVE</div>
         <p class="body__text modal__body-text"></p>
         <form class="form modal__form">
           <label for="email" class="label">YOUR EMAIL ADDRESS</label>

@@ -129,7 +129,7 @@ body {
   z-index: -1;
 }
 .preview {
-  filter: grayscale(1);
+  // filter: grayscale(1);
   opacity: 0.86;
   background-color: transparent !important;
   height: 80vh;
@@ -440,7 +440,7 @@ body {
   display: grid;
   grid-auto-flow: column;
   img {
-    height: 100%;
+    height: 40vh;
   }
 }
 .card--skills {
@@ -761,7 +761,7 @@ body {
 .modal__body-text {
   width: 80% !important;
   max-width: 400px;
-  font-family: "Jost Book";
+  font-family: "Jost";
   margin-bottom: 32px;
   font-weight: 400;
 }
