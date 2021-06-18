@@ -1,0 +1,21 @@
+//Defer image loads
+      const imgOptionsIO = {
+        root: null,
+        rootMargin: '300px',
+        threshold: 0.5,
+      };
+      const deferImages = (entries, self) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.src = target.dataset.src;
+            self.unobserve(target);
+          }
+        });
+      };
+
+      const imgIO = new IntersectionObserver(deferImages, imgOptionsIO);
+
+      const imgs = document.querySelectorAll('.img');
+      const review_imgs = document.querySelectorAll('.entry');
+
+      imgs.forEach((img) => imgIO.observe(img));

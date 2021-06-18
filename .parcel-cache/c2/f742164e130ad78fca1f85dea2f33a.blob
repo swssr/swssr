@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="61b7ccb9edf2354d59244291079c52cf"></script>
+    <script data-parcel-key="e253097bd58d6c237c2c89fe4682fc09">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-121799045-2');
+    </script>
+    <meta name="p:domain_verify" content="7db4679199f9ff5da00d2e2b5d2bb268">
+    <meta charset="UTF-8">
+    <meta name="yandex-verification" content="15c6a35a530189e4">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Portfolio of Simo Ngquseka. UX Designer, Developer. Ninja at creating beautiful and awesome applications.">
+    <meta name="keywords" content="simo ngquseka, swssr, portfolio, simo, ngquseka, ux designer, developer, south africa, web design, app designer, javascript developer,">
+
+    <meta name="HandheldFriendly" content="true">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Simo Ngquseka">
+    <meta property="og:site_name" content="Simo Ngquseka">
+    <meta property="og:url" content="https://www.swssr.co">
+    <meta property="og:description" content="Portfolio of Simo Ngquseka. UX Designer, Developer. Ninja at creating beautiful and awesome applications.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="1f5ea77a4f9d9d6db6e99dec66706194">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Simo Ngquseka">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="4ea69981d6b8579e0b8fecfd63976ff0">
+    <link rel="apple-touch-icon" sizes="60x60" href="8a1ac67709a1bcc07f3eabbff8488920">
+    <link rel="apple-touch-icon" sizes="72x72" href="6f3e5a8160d73bf643190faee6fce98e">
+    <link rel="apple-touch-icon" sizes="76x76" href="f27d75e03f55271b3fa7f42567dc530e">
+    <link rel="apple-touch-icon" sizes="114x114" href="b75e596d6b1b9d4ebb510b9547fa77a5">
+    <link rel="apple-touch-icon" sizes="120x120" href="4838427bbc6da51db32ef7bbc97ae1a2">
+    <link rel="apple-touch-icon" sizes="144x144" href="5043b94cbcfe39c5adfb79bdc70c5f8c">
+    <link rel="apple-touch-icon" sizes="152x152" href="cb3ad86e33e201d776e7e5f1752a7575">
+    <link rel="apple-touch-icon" sizes="180x180" href="b19ca363cfd19dc097d427693ee93228">
+    <link rel="icon" type="image/png" sizes="192x192" href="582d79b296f130f689a70f9b59a201ef">
+    <link rel="icon" type="image/png" sizes="32x32" href="85cbb8b865d5ca4aaaf3f08e5307fe24">
+    <link rel="icon" type="image/png" sizes="96x96" href="b7d13a0da8e5676953c96259b092c9dc">
+    <link rel="icon" type="image/png" sizes="16x16" href="d0f0f9d03c724e3e3cc93566f111c2d6">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="f519506da7551f30c3d8271f19b28973">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="manifest" href="3945ea4c05a6477d7cadfabfded69c42">
+    <title>Simo Ngquseka</title>
+    <link rel="preconnect" href="4a8a00904bae35c1104942c334d95ef2">
+    <link href="528ffb2a7f4682066b5aee7296ed1b2e" rel="stylesheet">
+    <!-- <link rel="stylesheet" prefetch href="Assets/fonts/fonts.css" /> -->
+  </head>
+
+  <body>
+    <!-- <div class="wrapper"> -->
+    <div class="loader flex">
+      <h3 class="centered pulse">LOADING</h3>
+    </div>
+    <nav class="nav fixed fixed--bottom alpha">
+      <span class="link btn--menu"> MENU </span>
+      <a href="#" class="logo">
+        <img src="dfa35c475ad58e51dbc3602b8324f759" alt="Simo Ngquseka logo">
+      </a>
+      <a id="linkShowResume" class="link"> RESUME </a>
+    </nav>
+    <div class="super-wrap">
+      <header class="overlay overlay--intro">
+        <canvas class="intro__bg"></canvas>
+        <img class="img img--mg-overlay" src="7c5d4aee3dcfbd09c76d16ed763d4d4b" data-src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png" alt="swss overlay">
+        <div class="intro__body">
+          <h1 class="head">Hi! I'm Simo.</h1>
+          <p class="body__text">
+            Developer & UX/UI Designer with a passion for creating beautiful and
+            awesome applications.
+          </p>
+        </div>
+        <a href="#header" class="scroll">
+          <span>DON'T CARE</span>
+          <span class="glitch">SCROLL DOWN</span>
+        </a>
+      </header>
+      <div class="target"></div>
+      <main class="main" role="main">
+        <header id="header" class="header">
+          <div class="mobile-only">
+            <div class="hero hero--mobile">
+              <h1 class="head">I'm Simo.</h1>
+              <p class="body__text body__text--head">
+                I look at a screen for a living. If you're here. You probably
+                care.
+              </p>
+              <a href="#intro" class="scroll">
+                <span>SCROLL DOWN</span>
+              </a>
+            </div>
+          </div>
+        </header>
+        <section id="intro" class="container container--intro">
+          <div class="sect-head">
+            <h6 class="prehead">INTRO</h6>
+            <h1>WHO AM I</h1>
+            <div class="subhead">why you should care</div>
+          </div>
+          <div class="sect-main card sect-main--alt">
+            <div class="inner card__inner flex flex--col">
+              <h1 class="head">Creative Developer</h1>
+              <p class="body__text">
+                I'm a Developer, UX/UI future ninja, people and tech lover. In
+                love yet?
+              </p>
+              <button id="btnShowResume" class="btn btn--outline with-line">
+                <span>RESUME</span>
+              </button>
+            </div>
+            <!-- add photo that illustrate and summarize what you do -->
+            <img title="why do you care how I look?" src="01d6c00695f9f2b4e0d8b82b151bd64b" alt="picture of simo ngquseka" data-src="https://res.cloudinary.com/swssr/image/upload/v1567223894/swssr/nozjgursdtbrqvizpknm.jpg" class="img img--preview">
+          </div>
+        </section>
+        <section id="work" class="container">
+          <div class="sect-head">
+            <h6 class="prehead">PROJECTS</h6>
+            <h1>MY WORK</h1>
+            <div class="subhead">some of the work I've done</div>
+          </div>
+          <div class="sect-main">
+            <div class="card preview">
+              <!-- <canvas id="proj-preview" class="img img--preview preview--lg"></canvas> -->
+              <div class="tags">
+                <div class="tags__head">Used</div>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
+                <span class="tags__item"></span>
+              </div>
+
+              <img src="01d6c00695f9f2b4e0d8b82b151bd64b" id="proj-preview" class="img img--preview preview--lg">
+            </div>
+            <ul class="inner list list--projects">
+              <li class="list__item list__item--active">
+                <h2 class="item__name">BLACKCHILD FAIRCHILD</h2>
+                <div class="item__subtext">
+                  Non profit organisation website and blog
+                </div>
+                <a href="ae1347663a0afd4b3ea2f30ff25c5792" class="link link--ext with-line" target="_blank" rel="noopener">VIEW</a>
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">MERIT BRANDING</h2>
+                <div class="item__subtext">Media company official website</div>
+                <a href="754dcce3f2206aad7cd44ec4bf9be872" class="link link--ext with-line" target="_blank" rel="noopener">VIEW</a>
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">TUMISONG.DJ</h2>
+                <div class="item__subtext">
+                  Official website for DJ Tumisong
+                </div>
+                <a href="6011c0da2f49110d122a4fb6434b4c56" class="link link--ext with-line" target="_blank" rel="noopener">VIEW</a>
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">MpiloTech</h2>
+                <div class="item__subtext">Software company landing page</div>
+                <a href="78890051ad438bae37c45ab71b05bafc" class="link link--ext with-line" target="_blank" rel="noopener">VIEW</a>
+              </li>
+              <li class="list__item">
+                <h2 class="item__name">FILR</h2>
+                <div class="item__subtext">WebAPI content manager</div>
+                <a href="49e3463e987fd9d536610b6f569353b8" class="link link--ext with-line" target="_blank" rel="noopener">VIEW</a>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <section id="skills" class="container container--skills">
+          <div class="sect-head">
+            <h6 class="prehead">SUPERPOWERS</h6>
+            <h1>MY SKILLS</h1>
+            <div class="subhead">Things I'm good at</div>
+          </div>
+          <div class="sect-main">
+            <div class="card card--skills">
+              <div class="card__item card__body flex flex--col">
+                <h2 class="head skills__head">
+                  FLEXIBLE <br>
+                  THROUGHOUT <br>
+                  THE STACK.
+                </h2>
+                <p class="body__text">
+                  I'm a <mark>Developer</mark> and an aspiring
+                  <mark>UX/UI Designer</mark> with a solid academic background
+                  in <mark>Software Engineering</mark>, working as a freelance
+                  web designer and developer since 2018. <br>
+                  My skills peek right
+                  <span class="glyph glyph--arrow-right"></span>
+                </p>
+              </div>
+              <div class="card__item skills">
+                <a href="#0" class="skill with-line">
+                  <img class="img skill__bg" src="01d6c00695f9f2b4e0d8b82b151bd64b" data-src="https://res.cloudinary.com/swssr/image/upload/v1583929681/swssr/dzj0xupzojd0nkjzta1z.jpg" alt="front-end illustrated">
+                  <h1 class="skill__name">DEVELOPMENT</h1>
+                </a>
+                <a href="#0" class="skill with-line">
+                  <img class="img skill__bg" src="01d6c00695f9f2b4e0d8b82b151bd64b" data-src="https://res.cloudinary.com/swssr/image/upload/v1583929760/swssr/bxhwlqcnuhjqwf3n4cwx.jpg" alt="UX/UI illustrated">
+                  <h1 class="skill__name">UX/UI DESIGN</h1>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- TODO: Get actual reviews from your clients, then uncomment the fillowing lines -->
+        <!-- <section id="reviews" class="container container--alt">
+      <div class="sect-head">
+        <h6 class="prehead">WHAT OTHER SAY?</h6>
+        <h1>REVIEWS</h1>
+        <div class="subhead">this could be you</div>
+      </div>
+      <div class="sect-main">
+        <div id="reviews" class="reviews">
+          <figure class="entry">
+            <img src="/Assets/images/loader.gif" data-src="https://res.cloudinary.com/swssr/image/upload/v1567205278/swssr/ewnxlwvgbfjt9ugh0p1h.webp" alt="" class="img entry__img">
+            <figcaption class="entry__comment">
+              <blockquote class="body__text comment"> &OpenCurlyDoubleQuote;Has a personality of an owl... Very talented nontheless.&CloseCurlyDoubleQuote;
+              </blockquote> 
+              <span class="entry__owner with-line">Mr L Spambo.</span>
+            </figcaption>
+          </figure>
+          <figure class="entry">
+            <img src="/Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/tumi.webp" alt="" class="img entry__img">
+            <figcaption class="entry__comment">
+              <blockquote class="body__text comment"> &OpenCurlyDoubleQuote; Nocturnal brain... is that a thing? Who cares.&CloseCurlyDoubleQuote;
+              </blockquote> 
+                <span class="entry__owner with-line">Tumisong DJ.</span>
+            </figcaption>
+          </figure>
+          <figure class="entry">
+            <img src="/Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/nasa-45076-unsplash.webp" alt="" class="img entry__img">
+            <figcaption class="entry__comment">
+              <blockquote class="body__text comment">&OpenCurlyDoubleQuote;[Insert Something Inspiration] will not stroke your ego Simo.&CloseCurlyDoubleQuote;
+              </blockquote> 
+                <span class="entry__owner with-line">Dr Spaceman.</span>
+            </figcaption>
+          </figure>
+          <figure class="entry">
+            <img src="/Assets/images/loader.gif" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/igor-rand-1665699-unsplash.webp" alt="" class="img entry__img">
+            <figcaption class="entry__comment">
+              <blockquote class="body__text comment">&OpenCurlyDoubleQuote;Very innovative mind. I really admire his work!&CloseCurlyDoubleQuote;
+              </blockquote> 
+                <span class="entry__owner with-line">Mrs Singh.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section> -->
+        <section id="connect" class="container container--alt bg--translucent">
+          <img src="01d6c00695f9f2b4e0d8b82b151bd64b" data-src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp" alt="simo standing on mountain" class="img img--bg">
+          <div class="sect-head">
+            <h6 class="prehead">like my work?</h6>
+            <h1>IMPRESSED</h1>
+            <div class="subhead">HIT ME UP HERE</div>
+            <div class="sect-main social__links">
+              <a target="_blank" rel="noopener" href="108b353ab76177f681384e52a82808ec" class="card card--social">
+                <img class="social__icon-img" src="a90b6400e48cb22b5133d70558e11e5a" alt="social icon">
+                <span class="card__more">linkedin/swssr</span>
+              </a>
+              <a target="_blank" href="cd807fc510035267451956dfeb9b2e62" class="card card--social">
+                <img class="social__icon-img" src="3b3928c1b55061db2ad5ab5bd2fe543b" alt="social icon">
+                <span class="card__more">simo@swssr.co</span>
+              </a>
+              <a target="_blank" rel="noopener" href="2770e517838fe8cda767cd94d7d319b7" class="card card--social">
+                <img class="social__icon-img" src="e3b0850beffa84fa0d0e3d8f95494ef7" alt="social icon">
+                <span class="card__more">@swssr</span>
+              </a>
+              <a target="_blank" rel="noopener" href="4d22ab968eedd1908c0ce7d7b8572a1f" class="card card--social">
+                <img class="social__icon-img" src="d39c3007fe4f36fbaf7b7b72ed8a2f03" alt="social icon">
+                <span class="card__more">@swssr</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+      <nav class="nav fixed fixed--top">
+        <ul class="list links">
+          <li class="link">
+            <a target="_blank" rel="noopener" href="73fb34d01b2d6e5a2c961d5e57bc6e68" class="link with-line">GitHub</a>
+          </li>
+          <li class="link">
+            <a target="_blank" rel="noopener" href="463b76bcc642104dac14b0e73c0dd2d0" class="link with-line">Behance</a>
+          </li>
+        </ul>
+        <a href="#0" class="link with-line link--primary">Resume</a>
+      </nav>
+    </div>
+    <dialog class="overlay modal">
+      <div class="modal__body">
+        <h1 class="head modal__head">YOU WANT MY RESUME?</h1>
+        <div class="subhead modal__subhead">TELL TALES SIGNS OF TRUE LOVE</div>
+        <p class="body__text modal__body-text"></p>
+        <form class="form modal__form">
+          <label for="email" class="label">YOUR EMAIL ADDRESS</label>
+          <div class="field">
+            <input type="email" class="input field__input" inputmode="email" name="email" placeholder="HUMAN@SPACE.COM" id="email">
+            <input type="submit" class="btn btn--submit" value="SUBMIT">
+          </div>
+        </form>
+        <ul class="modal__list"></ul>
+        <button class="btn btn--icon btn--close">
+          <svg width="16.264" height="16.264" viewbox="0 0 16.264 16.264">
+            <defs>
+              <clipPath id="a">
+                <rect width="16.264" height="16.264" fill="none"></rect>
+              </clipPath>
+            </defs>
+            <g clip-path="url(#a)">
+              <g transform="translate(14.849 0) rotate(45)" fill="none" stroke-width="1">
+                <rect width="2" height="21" stroke="none"></rect>
+                <rect x="0.5" y="0.5" width="1" height="20" fill="none"></rect>
+              </g>
+              <g transform="translate(0 1.414) rotate(-45)" fill="none" stroke-width="1">
+                <rect width="2" height="21" stroke="none"></rect>
+                <rect x="0.5" y="0.5" width="1" height="20" fill="none"></rect>
+              </g>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </dialog>
+    <div class="overlay overlay--menu">
+      <div class="menu__inner">
+        <div class="menu__links">
+          <a class="link with-line" href="#intro">WHO AM I</a>
+          <a class="link with-line" href="#work">WORK</a>
+          <a class="link with-line" href="#connect">CONNECT</a>
+          <a class="link with-line" href="73fb34d01b2d6e5a2c961d5e57bc6e68" target="_blank" rel="noopener">GitHub</a>
+          <a class="link with-line" href="463b76bcc642104dac14b0e73c0dd2d0" target="_blank" rel="noopener">Behance</a>
+        </div>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- <script src="https://unpkg.com/smooth-scrollbar@latest/dist/smooth-scrollbar.js"></script> -->
+    <!-- <script>
+  var elem = document.querySelector(".wrapper");
+  var scrollbar = Scrollbar.init(elem,
+  {
+    speed: 0.9,
+    damping:0.04
+  });
+  </script> -->
+    <script data-parcel-key="e05546922d9c970f8144ba59f0e3b923">
+      if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        if (navigator.serviceWorker.controller) {
+          console.log('active service worker found, no need to register');
+        } else {
+          // Register the service worker
+          navigator.serviceWorker
+            .register(new URL('./service-worker.js'), {
+              scope: './',
+            })
+            .then(function (reg) {
+              console.log(
+                'Service worker has been registered for scope: ' + reg.scope
+              );
+            });
+        }
+      }
+    </script>
+    <script data-parcel-key="5dacbcbf55f4ea579febf8191c529e28">
+      //Defer image loads
+      const imgOptionsIO = {
+        root: null,
+        rootMargin: '300px',
+        threshold: 0.5,
+      };
+      const deferImages = (entries, self) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (isIntersecting) {
+            target.src = target.dataset.src;
+            self.unobserve(target);
+          }
+        });
+      };
+
+      const imgIO = new IntersectionObserver(deferImages, imgOptionsIO);
+
+      const imgs = document.querySelectorAll('.img');
+      const review_imgs = document.querySelectorAll('.entry');
+
+      imgs.forEach((img) => imgIO.observe(img));
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/105/three.min.js"></script> -->
+
+    <script src="050de560911b07a2b6de171386703054"></script>
+    <script src="c56eb51dbc9c934411fad5a6c3a8ea07"></script>
+    <script src="a0efde788edc2f846a979c7e851e2159"></script>
+  </body>
+</html>

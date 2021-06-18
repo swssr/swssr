@@ -1,0 +1,5 @@
+var _smoothScrollbar = require("smooth-scrollbar");
+var _parcelHelpers = require("@parcel/transformer-js/lib/esmodule-helpers.js");
+var _smoothScrollbarDefault = _parcelHelpers.interopDefault(_smoothScrollbar);
+// Smooth scrollbar
+_smoothScrollbarDefault.default.init(document.querySelector(".super-wrap"));
