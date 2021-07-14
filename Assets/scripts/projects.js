@@ -32,7 +32,7 @@ const sources = [
     subtext: "Media company official website, ",
     tags: ["React", "AdobeXD"],
     color: "powderblue",
-    href: "https://meritbranding.co.za",
+    href: "https://meritbranding.swss.vercel.app/",
     src:
       "https://res.cloudinary.com/swssr/image/upload/v1573785642/swssr/nj2mnb9nnz52usjeqmai.png",
   },
