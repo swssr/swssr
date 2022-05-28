@@ -28,15 +28,6 @@ const sources = [
       "https://res.cloudinary.com/tumi/image/upload/v1616503581/Screenshot_2021-03-23_144530.png",
   },
   {
-    name: "MERIT BRANDING",
-    subtext: "Media company official website, ",
-    tags: ["React", "AdobeXD"],
-    color: "powderblue",
-    href: "https://meritbranding.swss.vercel.app/",
-    src:
-      "https://res.cloudinary.com/swssr/image/upload/v1573785642/swssr/nj2mnb9nnz52usjeqmai.png",
-  },
-  {
     name: "TUMISONG.DJ",
     subtext: "Official website for DJ Tumisong",
     tags: ["AdobeXD", "PlainJS"],
