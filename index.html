@@ -325,7 +325,7 @@
                   <img
                     loading="lazy"
                     class="img skill__bg"
-                    src="./Assets/images/loader.gif"
+                    src="https://res.cloudinary.com/swssr/image/upload/v1583929681/swssr/dzj0xupzojd0nkjzta1z.jpg"
                     alt="front-end illustrated"
                   />
                   <h1 class="skill__name">DEVELOPMENT</h1>
@@ -603,34 +603,11 @@
         scrollTexts[1].classList.toggle('visible');
       }
     </script>
-    <script>
-      //Defer image loads
-      const imgOptionsIO = {
-        root: null,
-        rootMargin: '900px',
-        threshold: 0.5,
-      };
-      const deferImages = (entries, self) => {
-        entries.forEach(({ target, isIntersecting }) => {
-          if (isIntersecting) {
-            target.src = target.dataset.src;
-            self.unobserve(target);
-          }
-        });
-      };
-
-      const imgIO = new IntersectionObserver(deferImages, imgOptionsIO);
-
-      const imgs = document.querySelectorAll('.img');
-      const review_imgs = document.querySelectorAll('.entry');
-
-      imgs.forEach((img) => imgIO.observe(img));
-    </script>
 
     <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/projects.js"></script>
     <script type="module" src="./scripts/fancy-animation.js"></script>
     <script type="module" src="./scripts/canvas.js"></script>
     <script type="module" src="./scripts/swsslib.js"></script>
-    <script type="module" src="./scripts/projects.js"></script>
   </body>
 </html>

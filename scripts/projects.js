@@ -1,6 +1,6 @@
 //Switch Project preview images
 const preview = document.querySelector("#proj-preview");
-const projects_lis = document.querySelectorAll("li.list__item");
+const projects = document.querySelectorAll("li.list__item");
 //Projects
 const sources = [
   // {
@@ -61,7 +61,7 @@ switchImage(preview, 0);
 //Default tags
 setTags(sources[0]);
 //Setup project previews
-projects_lis.forEach((item, index, arr) => {
+projects.forEach((item, index, arr) => {
   //Populate project details
   item.querySelector(".item__name").textContent = sources[index].name;
   item.querySelector(".item__subtext").textContent = sources[index].subtext;
@@ -70,7 +70,7 @@ projects_lis.forEach((item, index, arr) => {
   //Handlle switching preview image
   item.addEventListener("click", (e) => {
     toggleActive(e, arr, index);
-    // switchImage(preview, index);
+    switchImage(preview, index);
     setTags(sources[index]);
     //Set project tags
   });
@@ -78,14 +78,14 @@ projects_lis.forEach((item, index, arr) => {
 
 function toggleActive(e, arr, index) {
   //Toggle active
-  projects_lis.forEach((li) => li.classList.remove("list__item--active"));
+  projects.forEach((li) => li.classList.remove("list__item--active"));
   e.currentTarget.classList.add("list__item--active");
 }
 
 function switchImage(target, index) {
   //Change preview image
   const { src } = sources[index];
-  target.dataset.src = src;
+  // target.dataset.src = src;
   target.src = src;
 }
 
