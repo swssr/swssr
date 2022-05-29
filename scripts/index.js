@@ -1,7 +1,4 @@
 import "../styles/index.scss";
-import "./projects";
-import "./fancy-animation";
-// import "./cursor";
 
 //Side nav toggle
 const overlay = document.querySelector(".overlay--menu");
@@ -49,7 +46,6 @@ btnModalClose.addEventListener("click", removeOverlay);
 //Hide bottom nav when intro is visible
 const bottomNav = document.querySelector(".nav.fixed--bottom");
 const topmNav = document.querySelector(".nav.fixed--top");
-const sect1 = document.querySelector(".main");
 
 //Show hide menu
 btn_menu.addEventListener("click", () => {
@@ -60,37 +56,6 @@ btn_menu.addEventListener("click", () => {
 //Intersection observer setup
 const margin = 0;
 
-let options = {
-  rootMargin: "-10px",
-  treshold: 1,
-};
-
-let toggleNav = (entries) => {
-  entries.forEach((entry) => {
-    glitch();
-    if (!entry.isIntersecting) {
-      topmNav.classList.add("navup");
-      bottomNav.classList.add("navdown");
-    } else {
-      topmNav.classList.remove("navup");
-      bottomNav.classList.remove("navdown");
-    }
-  });
-};
-
-let IO = new IntersectionObserver(toggleNav, options);
-
-IO.observe(sect1);
-//Handle load
-
-(() => {
-  const loader = document.querySelector(".loader");
-  const debounce = 2000;
-
-  let timer = setTimeout(() => {
-    loader.classList.add("turn-to-indicator");
-  }, debounce);
-})();
 
 //Menu item click
 const menuLink = document.querySelectorAll(".menu__links .link");
@@ -99,13 +64,6 @@ menuLink.forEach((link) => {
   link.addEventListener("click", removeOverlay);
 });
 
-//🐇🐇Easter egg
-function glitch() {
-  const scrollTexts = document.querySelectorAll(".scroll span");
-
-  scrollTexts[0].classList.toggle("hidden");
-  scrollTexts[1].classList.toggle("visible");
-}
 
 //Show resume modal preview
 const btnShowResume = document.getElementById("btnShowResume");
@@ -164,6 +122,7 @@ function hideItemDelay(el) {
   }, 250);
   clearTimeout();
 }
+
 //Populate modal with the right content based on pill clicked
 const modalList = document.querySelector(".modal__list");
 
@@ -186,7 +145,7 @@ function populateModal(_modal, _data, _itemClass = "list__item") {
  * I don't think this is a good idea, but, I'm doing it anyway.
  */
 
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
   const sender = emailInput.value;
   const request = {
@@ -196,7 +155,16 @@ form.addEventListener("submit", async (e) => {
   const url = "https://filr-server.appspot.com/api/messages";
 
   let response;
-  isEmail(sender) ? (response = await postr(url, request)) : hasError(form);
+
+  if(isEmail(sender)) {
+    postr(url, request)
+    .then(_response => {
+      reponse = _response
+    })
+    
+  } else{
+    hasError(form);
+  }
 
   //I need to think of something better than this.
   if (response) {

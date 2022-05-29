@@ -70,7 +70,7 @@ projects_lis.forEach((item, index, arr) => {
   //Handlle switching preview image
   item.addEventListener("click", (e) => {
     toggleActive(e, arr, index);
-    switchImage(preview, index);
+    // switchImage(preview, index);
     setTags(sources[index]);
     //Set project tags
   });

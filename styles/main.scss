@@ -82,14 +82,14 @@ html {
   font-family: "Jost", sans-serif;
   font-display: swap;
   scroll-behavior: smooth;
-  overflow-y: hidden;
+  // overflow-y: hidden;
   overflow-x: hidden;
   font-size: 14px;
 }
 body {
   width: 100vw;
   user-select: none;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 .super-wrap {
   height: 100vh;

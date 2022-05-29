@@ -1,29 +1,25 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
-  "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
-  "devDependencies": {
-    "@parcel/transformer-sass": "2.0.0-beta.2",
-    "parcel": "^2.0.0-beta.2",
-    "sass": "^1.32.8"
-  },
+  "private": true,
+  "version": "2.0.0",
   "scripts": {
-    "dev": "parcel index.html",
-    "build": "parcel build index.html"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "*",
+    "sass": "^1.52.1",
+    "smooth-scrollbar": "*"
+  },
+  "devDependencies": {
+    "vite": "^2.9.9"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swssr/swss.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/swssr/swss/issues"
-  },
-  "homepage": "https://github.com/swssr/swss#readme",
-  "dependencies": {
-    "gsap": "*",
-    "smooth-scrollbar": "*"
-  }
+  "homepage": "https://github.com/swssr/swss#readme"
 }
