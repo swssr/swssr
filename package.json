@@ -10,12 +10,12 @@
   "description": "- Simo Ngquseka portfolio website, visit [here.](https://swssr.co)",
   "license": "ISC",
   "dependencies": {
-    "gsap": "*",
-    "sass": "^1.52.1",
-    "smooth-scrollbar": "*"
+    "gsap": "^3.12.5",
+    "sass": "^1.83.0",
+    "smooth-scrollbar": "^8.8.4"
   },
   "devDependencies": {
-    "vite": "^2.9.9"
+    "vite": "^4.5.5"
   },
   "repository": {
     "type": "git",

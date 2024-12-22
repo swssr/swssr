@@ -10,13 +10,12 @@ const sources = [
   //     "https://res.cloudinary.com/swssr/image/upload/v1583928350/swssr/hnhvf9brga6lbiuttj20.jpg"
   // },
   {
-    name: "Porsche Now Busan 2022",
-    subtext: "Designed and Development landing Page for Porsche Now Busan popup shop.",
+    name: "Porsche Now - Busan",
+    subtext: "Landing Page for Porsche Now Busan popup shop.",
     tags: ["Angular", "Firebase", "Porsche Design System"],
     color: "red",
     href: "https://porsche-microsite.vercel.app",
-    src:
-      "/Assets/images/porsche-now-export.jpg",
+    src: "/Assets/images/porsche-now-export.jpg",
   },
   {
     name: "BZN Technologies",
@@ -24,8 +23,7 @@ const sources = [
     tags: ["React", "Node", "AdobeXD"],
     color: "green",
     href: "https://bzntechnologies.com",
-    src:
-      "https://res.cloudinary.com/tumi/image/upload/v1616503581/Screenshot_2021-03-23_144530.png",
+    src: "https://res.cloudinary.com/tumi/image/upload/v1616503581/Screenshot_2021-03-23_144530.png",
   },
   {
     name: "TUMISONG.DJ",
@@ -33,8 +31,7 @@ const sources = [
     tags: ["AdobeXD", "PlainJS"],
     color: "navy",
     href: "https://tumi.now.sh",
-    src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583929359/swssr/a86efj7azovw5uwffvxt.jpg",
+    src: "https://res.cloudinary.com/swssr/image/upload/v1583929359/swssr/a86efj7azovw5uwffvxt.jpg",
   },
   {
     name: "MpiloTech",
@@ -42,8 +39,7 @@ const sources = [
     tags: ["AdobeXD"],
     color: "yellow",
     href: "https://www.behance.net/gallery/87868351/MpiloTech",
-    src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583928910/swssr/b1tuf9kalvpzyqwwpib5.jpg",
+    src: "https://res.cloudinary.com/swssr/image/upload/v1583928910/swssr/b1tuf9kalvpzyqwwpib5.jpg",
   },
   {
     name: "FILR",
@@ -51,8 +47,7 @@ const sources = [
     tags: ["AdobeXD", "Illustrator"],
     color: "pink",
     href: "https://www.behance.net/gallery/87867291/Filr",
-    src:
-      "https://res.cloudinary.com/swssr/image/upload/v1583929437/swssr/anwisltsyokejsfq9pai.jpg",
+    src: "https://res.cloudinary.com/swssr/image/upload/v1583929437/swssr/anwisltsyokejsfq9pai.jpg",
   },
 ];
 
@@ -97,8 +92,8 @@ function setTags(data, target_el) {
     .join("");
 }
 
-function preloadProjectPreviews(){
-  sources.forEach(project => {
+function preloadProjectPreviews() {
+  sources.forEach((project) => {
     new Image().src = project?.src;
-  })
+  });
 }
