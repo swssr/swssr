@@ -22,5 +22,6 @@
     "type": "git",
     "url": "git+https://github.com/swssr/swss.git"
   },
-  "homepage": "https://github.com/swssr/swss#readme"
+  "homepage": "https://github.com/swssr/swss#readme",
+  "packageManager": "pnpm@10.33.1"
 }
