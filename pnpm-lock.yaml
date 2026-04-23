@@ -17,6 +17,9 @@ importers:
       smooth-scrollbar:
         specifier: ^8.8.4
         version: 8.8.4
+      three:
+        specifier: ^0.179.1
+        version: 0.179.1
     devDependencies:
       vite:
         specifier: ^4.5.5
@@ -330,6 +333,9 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  three@0.179.1:
+    resolution: {integrity: sha512-5y/elSIQbrvKOISxpwXCR4sQqHtGiOI+MKLc3SsBdDXA2hz3Mdp3X59aUp8DyybMa34aeBwbFTpdoLJaUDEWSw==}
+
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
@@ -598,6 +604,8 @@ snapshots:
       tslib: 1.14.1
 
   source-map-js@1.2.1: {}
+
+  three@0.179.1: {}
 
   to-regex-range@5.0.1:
     dependencies:

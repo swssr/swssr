@@ -1,626 +1,814 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-121799045-2"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+<head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121799045-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag("js", new Date());
+    gtag("config", "UA-121799045-2");
+  </script>
+  <meta name="p:domain_verify" content="7db4679199f9ff5da00d2e2b5d2bb268" />
+  <!-- Hotjar -->
+  <script>
+    (function (c, s, q, u, a, r, e) {
+      c.hj = c.hj || function () { (c.hj.q = c.hj.q || []).push(arguments); };
+      c._hjSettings = { hjid: a };
+      r = s.getElementsByTagName("head")[0];
+      e = s.createElement("script");
+      e.async = true;
+      e.src = q + c._hjSettings.hjid + u;
+      r.appendChild(e);
+    })(window, document, "https://static.hj.contentsquare.net/c/csq-", ".js", 5321467);
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="yandex-verification" content="15c6a35a530189e4" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="Portfolio of Simo Ngquseka. UX/UI designer and developer from Durban. Design the product, build the tools." />
+  <meta name="keywords" content="simo ngquseka, swssr, portfolio, ux designer, developer, south africa, web design, app designer, javascript developer" />
+  <meta name="HandheldFriendly" content="true" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Simo Ngquseka — SWSSR" />
+  <meta property="og:site_name" content="Simo Ngquseka" />
+  <meta property="og:url" content="https://www.swssr.co" />
+  <meta property="og:description" content="UX/UI designer & developer from Durban. Design the product, build the tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://res.cloudinary.com/swssr/image/upload/v1567047311/swssr/rsp5o05tyyzaw1glfqfl.png" />
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Simo Ngquseka" />
+
+  <link rel="apple-touch-icon" sizes="57x57"   href="Assets/images/icons/favicons/apple-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60"   href="Assets/images/icons/favicons/apple-icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72"   href="Assets/images/icons/favicons/apple-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76"   href="Assets/images/icons/favicons/apple-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="Assets/images/icons/favicons/apple-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="Assets/images/icons/favicons/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="Assets/images/icons/favicons/apple-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="Assets/images/icons/favicons/apple-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Assets/images/icons/favicons/apple-icon-180x180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="Assets/images/icons/favicons/android-icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="32x32"   href="Assets/images/icons/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="96x96"   href="Assets/images/icons/favicons/favicon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="16x16"   href="Assets/images/icons/favicons/favicon-16x16.png" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage" content="Assets/images/icons/favicons/ms-icon-144x144.png" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <link rel="manifest" href="/manifest.json" />
+  <title>Simo Ngquseka — SWSSR</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Simo Ngquseka",
+    "url": "https://www.swssr.co",
+    "email": "simo@swssr.co",
+    "jobTitle": "UX/UI Designer & Developer",
+    "description": "UX/UI designer and developer from Durban, South Africa. Design the product, build the tools.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Durban",
+      "addressCountry": "ZA"
+    },
+    "sameAs": [
+      "https://github.com/swssr",
+      "https://www.behance.net/swssr",
+      "https://www.linkedin.com/in/swssr"
+    ],
+    "knowsAbout": ["UX Design", "UI Design", "Web Development", "JavaScript", "TypeScript", "Product Design"],
+    "hasCredential": [],
+    "workExample": [
+      {
+        "@type": "CreativeWork",
+        "name": "Blackchild Fairchild",
+        "description": "Non-profit organisation website and blog",
+        "url": "https://behance.net/swssr"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "PorscheNow Busan",
+        "description": "Automotive microsite for Porsche Korea",
+        "url": "https://porsche-microsite.vercel.app/#visit"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "TUMISONG.DJ",
+        "description": "Official website for DJ Tumisong",
+        "url": "https://tumi.now.sh"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "MpiloTech",
+        "description": "Software company landing page",
+        "url": "https://www.behance.net/gallery/87868351/MpiloTech"
+      },
+      {
+        "@type": "CreativeWork",
+        "name": "FILR",
+        "description": "WebAPI content manager",
+        "url": "https://www.behance.net/gallery/87867291/Filr"
       }
-      gtag('js', new Date());
+    ]
+  }
+  </script>
 
-      gtag('config', 'UA-121799045-2');
-    </script>
-    <meta name="p:domain_verify" content="7db4679199f9ff5da00d2e2b5d2bb268" />
-    <!--Hotjar configuration-->
-    <script>
-        (function (c, s, q, u, a, r, e) {
-            c.hj=c.hj||function(){(c.hj.q=c.hj.q||[]).push(arguments)};
-            c._hjSettings = { hjid: a };
-            r = s.getElementsByTagName('head')[0];
-            e = s.createElement('script');
-            e.async = true;
-            e.src = q + c._hjSettings.hjid + u;
-            r.appendChild(e);
-        })(window, document, 'https://static.hj.contentsquare.net/c/csq-', '.js', 5321467);
-    </script>
-    <!--end Hotjar-->
-    <meta charset="UTF-8" />
-    <meta name="yandex-verification" content="15c6a35a530189e4" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta
-      name="description"
-      content="Portfolio of Simo Ngquseka. UX Designer, Developer. Ninja at creating beautiful and awesome applications."
-    />
-    <meta
-      name="keywords"
-      content="simo ngquseka, swssr, portfolio, simo, ngquseka, ux designer, developer, south africa, web design, app designer, javascript developer,"
-    />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <meta name="HandheldFriendly" content="true" />
-    <!-- Open Graph -->
-    <meta property="og:title" content="Simo Ngquseka" />
-    <meta property="og:site_name" content="Simo Ngquseka" />
-    <meta property="og:url" content="https://www.swssr.co" />
-    <meta
-      property="og:description"
-      content="Portfolio of Simo Ngquseka. UX Designer, Developer. Ninja at creating beautiful and awesome applications."
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/swssr/image/upload/v1567047311/swssr/rsp5o05tyyzaw1glfqfl.png"
-    />
+  <style>
+    :root {
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --display: 'JetBrains Mono', ui-monospace, monospace;
+      --sans: 'Jost', system-ui, sans-serif;
+    }
+    html, body {
+      margin: 0; padding: 0;
+      background: #FFFFFF;
+      color: #0B1733;
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+      height: 100vh; width: 100vw;
+    }
+    body { display: flex; align-items: center; justify-content: center; }
+    * { box-sizing: border-box; }
+    button, input, textarea, select { font-family: inherit; }
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta name="apple-mobile-web-app-title" content="Simo Ngquseka" />
+    #stage {
+      width: 1440px; height: 900px;
+      flex-shrink: 0;
+      transform-origin: center center;
+    }
 
-    <link
-      rel="apple-touch-icon"
-      sizes="57x57"
-      href="Assets/images/icons/favicons/apple-icon-57x57.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="60x60"
-      href="Assets/images/icons/favicons/apple-icon-60x60.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="72x72"
-      href="Assets/images/icons/favicons/apple-icon-72x72.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="76x76"
-      href="Assets/images/icons/favicons/apple-icon-76x76.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="114x114"
-      href="Assets/images/icons/favicons/apple-icon-114x114.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="120x120"
-      href="Assets/images/icons/favicons/apple-icon-120x120.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="144x144"
-      href="Assets/images/icons/favicons/apple-icon-144x144.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="Assets/images/icons/favicons/apple-icon-152x152.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="Assets/images/icons/favicons/apple-icon-180x180.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href="Assets/images/icons/favicons/android-icon-192x192.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="Assets/images/icons/favicons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="96x96"
-      href="Assets/images/icons/favicons/favicon-96x96.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="Assets/images/icons/favicons/favicon-16x16.png"
-    />
-    <meta name="msapplication-TileColor" content="#ffffff" />
-    <meta
-      name="msapplication-TileImage"
-      content="Assets/images/icons/favicons/ms-icon-144x144.png"
-    />
-    <meta name="theme-color" content="#ffffff" />
+    /* Tweaks panel */
+    .tweaks {
+      position: fixed; right: 20px; bottom: 20px;
+      width: 340px; max-height: calc(100vh - 40px);
+      background: #0B1733; color: #E9EEFB;
+      border-radius: 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+      z-index: 1000;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+    .tweaks-head {
+      padding: 12px 14px;
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    .tweaks-body { overflow-y: auto; padding: 12px 14px; flex: 1; }
+    .tw-group { margin-bottom: 14px; }
+    .tw-group-title {
+      font-size: 9px; letter-spacing: 0.2em;
+      color: #6D7FB3; margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    .tw-row { margin-bottom: 8px; }
+    .tw-label {
+      font-size: 9px; letter-spacing: 0.14em;
+      color: #8E9AB8; margin-bottom: 3px;
+      text-transform: uppercase;
+    }
+    .tw-input, .tw-textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #E9EEFB;
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 6px 8px;
+      border-radius: 2px;
+      outline: none;
+    }
+    .tw-textarea { resize: vertical; min-height: 52px; }
+    .tw-input:focus, .tw-textarea:focus { border-color: #FF5722; }
+    .tw-project {
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 8px; margin-bottom: 6px; border-radius: 2px;
+    }
+    .tw-project-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 6px;
+    }
+    .tw-del {
+      background: transparent; border: none; color: #8E9AB8;
+      cursor: pointer; font-size: 10px; padding: 2px 4px;
+    }
+    .tw-del:hover { color: #FF5722; }
+    .tw-add {
+      width: 100%;
+      background: transparent;
+      border: 1px dashed rgba(255,255,255,0.2);
+      color: #E9EEFB;
+      padding: 6px;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .tw-add:hover { border-color: #FF5722; color: #FF5722; }
 
-    <link rel="manifest" href="/manifest.json" />
-    <title>Simo Ngquseka</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@200;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" prefetch href="Assets/fonts/fonts.css" /> -->
-  </head>
+  </style>
 
-  <body>
-    <!-- <div class="wrapper"> -->
-    <div class="loader flex">
-      <h3 class="centered pulse">LOADING</h3>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+</head>
+<body>
+  <div id="stage"><div id="root"></div></div>
+
+  <noscript>
+    <style>
+      .noscript-fallback { font-family: sans-serif; max-width: 760px; margin: 60px auto; padding: 0 24px; color: #0B1733; line-height: 1.6; }
+      .noscript-fallback h1 { font-size: 2rem; margin-bottom: 8px; }
+      .noscript-fallback h2 { font-size: 1.1rem; margin: 32px 0 8px; border-top: 1px solid #e0e0e0; padding-top: 24px; }
+      .noscript-fallback ul { padding-left: 20px; }
+      .noscript-fallback a { color: #1E40FF; }
+    </style>
+    <div class="noscript-fallback">
+      <h1>Simo Ngquseka — SWSSR</h1>
+      <p>UX/UI designer &amp; developer from Durban, South Africa. I design products and build the tools to build them.</p>
+      <p>Open to work · 2026 · <a href="mailto:simo@swssr.co">simo@swssr.co</a></p>
+
+      <h2>Selected Work</h2>
+      <ul>
+        <li><a href="https://behance.net/swssr">Blackchild Fairchild</a> — Non-profit organisation website and blog</li>
+        <li><a href="https://porsche-microsite.vercel.app/#visit">PorscheNow Busan</a> — Automotive microsite for Porsche Korea</li>
+        <li><a href="https://tumi.now.sh">TUMISONG.DJ</a> — Official website for DJ Tumisong</li>
+        <li><a href="https://www.behance.net/gallery/87868351/MpiloTech">MpiloTech</a> — Software company landing page</li>
+        <li><a href="https://www.behance.net/gallery/87867291/Filr">FILR</a> — WebAPI content manager</li>
+      </ul>
+
+      <h2>Links</h2>
+      <ul>
+        <li><a href="https://github.com/swssr">GitHub — github.com/swssr</a></li>
+        <li><a href="https://www.behance.net/swssr">Behance — behance.net/swssr</a></li>
+        <li><a href="https://www.linkedin.com/in/swssr">LinkedIn — linkedin.com/in/swssr</a></li>
+      </ul>
+
+      <p><small>This site requires JavaScript. Enable it to view the full experience.</small></p>
     </div>
-    <nav class="nav fixed fixed--bottom alpha">
-      <span class="link btn--menu"> MENU </span>
-      <a href="#" class="logo">
-        <img src="./Assets/images/logo.png" alt="Simo Ngquseka logo" />
-      </a>
-      <a id="linkShowResume" class="link"> RESUME </a>
-    </nav>
-    <div class="super-wrap">
-      <header class="overlay overlay--intro">
-        <canvas class="intro__bg"></canvas>
-        <img
-          loading="lazy"
-          class="img img--mg-overlay"
-          src="https://res.cloudinary.com/swssr/image/upload/v1583929510/swssr/mcemm6dde9ddwino8iec.png"
-          alt="swss overlay"
-        />
-        <div class="intro__body">
-          <h1 class="head">Hi! I'm Simo.</h1>
-          <p class="body__text">
-            Developer & UX/UI Designer with a passion for creating beautiful and
-            awesome applications.
-          </p>
-        </div>
-        <a href="#header" class="scroll">
-          <span>GO CHAMP</span>
-          <span class="glitch">SCROLL DOWN</span>
-        </a>
-      </header>
-      <div class="target"></div>
-      <main class="main" role="main">
-        <header id="header" class="header">
-          <div class="mobile-only">
-            <div class="hero hero--mobile">
-              <h1 class="head">I'm Simo.</h1>
-              <p class="body__text body__text--head">
-                I look at a screen for a living. If you're here. You probably
-                care.
-              </p>
-              <a href="#intro" class="scroll">
-                <span>SCROLL DOWN</span>
-              </a>
-            </div>
-          </div>
-        </header>
-        <section id="intro" class="container container--intro">
-          <div class="sect-head">
-            <h6 class="prehead">INTRO</h6>
-            <h1>WHO AM I</h1>
-            <div class="subhead">why you should care</div>
-          </div>
-          <div class="sect-main card sect-main--alt">
-            <div class="inner card__inner flex flex--col">
-              <h1 class="head">Creative Developer</h1>
-              <p class="body__text">
-                I'm a Developer, UX/UI future ninja, people and tech lover. In
-                love yet?
-              </p>
-              <button id="btnShowResume" class="btn btn--outline with-line">
-                <span>RESUME</span>
-              </button>
-            </div>
-            <!-- add photo that illustrate and summarize what you do -->
-            <img
-              loading="lazy"
-              title="why do you care how I look?"
-              alt="picture of simo ngquseka"
-              src="https://res.cloudinary.com/swssr/image/upload/v1567223894/swssr/nozjgursdtbrqvizpknm.jpg"
-              class="img img--preview"
-            />
-          </div>
-        </section>
-        <section id="work" class="container">
-          <div class="sect-head">
-            <h6 class="prehead">PROJECTS</h6>
-            <h1>MY WORK</h1>
-            <div class="subhead">some of the work I've done</div>
-          </div>
-          <div class="sect-main">
-            <div class="card preview">
-              <!-- <canvas id="proj-preview" class="img img--preview preview--lg"></canvas> -->
-              <div class="tags">
-                <div class="tags__head">Used</div>
-                <span class="tags__item"></span>
-                <span class="tags__item"></span>
-                <span class="tags__item"></span>
-                <span class="tags__item"></span>
-              </div>
+  </noscript>
 
-              <img
-                loading="lazy"
-                src="./Assets/images/loader.gif"
-                id="proj-preview"
-                class="img img--preview preview--lg"
-              />
-            </div>
-            <ul class="inner list list--projects">
-              <li class="list__item list__item--active">
-                <h2 class="item__name">BLACKCHILD FAIRCHILD</h2>
-                <div class="item__subtext">
-                  Non profit organisation website and blog
-                </div>
-                <a
-                  href="https://behance.net/swssr"
-                  class="link link--ext with-line"
-                  target="_blank"
-                  rel="noopener"
-                  >VIEW</a
-                >
-              </li>
-              <li class="list__item">
-                <h2 class="item__name">Porsche Korea</h2>
-                <div class="item__subtext">PorscheNow Busan</div>
-                <a
-                  href="https://porsche-microsite.vercel.app/#visit"
-                  class="link link--ext with-line"
-                  target="_blank"
-                  rel="noopener"
-                  >VIEW</a
-                >
-              </li>
-              <li class="list__item">
-                <h2 class="item__name">TUMISONG.DJ</h2>
-                <div class="item__subtext">
-                  Official website for DJ Tumisong
-                </div>
-                <a
-                  href="https://tumi.now.sh"
-                  class="link link--ext with-line"
-                  target="_blank"
-                  rel="noopener"
-                  >VIEW</a
-                >
-              </li>
-              <li class="list__item">
-                <h2 class="item__name">MpiloTech</h2>
-                <div class="item__subtext">Software company landing page</div>
-                <a
-                  href="https://www.behance.net/gallery/87868351/MpiloTech"
-                  class="link link--ext with-line"
-                  target="_blank"
-                  rel="noopener"
-                  >VIEW</a
-                >
-              </li>
-              <li class="list__item">
-                <h2 class="item__name">FILR</h2>
-                <div class="item__subtext">WebAPI content manager</div>
-                <a
-                  href="https://www.behance.net/gallery/87867291/Filr"
-                  class="link link--ext with-line"
-                  target="_blank"
-                  rel="noopener"
-                  >VIEW</a
-                >
-              </li>
-            </ul>
-          </div>
-        </section>
-        <section id="skills" class="container container--skills">
-          <div class="sect-head">
-            <h6 class="prehead">SUPERPOWERS</h6>
-            <h1>MY SKILLS</h1>
-            <div class="subhead">Things I'm good at</div>
-          </div>
-          <div class="sect-main">
-            <div class="card card--skills">
-              <div class="card__item card__body flex flex--col">
-                <h2 class="head skills__head">
-                  FLEXIBLE <br />
-                  THROUGHOUT <br />
-                  THE STACK.
-                </h2>
-                <p class="body__text">
-                  I'm a <mark>Developer</mark> and an aspiring
-                  <mark>UX/UI Designer</mark> with a solid academic background
-                  in <mark>Software Engineering</mark>, working as a freelance
-                  web designer and developer since 2018. <br />
-                  My skills peek right
-                  <span class="glyph glyph--arrow-right"></span>
-                </p>
-              </div>
-              <div class="card__item skills">
-                <a href="#0" class="skill with-line">
-                  <img
-                    loading="lazy"
-                    class="img skill__bg"
-                    src="https://res.cloudinary.com/swssr/image/upload/v1583929681/swssr/dzj0xupzojd0nkjzta1z.jpg"
-                    alt="front-end illustrated"
-                  />
-                  <h1 class="skill__name">DEVELOPMENT</h1>
-                </a>
-                <a href="#0" class="skill with-line">
-                  <img
-                    loading="lazy"
-                    class="img skill__bg"
-                    src="https://res.cloudinary.com/swssr/image/upload/v1583929760/swssr/bxhwlqcnuhjqwf3n4cwx.jpg"
-                    alt="UX/UI illustrated"
-                  />
-                  <h1 class="skill__name">UX/UI DESIGN</h1>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- TODO: Get actual reviews from your clients, then uncomment the fillowing lines -->
-        <!-- <section id="reviews" class="container container--alt">
-      <div class="sect-head">
-        <h6 class="prehead">WHAT OTHER SAY?</h6>
-        <h1>REVIEWS</h1>
-        <div class="subhead">this could be you</div>
-      </div>
-      <div class="sect-main">
-        <div id="reviews" class="reviews">
-          <figure class="entry">
-            <img src="./Assets/images/loader.gif" src="https://res.cloudinary.com/swssr/image/upload/v1567205278/swssr/ewnxlwvgbfjt9ugh0p1h.webp" alt="" class="img entry__img">
-              loading="lazy"
-            <figcaption class="entry__comment">
-              <blockquote class="body__text comment"> &OpenCurlyDoubleQuote;Has a personality of an owl... Very talented nontheless.&CloseCurlyDoubleQuote;
-              </blockquote> 
-              <span class="entry__owner with-line">Mr L Spambo.</span>
-            </figcaption>
-          </figure>
-          <figure class="entry">
-            <img src="./Assets/images/loader.gif" src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/tumi.webp" alt="" class="img entry__img">
-              loading="lazy"
-            <figcaption class="entry__comment">
-              <blockquote class="body__text comment"> &OpenCurlyDoubleQuote; Nocturnal brain... is that a thing? Who cares.&CloseCurlyDoubleQuote;
-              </blockquote> 
-                <span class="entry__owner with-line">Tumisong DJ.</span>
-            </figcaption>
-          </figure>
-          <figure class="entry">
-            <img src="./Assets/images/loader.gif" src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/nasa-45076-unsplash.webp" alt="" class="img entry__img">
-              loading="lazy"
-            <figcaption class="entry__comment">
-              <blockquote class="body__text comment">&OpenCurlyDoubleQuote;[Insert Something Inspiration] will not stroke your ego Simo.&CloseCurlyDoubleQuote;
-              </blockquote> 
-                <span class="entry__owner with-line">Dr Spaceman.</span>
-            </figcaption>
-          </figure>
-          <figure class="entry">
-            <img src="./Assets/images/loader.gif" src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/igor-rand-1665699-unsplash.webp" alt="" class="img entry__img">
-              loading="lazy"
-            <figcaption class="entry__comment">
-              <blockquote class="body__text comment">&OpenCurlyDoubleQuote;Very innovative mind. I really admire his work!&CloseCurlyDoubleQuote;
-              </blockquote> 
-                <span class="entry__owner with-line">Mrs Singh.</span>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section> -->
-        <section id="connect" class="container container--alt bg--translucent">
-          <img
-            loading="lazy"
-            src="https://res.cloudinary.com/tumi/image/upload/v1560816677/images/webp/img--bgwebp.webp"
-            alt="simo standing on mountain"
-            class="img img--bg"
+  <script>
+    window.__TWEAK_DEFAULTS = {
+      "brand": "SWSSR",
+      "navIndex": "Index",
+      "navWork": "Work",
+      "navWriting": "Lab",
+      "navContact": "Contact",
+      "rev": "Durban \/ ZA · 2026",
+      "aboutLabel": "ABOUT",
+      "aboutTitle": "Simo Ngquseka — UX\/UI designer & developer from Durban.",
+      "aboutBody": "I design products and build the tools to build them. Interested in how a designer's intent can survive the trip into code.",
+      "availLabel": "● OPEN TO WORK · 2026",
+      "availBody": "Taking on product design engagements and small design-engineering partnerships. Prefer teams where design and code sit close together.",
+      "ctaLabel": "SIMO@SWSSR.CO →",
+      "ctaHref": "mailto:simo@swssr.co",
+      "centerEyebrow": "SELECTED · 05",
+      "centerLine1": "DESIGN THE PRODUCT.",
+      "centerLine2": "BUILD THE TOOLS.",
+      "footerCopyright": "© 2026 SIMO NGQUSEKA · SWSSR",
+      "footerIdle": "— hover a point —",
+      "footerLinks": "GitHub|https://github.com/swssr;Behance|https://www.behance.net/swssr;LinkedIn|https://www.linkedin.com/in/swssr",
+      "projects": [
+        {
+          "n": "01",
+          "title": "Blackchild Fairchild",
+          "tag": "WEB \/ NPO",
+          "year": "'22",
+          "angle": -70,
+          "color": "#FF5722",
+          "video": "",
+          "shape": "torus",
+          "href": "https://behance.net/swssr"
+        },
+        {
+          "n": "02",
+          "title": "PorscheNow Busan",
+          "tag": "AUTO \/ WEB",
+          "year": "'23",
+          "angle": 2,
+          "color": "#0B1733",
+          "video": "",
+          "shape": "box",
+          "href": "https://porsche-microsite.vercel.app/#visit"
+        },
+        {
+          "n": "03",
+          "title": "TUMISONG.DJ",
+          "tag": "MUSIC \/ WEB",
+          "year": "'21",
+          "angle": 74,
+          "color": "#1E40FF",
+          "video": "",
+          "shape": "ico",
+          "href": "https://tumi.now.sh"
+        },
+        {
+          "n": "04",
+          "title": "MpiloTech",
+          "tag": "TECH \/ WEB",
+          "year": "'20",
+          "angle": 146,
+          "color": "#0B1733",
+          "video": "",
+          "shape": "cylinder",
+          "href": "https://www.behance.net/gallery/87868351/MpiloTech"
+        },
+        {
+          "n": "05",
+          "title": "FILR",
+          "tag": "WEB \/ APP",
+          "year": "'20",
+          "angle": 218,
+          "color": "#FF5722",
+          "video": "",
+          "shape": "octa",
+          "href": "https://www.behance.net/gallery/87867291/Filr"
+        }
+      ]
+    };
+
+    function fitStage() {
+      const stage = document.getElementById('stage');
+      if (!stage) return;
+      const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
+      stage.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitStage);
+    window.addEventListener('load', fitStage);
+    setTimeout(fitStage, 0);
+  </script>
+
+  <script type="text/babel" data-presets="env,react">
+    const { useState, useEffect, useRef } = React;
+
+    function HoverScene({ project, ink, paper }) {
+      const mountRef = useRef(null);
+
+      useEffect(() => {
+        if (!project || !mountRef.current || !window.THREE) return;
+        const THREE = window.THREE;
+        const mount = mountRef.current;
+        const w = 360, h = 360;
+        const scene = new THREE.Scene();
+        const cam = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+        cam.position.z = 4;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(w, h);
+        renderer.setClearColor(0x000000, 0);
+        mount.appendChild(renderer.domElement);
+
+        let geom;
+        switch (project.shape) {
+          case 'box':      geom = new THREE.BoxGeometry(1.5, 1.5, 1.5); break;
+          case 'ico':      geom = new THREE.IcosahedronGeometry(1.1, 0); break;
+          case 'cylinder': geom = new THREE.CylinderGeometry(0.9, 0.9, 1.6, 32); break;
+          case 'octa':     geom = new THREE.OctahedronGeometry(1.2, 0); break;
+          case 'knot':     geom = new THREE.TorusKnotGeometry(0.8, 0.26, 80, 12); break;
+          default:         geom = new THREE.TorusGeometry(1, 0.32, 16, 64); break;
+        }
+        const mat = new THREE.MeshBasicMaterial({
+          color: new THREE.Color(project.color),
+          wireframe: true, transparent: true, opacity: 0.85,
+        });
+        const mesh = new THREE.Mesh(geom, mat);
+        scene.add(mesh);
+        const coreMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(ink) });
+        const core = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 16), coreMat);
+        scene.add(core);
+
+        let raf;
+        const t0 = performance.now();
+        function tick(now) {
+          const t = (now - t0) / 1000;
+          mesh.rotation.x = t * 0.5;
+          mesh.rotation.y = t * 0.7;
+          mesh.scale.setScalar(Math.min(1, t * 3));
+          renderer.render(scene, cam);
+          raf = requestAnimationFrame(tick);
+        }
+        raf = requestAnimationFrame(tick);
+
+        return () => {
+          cancelAnimationFrame(raf);
+          renderer.dispose();
+          geom.dispose();
+          mat.dispose();
+          coreMat.dispose();
+          if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+        };
+      }, [project && project.n, project && project.color, project && project.shape]);
+
+      if (project && project.video) {
+        return (
+          <video
+            key={project.n}
+            src={project.video}
+            autoPlay muted loop playsInline
+            style={{ width: 360, height: 360, objectFit: 'cover', borderRadius: '50%', border: `1px solid ${project.color}` }}
           />
-          <div class="sect-head">
-            <h6 class="prehead">like my work?</h6>
-            <h1>IMPRESSED</h1>
-            <div class="subhead">HIT ME UP HERE</div>
-            <div class="sect-main social__links">
-              <a
-                target="_blank"
-                rel="noopener"
-                href="https://www.linkedin.com/in/swssr"
-                class="card card--social"
-              >
-                <img
-                  loading="lazy"
-                  class="social__icon-img"
-                  src="./Assets/images/linkedin.svg"
-                  alt="social icon"
+        );
+      }
+      return <div ref={mountRef} style={{ width: 360, height: 360 }} />;
+    }
+
+    function Orbit({ projects, hover, setHover, ink, inkMid, inkSoft, lineBold, paper, centerEyebrow, centerLine1, centerLine2 }) {
+      const cx = 720, cy = 470, r = 230;
+      return (
+        <>
+          <svg style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
+            <circle cx={cx} cy={cy} r={r} fill="none" stroke={lineBold} strokeWidth="0.75" />
+            {Array.from({ length: 12 }).map((_, i) => {
+              const a = (i * 30) * Math.PI / 180;
+              return (
+                <line key={i}
+                  x1={cx + Math.cos(a) * (r - 3)} y1={cy + Math.sin(a) * (r - 3)}
+                  x2={cx + Math.cos(a) * (r + 3)} y2={cy + Math.sin(a) * (r + 3)}
+                  stroke={lineBold} strokeWidth="0.75"
                 />
-                <span class="card__more">linkedin/swssr</span>
-              </a>
-              <a
-                target="_blank"
-                href="mailto:simo@swssr.co"
-                class="card card--social"
-              >
-                <img
-                  loading="lazy"
-                  class="social__icon-img"
-                  src="./Assets/images/at.svg"
-                  alt="social icon"
-                />
-                <span class="card__more">simo@swssr.co</span>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener"
-                href="https://www.github.com/swssr"
-                class="card card--social"
-              >
-                <img
-                  loading="lazy"
-                  class="social__icon-img"
-                  src="./Assets/images/github.svg"
-                  alt="social icon"
-                />
-                <span class="card__more">@swssr</span>
-              </a>
-              <a
-                target="_blank"
-                rel="noopener"
-                href="https://www.behance.net/swssr"
-                class="card card--social"
-              >
-                <img
-                  loading="lazy"
-                  class="social__icon-img"
-                  src="./Assets/images/behance.svg"
-                  alt="social icon"
-                />
-                <span class="card__more">@swssr</span>
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
-      <nav class="nav fixed fixed--top">
-        <ul class="list links">
-          <li class="link">
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://github.com/swssr"
-              class="link with-line"
-              >GitHub</a
-            >
-          </li>
-          <li class="link">
-            <a
-              target="_blank"
-              rel="noopener"
-              href="https://Behance.com/swssr"
-              class="link with-line"
-              >Behance</a
-            >
-          </li>
-        </ul>
-        <a href="#0" class="link with-line link--primary">Resume</a>
-      </nav>
-    </div>
-    <dialog class="overlay modal">
-      <div class="modal__body">
-        <h1 class="head modal__head">YOU WANT MY RESUME?</h1>
-        <div class="subhead modal__subhead">TELL TALES SIGNS OF TRUE LOVE</div>
-        <p class="body__text modal__body-text"></p>
-        <form class="form modal__form">
-          <label for="email" class="label">YOUR EMAIL ADDRESS</label>
-          <div class="field">
-            <input
-              type="email"
-              class="input field__input"
-              inputmode="email"
-              name="email"
-              placeholder="HUMAN@SPACE.COM"
-              id="email"
-            />
-            <input type="submit" class="btn btn--submit" value="SUBMIT" />
-          </div>
-        </form>
-        <ul class="modal__list"></ul>
-        <button class="btn btn--icon btn--close">
-          <svg width="16.264" height="16.264" viewBox="0 0 16.264 16.264">
-            <defs>
-              <clipPath id="a">
-                <rect width="16.264" height="16.264" fill="none" />
-              </clipPath>
-            </defs>
-            <g clip-path="url(#a)">
-              <g
-                transform="translate(14.849 0) rotate(45)"
-                fill="none"
-                stroke-width="1"
-              >
-                <rect width="2" height="21" stroke="none" />
-                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
-              </g>
-              <g
-                transform="translate(0 1.414) rotate(-45)"
-                fill="none"
-                stroke-width="1"
-              >
-                <rect width="2" height="21" stroke="none" />
-                <rect x="0.5" y="0.5" width="1" height="20" fill="none" />
-              </g>
-            </g>
+              );
+            })}
+            {hover !== null && (() => {
+              const p = projects[hover]; if (!p) return null;
+              const a = p.angle * Math.PI / 180;
+              const x = cx + Math.cos(a) * r;
+              const y = cy + Math.sin(a) * r;
+              return <line x1={cx} y1={cy} x2={x} y2={y} stroke={p.color} strokeWidth="0.75" strokeDasharray="3 3" opacity="0.7" />;
+            })()}
+            {projects.map((p, i) => {
+              const a = p.angle * Math.PI / 180;
+              const x = cx + Math.cos(a) * r;
+              const y = cy + Math.sin(a) * r;
+              const isHover = hover === i;
+              return (
+                <g key={i}>
+                  <circle cx={x} cy={y} r={isHover ? 6 : 3.5} fill={isHover ? p.color : ink} style={{ transition: 'r 0.18s' }} />
+                  {isHover && <circle cx={x} cy={y} r="12" fill="none" stroke={p.color} strokeWidth="0.75" opacity="0.5" />}
+                </g>
+              );
+            })}
           </svg>
-        </button>
-      </div>
-    </dialog>
-    <div class="overlay overlay--menu">
-      <div class="menu__inner">
-        <div class="menu__links">
-          <a class="link with-line" href="#intro">WHO AM I</a>
-          <a class="link with-line" href="#work">WORK</a>
-          <a class="link with-line" href="#connect">CONNECT</a>
-          <a
-            class="link with-line"
-            href="https://github.com/swssr"
-            target="_blank"
-            rel="noopener"
-            >GitHub</a
-          >
-          <a
-            class="link with-line"
-            href="https://Behance.com/swssr"
-            target="_blank"
-            rel="noopener"
-            >Behance</a
-          >
-        </div>
-      </div>
-    </div>
 
-    <script>
-      const loader = document.querySelector('.loader');
-      const sect1 = document.querySelector('.main');
-      const bottoNav = document.querySelector(".nav.fixed--bottom");
-      const topNav = document.querySelector(".nav.fixed--top");
+          <div style={{
+            position: 'absolute', left: cx, top: cy,
+            transform: 'translate(-50%, -50%)',
+            textAlign: 'center', zIndex: 2, width: 360, height: 360,
+            pointerEvents: 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+              opacity: hover === null ? 1 : 0,
+              transition: 'opacity 0.25s ease',
+            }}>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.22em', color: inkSoft, marginBottom: 14 }}>
+                {centerEyebrow}
+              </div>
+              <div style={{
+                fontFamily: 'var(--display)', fontSize: 34, lineHeight: 1.1,
+                color: ink, letterSpacing: '-0.015em', fontWeight: 400,
+                textTransform: 'uppercase',
+                width: 320,
+              }}>
+                {centerLine1}<br />
+                <span style={{ fontWeight: 600 }}>{centerLine2}</span>
+              </div>
+            </div>
+            <div style={{
+              position: 'absolute', inset: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              opacity: hover === null ? 0 : 1,
+              transition: 'opacity 0.25s ease',
+            }}>
+              {hover !== null && <HoverScene project={projects[hover]} ink={ink} paper={paper} />}
+            </div>
+            {hover !== null && (
+              <div style={{
+                position: 'absolute',
+                bottom: -30, left: '50%', transform: 'translateX(-50%)',
+                fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.22em',
+                color: projects[hover].color,
+                whiteSpace: 'nowrap',
+              }}>
+                ◆ NOW VIEWING · {projects[hover].n}
+              </div>
+            )}
+          </div>
 
+          {projects.map((p, i) => {
+            const a = p.angle * Math.PI / 180;
+            const labelR = r + 40;
+            const lx = cx + Math.cos(a) * labelR;
+            const ly = cy + Math.sin(a) * labelR;
+            const isHover = hover === i;
+            const isLeft = Math.cos(a) < -0.3;
+            const isRight = Math.cos(a) > 0.3;
+            const align = isLeft ? 'right' : isRight ? 'left' : 'center';
+            const tx = isLeft ? '-100%' : isRight ? '0' : '-50%';
+            return (
+              <div key={i}
+                onMouseEnter={() => setHover(i)}
+                onMouseLeave={() => setHover(null)}
+                onClick={() => p.href && window.open(p.href, '_blank', 'noopener')}
+                style={{
+                  position: 'absolute', left: lx, top: ly,
+                  transform: `translate(${tx}, -50%)`,
+                  zIndex: 3, cursor: p.href ? 'pointer' : 'default',
+                  textAlign: align, padding: '8px 12px', minWidth: 170,
+                }}
+              >
+                <div style={{
+                  fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.16em',
+                  color: isHover ? p.color : inkSoft, marginBottom: 3,
+                  transition: 'color 0.18s',
+                }}>
+                  {p.n} · {p.tag} <span style={{ color: inkSoft }}>{p.year}</span>
+                </div>
+                <div style={{
+                  fontFamily: 'var(--sans)', fontSize: 18, lineHeight: 1.2,
+                  color: ink, fontWeight: isHover ? 500 : 400,
+                  letterSpacing: '-0.005em',
+                  transition: 'font-weight 0.18s',
+                }}>
+                  {p.title}
+                </div>
+              </div>
+            );
+          })}
+        </>
+      );
+    }
 
-      let IO = new IntersectionObserver(toggleNav, {
-        rootMargin: '-10px',
-        treshold: 1,
+    function Portfolio({ t }) {
+      const paper    = '#FFFFFF';
+      const ink      = '#0B1733';
+      const inkMid   = '#5C6A8A';
+      const inkSoft  = '#AEB6C8';
+      const line     = 'rgba(11, 23, 51, 0.06)';
+      const lineBold = 'rgba(11, 23, 51, 0.14)';
+      const splash   = '#FF5722';
+
+      const [hover, setHover] = useState(null);
+      const projects = t.projects;
+      const footerLinks = (t.footerLinks || '').split(';').map(s => s.trim()).filter(Boolean).map(pair => {
+        const [label, href] = pair.split('|');
+        return { label: (label || '').trim(), href: (href || '#').trim() };
       });
 
-      IO.observe(sect1);
-      //Handle load
+      return (
+        <div style={{
+          width: 1440, height: 900,
+          background: paper,
+          position: 'relative', overflow: 'hidden',
+          fontFamily: 'var(--sans)', color: ink,
+        }}>
+          {/* grid */}
+          <div style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            backgroundImage: `linear-gradient(to right, ${line} 0.5px, transparent 0.5px), linear-gradient(to bottom, ${line} 0.5px, transparent 0.5px)`,
+            backgroundSize: '48px 48px',
+          }} />
 
-      (() => {
-        const debounce = 2000;
+          {/* top nav */}
+          <div style={{
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            padding: '22px 40px',
+            fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.14em', color: inkMid,
+            position: 'relative', zIndex: 2,
+          }}>
+            <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <svg width="14" height="14" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="7" fill="none" stroke={ink} strokeWidth="1.3" />
+                <circle cx="8" cy="8" r="2.5" fill={splash} />
+              </svg>
+              <span style={{ color: ink, fontWeight: 600, letterSpacing: '0.2em' }}>{t.brand}</span>
+            </span>
+            <span style={{ display: 'flex', gap: 28 }}>
+              <a href="#" style={{ color: ink, textDecoration: 'none' }}>{t.navIndex}</a>
+              <a href="#" style={{ color: inkMid, textDecoration: 'none' }}>{t.navWork}</a>
+              <a href="#" style={{ color: inkMid, textDecoration: 'none' }}>{t.navWriting}</a>
+              <a href="#" style={{ color: inkMid, textDecoration: 'none' }}>{t.navContact}</a>
+            </span>
+            <span style={{ color: inkSoft }}>{t.rev}</span>
+          </div>
 
-        let timer = setTimeout(() => {
-          loader.classList.add('turn-to-indicator');
-        }, debounce);
-      })();
+          {/* left column — about */}
+          <div style={{ position: 'absolute', left: 40, top: 140, width: 260, zIndex: 2 }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: inkSoft, letterSpacing: '0.2em', marginBottom: 14 }}>
+              {t.aboutLabel}
+            </div>
+            <div style={{ fontFamily: 'var(--display)', fontSize: 22, lineHeight: 1.25, color: ink, marginBottom: 14, fontWeight: 400, letterSpacing: '-0.01em' }}>
+              {t.aboutTitle}
+            </div>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: 13.5, lineHeight: 1.6, color: inkMid }}>
+              {t.aboutBody}
+            </div>
+          </div>
 
-      function toggleNav(entries) {
-        entries.forEach((entry) => {
-          glitch();
-          if (!entry.isIntersecting) {
-            topNav.classList.add('navup');
-            bottoNav.classList.add('navdown');
-          } else {
-            topNav.classList.remove('navup');
-            bottoNav.classList.remove('navdown');
-          }
-        });
-      }
+          {/* right column — availability */}
+          <div style={{ position: 'absolute', right: 40, top: 140, width: 260, zIndex: 2, textAlign: 'right' }}>
+            <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: splash, letterSpacing: '0.2em', marginBottom: 14 }}>
+              {t.availLabel}
+            </div>
+            <div style={{ fontFamily: 'var(--sans)', fontSize: 13.5, lineHeight: 1.6, color: inkMid, marginBottom: 18 }}>
+              {t.availBody}
+            </div>
+            <a href={t.ctaHref} style={{
+              display: 'inline-block', padding: '10px 16px',
+              background: ink, color: paper, textDecoration: 'none',
+              fontFamily: 'var(--mono)', fontSize: 11, letterSpacing: '0.18em',
+            }}>{t.ctaLabel}</a>
+          </div>
 
-      //🐇🐇Easter egg
-      function glitch() {
-        const scrollTexts = document.querySelectorAll('.scroll span');
+          <Orbit
+            projects={projects}
+            hover={hover} setHover={setHover}
+            ink={ink} inkMid={inkMid} inkSoft={inkSoft}
+            lineBold={lineBold} paper={paper}
+            centerEyebrow={t.centerEyebrow}
+            centerLine1={t.centerLine1}
+            centerLine2={t.centerLine2}
+          />
 
-        scrollTexts[0].classList.toggle('hidden');
-        scrollTexts[1].classList.toggle('visible');
-      }
-    </script>
+          {/* footer */}
+          <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+            padding: '22px 40px',
+            fontFamily: 'var(--mono)', fontSize: 10, letterSpacing: '0.18em', color: inkSoft,
+            zIndex: 2,
+          }}>
+            <span>{t.footerCopyright}</span>
+            <span style={{ color: hover !== null ? ink : inkSoft, transition: 'color 0.15s' }}>
+              {hover !== null ? `${projects[hover].n} · ${projects[hover].title}` : t.footerIdle}
+            </span>
+            <span style={{ display: 'flex', gap: 18 }}>
+              {footerLinks.map((l, i) => (
+                <a key={i} href={l.href} target="_blank" rel="noopener noreferrer" style={{ color: ink, textDecoration: 'none' }}>
+                  {l.label} ↗
+                </a>
+              ))}
+            </span>
+          </div>
+        </div>
+      );
+    }
 
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/projects.js"></script>
-    <script type="module" src="./scripts/fancy-animation.js"></script>
-    <script type="module" src="./scripts/canvas.js"></script>
-    <script type="module" src="./scripts/swsslib.js"></script>
-  </body>
+    function TweaksPanel({ t, set, onClose }) {
+      const text = (key, label, long) => long ? (
+        <div className="tw-row">
+          <div className="tw-label">{label}</div>
+          <textarea className="tw-textarea" value={t[key] || ''} onChange={e => set({ [key]: e.target.value })} />
+        </div>
+      ) : (
+        <div className="tw-row">
+          <div className="tw-label">{label}</div>
+          <input className="tw-input" value={t[key] || ''} onChange={e => set({ [key]: e.target.value })} />
+        </div>
+      );
+
+      const updateProject = (i, patch) => {
+        const next = t.projects.map((p, idx) => idx === i ? { ...p, ...patch } : p);
+        set({ projects: next });
+      };
+      const addProject = () => {
+        const n = String(t.projects.length + 1).padStart(2, '0');
+        const step = 360 / (t.projects.length + 1);
+        const next = t.projects.map((p, i) => ({ ...p, angle: Math.round(-70 + i * step) }));
+        next.push({ n, title: 'New project', tag: 'TAG', year: "'26", angle: Math.round(-70 + t.projects.length * step), color: '#0B1733', video: '', shape: 'torus', href: '' });
+        set({ projects: next });
+      };
+      const delProject = (i) => set({ projects: t.projects.filter((_, idx) => idx !== i) });
+
+      return (
+        <div className="tweaks">
+          <div className="tweaks-head">
+            <span>TWEAKS</span>
+            <button onClick={onClose} style={{ background: 'transparent', border: 'none', color: '#E9EEFB', cursor: 'pointer', fontSize: 14 }}>×</button>
+          </div>
+          <div className="tweaks-body">
+            <div className="tw-group">
+              <div className="tw-group-title">Header</div>
+              {text('brand', 'Brand')}
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 4 }}>
+                <input className="tw-input" value={t.navIndex}   onChange={e => set({ navIndex: e.target.value })} />
+                <input className="tw-input" value={t.navWork}    onChange={e => set({ navWork: e.target.value })} />
+                <input className="tw-input" value={t.navWriting} onChange={e => set({ navWriting: e.target.value })} />
+                <input className="tw-input" value={t.navContact} onChange={e => set({ navContact: e.target.value })} />
+              </div>
+              <div style={{ height: 6 }} />
+              {text('rev', 'Revision')}
+            </div>
+
+            <div className="tw-group">
+              <div className="tw-group-title">About (left)</div>
+              {text('aboutLabel', 'Eyebrow')}
+              {text('aboutTitle', 'Headline', true)}
+              {text('aboutBody', 'Body', true)}
+            </div>
+
+            <div className="tw-group">
+              <div className="tw-group-title">Availability (right)</div>
+              {text('availLabel', 'Status')}
+              {text('availBody', 'Body', true)}
+              {text('ctaLabel', 'CTA label')}
+              {text('ctaHref', 'CTA link')}
+            </div>
+
+            <div className="tw-group">
+              <div className="tw-group-title">Center statement</div>
+              {text('centerEyebrow', 'Eyebrow')}
+              {text('centerLine1', 'Line 1')}
+              {text('centerLine2', 'Line 2')}
+            </div>
+
+            <div className="tw-group">
+              <div className="tw-group-title">Projects (orbit)</div>
+              {t.projects.map((p, i) => (
+                <div key={i} className="tw-project">
+                  <div className="tw-project-head">
+                    <span style={{ color: '#6D7FB3' }}>#{p.n}</span>
+                    <button className="tw-del" onClick={() => delProject(i)}>delete</button>
+                  </div>
+                  <input className="tw-input" value={p.title} onChange={e => updateProject(i, { title: e.target.value })} style={{ marginBottom: 4 }} placeholder="Title" />
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 60px 50px', gap: 4, marginBottom: 4 }}>
+                    <input className="tw-input" value={p.tag}  onChange={e => updateProject(i, { tag: e.target.value })} placeholder="Tag" />
+                    <input className="tw-input" value={p.year} onChange={e => updateProject(i, { year: e.target.value })} placeholder="Year" />
+                    <input className="tw-input" type="number" value={p.angle} onChange={e => updateProject(i, { angle: +e.target.value })} placeholder="°" />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 30px', gap: 4, marginBottom: 4 }}>
+                    <input className="tw-input" value={p.color} onChange={e => updateProject(i, { color: e.target.value })} placeholder="Color" />
+                    <input type="color" value={p.color} onChange={e => updateProject(i, { color: e.target.value })} style={{ width: '100%', height: 26, background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', padding: 0, cursor: 'pointer' }} />
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 90px', gap: 4, marginBottom: 4 }}>
+                    <input className="tw-input" value={p.video || ''} onChange={e => updateProject(i, { video: e.target.value })} placeholder="Video URL (mp4)" />
+                    <select className="tw-input" value={p.shape || 'torus'} onChange={e => updateProject(i, { shape: e.target.value })} style={{ background: '#0B1733', color: '#E9EEFB' }}>
+                      <option value="torus">torus</option>
+                      <option value="box">box</option>
+                      <option value="ico">ico</option>
+                      <option value="cylinder">cyl</option>
+                      <option value="octa">octa</option>
+                      <option value="knot">knot</option>
+                    </select>
+                  </div>
+                  <input className="tw-input" value={p.href || ''} onChange={e => updateProject(i, { href: e.target.value })} placeholder="Project URL" />
+                </div>
+              ))}
+              <button className="tw-add" onClick={addProject}>+ ADD PROJECT</button>
+            </div>
+
+            <div className="tw-group">
+              <div className="tw-group-title">Footer</div>
+              {text('footerCopyright', 'Copyright')}
+              {text('footerIdle', 'Idle text')}
+              {text('footerLinks', 'Links (Label|href; …)', true)}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [t, setT] = useState(window.__TWEAK_DEFAULTS);
+      const [editing, setEditing] = useState(false);
+
+      const update = (patch) => setT(prev => ({ ...prev, ...patch }));
+
+      useEffect(() => {
+        const onKey = (e) => {
+          if (e.shiftKey && e.key === 'T') setEditing(v => !v);
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+      }, []);
+
+      return (
+        <>
+          <Portfolio t={t} />
+          {editing && <TweaksPanel t={t} set={update} onClose={() => setEditing(false)} />}
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
 </html>
