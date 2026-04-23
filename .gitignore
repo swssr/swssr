@@ -91,3 +91,4 @@ typings/
 .dynamodb/
 .svelte-kit/
 build/
+.vercel/

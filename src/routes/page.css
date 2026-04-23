@@ -135,6 +135,30 @@
     letter-spacing: 0.18em;
   }
 
+  .orbit-ticks {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-conic-gradient(
+      from 90deg at var(--position-center-x) var(--position-center-y),
+      var(--color-line-bold) 0deg 0.18deg,
+      transparent 0.18deg 30deg
+    );
+    mask: radial-gradient(
+      circle at var(--position-center-x) var(--position-center-y),
+      transparent 0 226.5px,
+      #000 226.5px 233.5px,
+      transparent 233.5px
+    );
+    -webkit-mask: radial-gradient(
+      circle at var(--position-center-x) var(--position-center-y),
+      transparent 0 226.5px,
+      #000 226.5px 233.5px,
+      transparent 233.5px
+    );
+  }
+
   .orbit-svg {
     position: absolute;
     left: 0;

@@ -118,16 +118,10 @@
     <a class="cta-link" href={t.ctaHref}>{t.ctaLabel}</a>
   </aside>
 
+  <div class="orbit-ticks" aria-hidden="true"></div>
+
   <svg class="orbit-svg" aria-hidden="true">
     <circle cx={CX} cy={CY} r={R} fill="none" stroke={lineBold} stroke-width="0.75" />
-    {#each Array(12) as _, i}
-      {@const a = (i * 30) * Math.PI / 180}
-      <line
-        x1={CX + Math.cos(a) * (R - 3)} y1={CY + Math.sin(a) * (R - 3)}
-        x2={CX + Math.cos(a) * (R + 3)} y2={CY + Math.sin(a) * (R + 3)}
-        stroke={lineBold} stroke-width="0.75"
-      />
-    {/each}
     {#if hover !== null}
       {@const p = t.projects[hover]}
       {@const pos = projectPos(p.angle)}
