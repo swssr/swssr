@@ -23,7 +23,6 @@
   let t = { ...defaults, projects: defaults.projects.map(p => ({ ...p })) };
   let hover = null;
   let editing = false;
-  let stage;
 
   const paper    = '#FFFFFF';
   const ink      = '#0B1733';
@@ -49,24 +48,15 @@
 
   function labelAlign(angle) {
     const cos = Math.cos(angle * Math.PI / 180);
-    if (cos < -0.3) return { align: 'right', tx: '-100%' };
-    if (cos > 0.3)  return { align: 'left',  tx: '0' };
-    return { align: 'center', tx: '-50%' };
-  }
-
-  function fitStage() {
-    if (!stage) return;
-    const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
-    stage.dataset.scale = scale;
+    if (cos < -0.3) return 'right';
+    if (cos > 0.3)  return 'left';
+    return 'center';
   }
 
   onMount(() => {
-    fitStage();
-    window.addEventListener('resize', fitStage);
     window.addEventListener('keydown', (e) => {
       if (e.shiftKey && e.key === 'T') editing = !editing;
     });
-    return () => window.removeEventListener('resize', fitStage);
   });
 
   function handleUpdate(e) {
@@ -85,8 +75,6 @@
 <!-- 1440×900 scaled stage -->
 <div
   id="stage"
-  bind:this={stage}
-  data-scale="1"
   data-paper={paper}
   data-ink={ink}
   data-ink-mid={inkMid}
@@ -172,8 +160,6 @@
 
   <!-- project labels -->
   {#each t.projects as p, i}
-    {@const pos = projectPos(p.angle, 40)}
-    {@const la = labelAlign(p.angle)}
     {@const isHover = hover === i}
     <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
     <div
@@ -182,11 +168,9 @@
       on:click={() => p.href && window.open(p.href, '_blank', 'noopener')}
       class="project-label"
       class:is-link={p.href}
-      data-x={pos.x}
-      data-y={pos.y}
       data-index={i}
-      data-translate-x={la.tx}
-      data-align={la.align}
+      data-angle={`${p.angle}deg`}
+      data-align={labelAlign(p.angle)}
       data-hover={isHover}
       data-color={isHover ? p.color : inkSoft}
     >

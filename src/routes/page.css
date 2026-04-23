@@ -1,5 +1,5 @@
 #stage {
-  --scale-stage: 1;
+  --scale-stage: min(calc(100vw / 1440), calc(100vh / 900));
   --color-paper: #ffffff;
   --color-ink: #0b1733;
   --color-ink-mid: #5c6a8a;
@@ -7,6 +7,9 @@
   --color-line: rgba(11, 23, 51, 0.06);
   --color-line-bold: rgba(11, 23, 51, 0.14);
   --color-splash: #ff5722;
+  --position-center-x: 720px;
+  --position-center-y: 470px;
+  --size-label-radius: 270px;
 
   width: 1440px;
   height: 900px;
@@ -147,9 +150,6 @@
   }
 
   .orbit-center {
-    --position-center-x: 720px;
-    --position-center-y: 470px;
-
     position: absolute;
     left: var(--position-center-x);
     top: var(--position-center-y);
@@ -230,6 +230,7 @@
     --position-label-y: 0px;
     --transform-label-x: 0;
     --color-project: var(--color-ink-soft);
+    --angle-project: 0deg;
 
     position: absolute;
     left: var(--position-label-x);
@@ -248,30 +249,35 @@
       --position-label-x: 812.345px;
       --position-label-y: 216.283px;
       --transform-label-x: 0;
+      --angle-project: -70deg;
     }
 
     &[data-index='1'] {
       --position-label-x: 989.836px;
       --position-label-y: 479.423px;
       --transform-label-x: 0;
+      --angle-project: 2deg;
     }
 
     &[data-index='2'] {
       --position-label-x: 794.422px;
       --position-label-y: 729.541px;
       --transform-label-x: -50%;
+      --angle-project: 74deg;
     }
 
     &[data-index='3'] {
       --position-label-x: 496.16px;
       --position-label-y: 620.982px;
       --transform-label-x: -100%;
+      --angle-project: 146deg;
     }
 
     &[data-index='4'] {
       --position-label-x: 507.237px;
       --position-label-y: 303.771px;
       --transform-label-x: -100%;
+      --angle-project: 218deg;
     }
 
     &[data-index='0'][data-hover='true'],
@@ -393,12 +399,6 @@
   }
 }
 
-@supports (transform: scale(attr(data-scale type(<number>), 1))) {
-  #stage {
-    --scale-stage: attr(data-scale type(<number>), 1);
-  }
-}
-
 @supports (color: attr(data-ink type(<color>), #0b1733)) {
   #stage {
     --color-paper: attr(data-paper type(<color>), #ffffff);
@@ -419,17 +419,19 @@
   }
 }
 
-@supports (width: attr(data-x px, 0px)) {
+@supports (left: calc(720px + cos(0deg) * 270px)) {
   #stage {
-    .orbit-center {
-      --position-center-x: attr(data-x px, 720px);
-      --position-center-y: attr(data-y px, 470px);
-    }
-
     .project-label {
-      --position-label-x: attr(data-x px, 0px);
-      --position-label-y: attr(data-y px, 0px);
-      --transform-label-x: attr(data-translate-x type(<length-percentage>), 0%);
+      left: calc(var(--position-center-x) + cos(var(--angle-project)) * var(--size-label-radius));
+      top: calc(var(--position-center-y) + sin(var(--angle-project)) * var(--size-label-radius));
+    }
+  }
+}
+
+@supports (rotate: attr(data-angle type(<angle>), 0deg)) {
+  #stage {
+    .project-label {
+      --angle-project: attr(data-angle type(<angle>), 0deg);
     }
   }
 }
