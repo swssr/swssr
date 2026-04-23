@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /index.html
-Disallow: /Assets/fonts/
-Disallow: /Assets/css/
-Disallow: /Assets/js/
-Disallow: /Assets/images/
