@@ -4,6 +4,7 @@
   import { defaults } from '$lib/data.js';
   import TweaksPanel from '$lib/TweaksPanel.svelte';
   import HoverScene from '$lib/HoverScene.svelte';
+  import './page.css';
 
   const jsonLd = JSON.stringify({
     '@context': 'https://schema.org',
@@ -56,7 +57,7 @@
   function fitStage() {
     if (!stage) return;
     const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
-    stage.style.transform = `scale(${scale})`;
+    stage.dataset.scale = scale;
   }
 
   onMount(() => {
@@ -82,45 +83,54 @@
 </svelte:head>
 
 <!-- 1440×900 scaled stage -->
-<div id="stage" bind:this={stage} style="width:1440px;height:900px;flex-shrink:0;transform-origin:center center;position:relative;overflow:hidden;background:{paper};font-family:var(--sans);color:{ink}">
+<div
+  id="stage"
+  bind:this={stage}
+  data-scale="1"
+  data-paper={paper}
+  data-ink={ink}
+  data-ink-mid={inkMid}
+  data-ink-soft={inkSoft}
+  data-line={line}
+  data-line-bold={lineBold}
+  data-splash={splash}
+>
 
   <!-- soft grid -->
-  <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,{line} 0.5px,transparent 0.5px),linear-gradient(to bottom,{line} 0.5px,transparent 0.5px);background-size:48px 48px" aria-hidden="true"></div>
+  <div class="soft-grid" aria-hidden="true"></div>
 
   <!-- top nav -->
-  <nav style="display:flex;justify-content:space-between;align-items:center;padding:22px 40px;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;color:{inkMid};position:relative;z-index:2">
-    <span style="display:flex;align-items:center;gap:10px">
+  <nav class="top-nav">
+    <span class="brand-mark">
       <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
         <circle cx="8" cy="8" r="7" fill="none" stroke={ink} stroke-width="1.3" />
         <circle cx="8" cy="8" r="2.5" fill={splash} />
       </svg>
-      <span style="color:{ink};font-weight:600;letter-spacing:0.2em">{t.brand}</span>
+      <span class="brand-name">{t.brand}</span>
     </span>
-    <span style="display:flex;gap:28px">
-      <a href="/" style="color:{ink}">{t.navIndex}</a>
-      <a href="/" style="color:{inkMid}">{t.navWork}</a>
-      <a href="/" style="color:{inkMid}">{t.navWriting}</a>
-      <a href="/" style="color:{inkMid}">{t.navContact}</a>
+    <span class="nav-links">
+      <a class="nav-link nav-link-active" href="/">{t.navIndex}</a>
+      <a class="nav-link" href="/">{t.navWork}</a>
+      <a class="nav-link" href="/">{t.navWriting}</a>
+      <a class="nav-link" href="/">{t.navContact}</a>
     </span>
-    <span style="color:{inkSoft}">{t.rev}</span>
+    <span class="revision">{t.rev}</span>
   </nav>
 
   <!-- left column — about -->
-  <aside style="position:absolute;left:40px;top:140px;width:260px;z-index:2">
-    <p style="font-family:var(--mono);font-size:10px;color:{inkSoft};letter-spacing:0.2em;margin-bottom:14px">{t.aboutLabel}</p>
-    <h1 style="font-family:var(--display);font-size:22px;line-height:1.25;color:{ink};margin-bottom:14px;font-weight:400;letter-spacing:-0.01em">{t.aboutTitle}</h1>
-    <p style="font-family:var(--sans);font-size:13.5px;line-height:1.6;color:{inkMid}">{t.aboutBody}</p>
+  <aside class="side-column side-column-left">
+    <p class="section-label">{t.aboutLabel}</p>
+    <h1 class="about-title">{t.aboutTitle}</h1>
+    <p class="body-copy">{t.aboutBody}</p>
   </aside>
 
-  <!-- right column — availability -->
-  <aside style="position:absolute;right:40px;top:140px;width:260px;z-index:2;text-align:right">
-    <p style="font-family:var(--mono);font-size:10px;color:{splash};letter-spacing:0.2em;margin-bottom:14px">{t.availLabel}</p>
-    <p style="font-family:var(--sans);font-size:13.5px;line-height:1.6;color:{inkMid};margin-bottom:18px">{t.availBody}</p>
-    <a href={t.ctaHref} style="display:inline-block;padding:10px 16px;background:{ink};color:{paper};font-family:var(--mono);font-size:11px;letter-spacing:0.18em">{t.ctaLabel}</a>
+  <aside class="side-column side-column-right">
+    <p class="section-label availability-label">{t.availLabel}</p>
+    <p class="body-copy availability-copy">{t.availBody}</p>
+    <a class="cta-link" href={t.ctaHref}>{t.ctaLabel}</a>
   </aside>
 
-  <!-- orbit SVG -->
-  <svg style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1" aria-hidden="true">
+  <svg class="orbit-svg" aria-hidden="true">
     <circle cx={CX} cy={CY} r={R} fill="none" stroke={lineBold} stroke-width="0.75" />
     {#each Array(12) as _, i}
       {@const a = (i * 30) * Math.PI / 180}
@@ -138,34 +148,25 @@
     {#each t.projects as p, i}
       {@const pos = projectPos(p.angle)}
       {@const isHover = hover === i}
-      <circle cx={pos.x} cy={pos.y} r={isHover ? 6 : 3.5} fill={isHover ? p.color : ink} style="transition:r 0.18s" />
+      <circle class="orbit-project-dot" cx={pos.x} cy={pos.y} r={isHover ? 6 : 3.5} fill={isHover ? p.color : ink} />
       {#if isHover}
         <circle cx={pos.x} cy={pos.y} r="12" fill="none" stroke={p.color} stroke-width="0.75" opacity="0.5" />
       {/if}
     {/each}
   </svg>
 
-  <!-- orbit center -->
-  <div style="position:absolute;left:{CX}px;top:{CY}px;transform:translate(-50%,-50%);text-align:center;z-index:2;width:360px;height:360px;pointer-events:none;display:flex;align-items:center;justify-content:center">
-    <!-- idle statement -->
-    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:{hover===null?1:0};transition:opacity 0.25s ease">
-      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.22em;color:{inkSoft};margin-bottom:14px">{t.centerEyebrow}</p>
-      <p style="font-family:var(--display);font-size:34px;line-height:1.1;color:{ink};letter-spacing:-0.015em;font-weight:400;text-transform:uppercase;width:320px">
-        {t.centerLine1}<br /><span style="font-weight:600">{t.centerLine2}</span>
+  <div class="orbit-center" data-x={CX} data-y={CY}>
+    <div class="center-pane center-idle" data-opacity={hover === null ? 1 : 0}>
+      <p class="center-statement">
+        <span class="minor">{t.centerLine1}</span><br /><span>{t.centerLine2}</span>
       </p>
     </div>
-    <!-- hover scene — client only -->
     {#if browser}
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:{hover!==null?1:0};transition:opacity 0.25s ease">
+      <div class="center-pane center-hover" data-opacity={hover !== null ? 1 : 0}>
         {#if hover !== null}
           <HoverScene project={hoverProject} {ink} />
         {/if}
       </div>
-      {#if hover !== null}
-        <div style="position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:0.22em;color:{hoverProject.color};white-space:nowrap">
-          ◆ NOW VIEWING · {hoverProject.n}
-        </div>
-      {/if}
     {/if}
   </div>
 
@@ -179,26 +180,34 @@
       on:mouseenter={() => hover = i}
       on:mouseleave={() => hover = null}
       on:click={() => p.href && window.open(p.href, '_blank', 'noopener')}
-      style="position:absolute;left:{pos.x}px;top:{pos.y}px;transform:translate({la.tx},-50%);z-index:3;cursor:{p.href?'pointer':'default'};text-align:{la.align};padding:8px 12px;min-width:170px"
+      class="project-label"
+      class:is-link={p.href}
+      data-x={pos.x}
+      data-y={pos.y}
+      data-index={i}
+      data-translate-x={la.tx}
+      data-align={la.align}
+      data-hover={isHover}
+      data-color={isHover ? p.color : inkSoft}
     >
-      <p style="font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:{isHover?p.color:inkSoft};margin-bottom:3px;transition:color 0.18s">
-        {p.n} · {p.tag} <span style="color:{inkSoft}">{p.year}</span>
+      <p class="project-meta">
+        {p.n} · {p.tag} <span>{p.year}</span>
       </p>
-      <p style="font-family:var(--sans);font-size:18px;line-height:1.2;color:{ink};font-weight:{isHover?500:400};letter-spacing:-0.005em;transition:font-weight 0.18s">
+      <p class="project-title">
         {p.title}
       </p>
     </div>
   {/each}
 
   <!-- footer -->
-  <footer style="position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 40px;font-family:var(--mono);font-size:10px;letter-spacing:0.18em;color:{inkSoft};z-index:2">
+  <footer class="site-footer">
     <span>{t.footerCopyright}</span>
-    <span style="color:{hover!==null?ink:inkSoft};transition:color 0.15s">
+    <span class="footer-status" data-active={hover !== null}>
       {hover !== null ? `${t.projects[hover].n} · ${t.projects[hover].title}` : t.footerIdle}
     </span>
-    <span style="display:flex;gap:18px">
+    <span class="footer-links">
       {#each footerLinks as l}
-        <a href={l.href} target="_blank" rel="noopener noreferrer" style="color:{ink}">{l.label} ↗</a>
+        <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label} ↗</a>
       {/each}
     </span>
   </footer>
@@ -207,13 +216,6 @@
 
 <!-- noscript fallback for crawlers -->
 <noscript>
-  <style>
-    .noscript-fallback { font-family: sans-serif; max-width: 760px; margin: 60px auto; padding: 0 24px; color: #0B1733; line-height: 1.6; }
-    .noscript-fallback h1 { font-size: 2rem; margin-bottom: 8px; }
-    .noscript-fallback h2 { font-size: 1.1rem; margin: 32px 0 8px; border-top: 1px solid #e0e0e0; padding-top: 24px; }
-    .noscript-fallback ul { padding-left: 20px; }
-    .noscript-fallback a { color: #1E40FF; }
-  </style>
   <div class="noscript-fallback">
     <h1>Simo Ngquseka — SWSSR</h1>
     <p>UX/UI designer &amp; developer from Durban, South Africa. Open to work · 2026 · <a href="mailto:simo@swssr.co">simo@swssr.co</a></p>
