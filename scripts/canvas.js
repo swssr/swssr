@@ -1,92 +1,59 @@
-//#region declarations
-const canvas = document.querySelector("canvas");
-const c = canvas.getContext("2d");
-//#endregion
+import * as THREE from "three";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { sources } from "./projects";
 
-//#region Utility function
-function fitCanvas() {
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
-}
+console.log(THREE, OrbitControls);
 
-function updateCursor(e) {}
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  45,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  100,
+);
+camera.position.z = 5;
 
-function isAtEdge(object) {
-  let atEdge = false;
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
 
-  const { objX, objY } = object;
+const controls = new OrbitControls(camera, renderer.domElement);
 
-  if (objY >= innerWidth || objY >= innerHeight || objY <= 0 || objX <= 0) {
-    atEdge = true;
-  }
+const loader = new THREE.TextureLoader();
+const projects = sources;
 
-  return atEdge;
-}
-//#endregion
+const cardGroup = new THREE.Group();
+scene.add(cardGroup);
 
-const cursor = {
-  x: 100,
-  y: 100
-};
+projects.forEach((project, i) => {
+  loader.load(project.src, (tex) => {
+    tex.colorSpace = THREE.SRGBColorSpace;
 
-class Item {
-  constructor(x, y, w, h, mod) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.speed = mod.speed || 0;
-    //Modified appearence
-    this.color = mod.color || "rgba(0,0,0,1)";
-    this.isCircle = mod.isCircle || false;
-    //type: Object, has width, color
-    this.stroke = mod.stroke || null;
-  }
-  draw() {
-    c.fillStyle = this.color;
-    c.strokeStyle = this.color;
-    if (!this.isCircle) {
-      c.fillRect(this.x, this.y, this.w, this.h);
-    } else {
-      c.ellipse(this.x, this.y, this.w, this.h);
-    }
-  }
-  update() {
-    //TODO:
-    this.x += this.speed;
-    //Wall collion behavior
-    const isAtEdge = () => {
-      let test = true;
-      if (this.y > window.innerHeight || this.x > window.innerWidth) {
-        test = true;
-      }
-      return test;
-    };
-    if (isAtEdge) {
-      //Not realistic, should bounce off wall depending curr direction, Imma roll with it for now.
-      this.x -= this.speed;
-    }
+    const aspect = tex.image.width / tex.image.height;
 
-    this.y += 20;
-  }
-}
+    const height = 2;
+    const width = height * aspect;
 
-function setup() {
-  fitCanvas();
-  window.addEventListener("resize", fitCanvas);
-  window.addEventListener("mousemove", e => {
-    cursor.x = e.clientX;
-    cursor.y = e.clientY;
+    const geo = new THREE.PlaneGeometry(width, height);
+    const mat = new THREE.MeshBasicMaterial({ map: tex });
+    const mesh = new THREE.Mesh(geo, mat);
+
+    mesh.position.x = i * 3.5;
+    cardGroup.add(mesh);
   });
+});
+// center the group
+cardGroup.position.x = -((projects.length - 1) * 3.5) / 2;
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+function tick() {
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(tick);
 }
-let speed = 0;
-
-// function animate() {
-//   c.fillStyle = "rgba(255,255,255,0.2)";
-//   c.fillRect(0, 0, innerWidth, innerHeight);
-
-//   requestAnimationFrame(animate);
-// }
-
-setup();
-// animate();
+tick();

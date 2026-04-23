@@ -12,7 +12,8 @@
   "dependencies": {
     "gsap": "^3.12.5",
     "sass": "^1.83.0",
-    "smooth-scrollbar": "^8.8.4"
+    "smooth-scrollbar": "^8.8.4",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "vite": "^4.5.5"

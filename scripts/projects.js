@@ -2,7 +2,7 @@
 const preview = document.querySelector("#proj-preview");
 const projects = document.querySelectorAll("li.list__item");
 //Projects
-const sources = [
+export const sources = [
   // {
   //   name: "BLACKCHILD FAIRCHILD",
   //   color: "green",
