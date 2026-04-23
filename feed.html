@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ASCII Camera Feed</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Courier New", monospace;
+        background: #0a0a0a;
+        color: #00ff00;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .header {
+        background: linear-gradient(90deg, #001100, #003300, #001100);
+        padding: 15px;
+        text-align: center;
+        border-bottom: 2px solid #00ff00;
+        box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+      }
+
+      .header h1 {
+        font-size: 24px;
+        text-shadow: 0 0 10px #00ff00;
+        letter-spacing: 2px;
+      }
+
+      .controls {
+        background: #111;
+        padding: 10px;
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #333;
+        flex-wrap: wrap;
+      }
+
+      .control-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .control-group label {
+        font-size: 12px;
+        color: #888;
+      }
+
+      button {
+        background: linear-gradient(135deg, #003300, #005500);
+        color: #00ff00;
+        border: 1px solid #00aa00;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: "Courier New", monospace;
+        transition: all 0.2s;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #005500, #007700);
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+      }
+
+      button:disabled {
+        background: #222;
+        color: #555;
+        cursor: not-allowed;
+      }
+
+      input[type="range"] {
+        accent-color: #00ff00;
+      }
+
+      select {
+        background: #222;
+        color: #00ff00;
+        border: 1px solid #555;
+        padding: 4px 8px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
+
+      .main-content {
+        flex: 1;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .video-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        border-right: 2px solid #333;
+      }
+
+      .ascii-section {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: #050505;
+      }
+
+      .section-header {
+        background: #1a1a1a;
+        padding: 8px 15px;
+        font-size: 14px;
+        color: #aaa;
+        border-bottom: 1px solid #333;
+      }
+
+      .video-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        position: relative;
+      }
+
+      #video {
+        max-width: 100%;
+        max-height: 100%;
+        border: 2px solid #00ff00;
+        box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+      }
+
+      #canvas {
+        display: none;
+      }
+
+      .ascii-container {
+        flex: 1;
+        padding: 10px;
+        overflow: auto;
+        font-size: 8px;
+        line-height: 8px;
+        letter-spacing: 1px;
+        white-space: pre;
+        font-family: "Courier New", monospace;
+        background: #000;
+      }
+
+      .status {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #666;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      .ascii-output {
+        color: #00ff00;
+        text-shadow: 0 0 2px #004400;
+      }
+
+      @media (max-width: 768px) {
+        .main-content {
+          flex-direction: column;
+        }
+
+        .video-section {
+          border-right: none;
+          border-bottom: 2px solid #333;
+        }
+
+        .ascii-container {
+          font-size: 6px;
+          line-height: 6px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>📹 ASCII CAMERA FEED 📹</h1>
+    </div>
+
+    <div class="controls">
+      <div class="control-group">
+        <button id="startBtn">Start Camera</button>
+        <button id="stopBtn" disabled>Stop Camera</button>
+      </div>
+
+      <div class="control-group">
+        <label>Resolution:</label>
+        <select id="resolution">
+          <option value="80x60">80x60</option>
+          <option value="100x75" selected>100x75</option>
+          <option value="120x90">120x90</option>
+          <option value="160x120">160x120</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Contrast:</label>
+        <input
+          type="range"
+          id="contrast"
+          min="0.5"
+          max="2"
+          step="0.1"
+          value="1.2"
+        />
+      </div>
+
+      <div class="control-group">
+        <label>Brightness:</label>
+        <input
+          type="range"
+          id="brightness"
+          min="-50"
+          max="50"
+          step="5"
+          value="10"
+        />
+      </div>
+
+      <div class="control-group">
+        <label>ASCII Style:</label>
+        <select id="asciiStyle">
+          <option value="standard">Standard</option>
+          <option value="detailed">Detailed</option>
+          <option value="simple">Simple</option>
+          <option value="blocks">Blocks</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="video-section">
+        <div class="section-header">📸 Live Camera Feed</div>
+        <div class="video-container">
+          <video id="video" autoplay muted></video>
+          <canvas id="canvas"></canvas>
+          <div class="status" id="videoStatus">
+            Click "Start Camera" to begin
+          </div>
+        </div>
+      </div>
+
+      <div class="ascii-section">
+        <div class="section-header">🔤 ASCII Preview</div>
+        <div class="ascii-container">
+          <div class="ascii-output" id="asciiOutput">
+            ASCII preview will appear here...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      class ASCIICameraFeed {
+        constructor() {
+          this.video = document.getElementById("video");
+          this.canvas = document.getElementById("canvas");
+          this.ctx = this.canvas.getContext("2d");
+          this.asciiOutput = document.getElementById("asciiOutput");
+          this.startBtn = document.getElementById("startBtn");
+          this.stopBtn = document.getElementById("stopBtn");
+          this.resolutionSelect = document.getElementById("resolution");
+          this.contrastSlider = document.getElementById("contrast");
+          this.brightnessSlider = document.getElementById("brightness");
+          this.asciiStyleSelect = document.getElementById("asciiStyle");
+          this.videoStatus = document.getElementById("videoStatus");
+
+          this.stream = null;
+          this.animationFrame = null;
+          this.isRunning = false;
+
+          this.asciiChars = {
+            standard: "@%#*+=-:. ",
+            detailed:
+              "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ",
+            simple: "█▓▒░ ",
+            blocks: "██▓▓▒▒░░  ",
+          };
+
+          this.initializeEventListeners();
+        }
+
+        initializeEventListeners() {
+          this.startBtn.addEventListener("click", () => this.startCamera());
+          this.stopBtn.addEventListener("click", () => this.stopCamera());
+
+          this.resolutionSelect.addEventListener("change", () =>
+            this.updateResolution(),
+          );
+          this.contrastSlider.addEventListener("input", () =>
+            this.updateImageSettings(),
+          );
+          this.brightnessSlider.addEventListener("input", () =>
+            this.updateImageSettings(),
+          );
+          this.asciiStyleSelect.addEventListener("change", () =>
+            this.updateImageSettings(),
+          );
+        }
+
+        async startCamera() {
+          try {
+            this.videoStatus.textContent = "Requesting camera access...";
+            console.log("Requesting camera access...");
+
+            this.stream = await navigator.mediaDevices.getUserMedia({
+              video: {
+                width: { ideal: 640 },
+                height: { ideal: 480 },
+                facingMode: "user",
+              },
+            });
+
+            console.log("Camera stream acquired");
+            this.video.srcObject = this.stream;
+            this.video.style.display = "block";
+            this.videoStatus.style.display = "none";
+
+            // Wait for video to be ready and playing
+            await new Promise((resolve) => {
+              const onReady = () => {
+                console.log(
+                  "Video ready, dimensions:",
+                  this.video.videoWidth,
+                  "x",
+                  this.video.videoHeight,
+                );
+                this.video.removeEventListener("loadedmetadata", onReady);
+                this.video.removeEventListener("playing", onReady);
+                resolve();
+              };
+              this.video.addEventListener("loadedmetadata", onReady);
+              this.video.addEventListener("playing", onReady);
+            });
+
+            this.updateResolution();
+            this.isRunning = true;
+            this.startBtn.disabled = true;
+            this.stopBtn.disabled = false;
+
+            // Start ASCII conversion after a short delay to ensure video is playing
+            setTimeout(() => {
+              console.log("Starting ASCII conversion...");
+              this.startASCIIConversion();
+            }, 100);
+          } catch (error) {
+            console.error("Error accessing camera:", error);
+            this.videoStatus.textContent = `Camera error: ${error.name} - ${error.message}`;
+          }
+        }
+
+        stopCamera() {
+          if (this.stream) {
+            this.stream.getTracks().forEach((track) => track.stop());
+            this.stream = null;
+          }
+
+          if (this.animationFrame) {
+            cancelAnimationFrame(this.animationFrame);
+          }
+
+          this.video.style.display = "none";
+          this.videoStatus.style.display = "block";
+          this.videoStatus.textContent = "Camera stopped";
+          this.asciiOutput.textContent = "ASCII preview will appear here...";
+
+          this.isRunning = false;
+          this.startBtn.disabled = false;
+          this.stopBtn.disabled = true;
+        }
+
+        updateResolution() {
+          const resolution = this.resolutionSelect.value.split("x");
+          this.canvas.width = parseInt(resolution[0]);
+          this.canvas.height = parseInt(resolution[1]);
+        }
+
+        updateImageSettings() {
+          if (!this.isRunning) return;
+          // Settings will be applied in the next frame
+        }
+
+        startASCIIConversion() {
+          let frameCount = 0;
+
+          const convertFrame = () => {
+            if (!this.isRunning) {
+              console.log("ASCII conversion stopped");
+              return;
+            }
+
+            try {
+              // Check if video is actually playing
+              if (this.video.readyState < 2) {
+                console.log("Video not ready yet, waiting...");
+                this.animationFrame = requestAnimationFrame(convertFrame);
+                return;
+              }
+
+              // Draw video frame to canvas
+              this.ctx.drawImage(
+                this.video,
+                0,
+                0,
+                this.canvas.width,
+                this.canvas.height,
+              );
+
+              // Get image data
+              const imageData = this.ctx.getImageData(
+                0,
+                0,
+                this.canvas.width,
+                this.canvas.height,
+              );
+              const data = imageData.data;
+
+              // Debug log for first few frames
+              if (frameCount < 3) {
+                console.log(
+                  `Frame ${frameCount}: Canvas ${this.canvas.width}x${this.canvas.height}, ImageData length: ${data.length}`,
+                );
+                frameCount++;
+              }
+
+              // Apply brightness and contrast
+              const contrast = parseFloat(this.contrastSlider.value);
+              const brightness = parseInt(this.brightnessSlider.value);
+
+              // Convert to ASCII
+              const asciiStyle = this.asciiStyleSelect.value;
+              const chars = this.asciiChars[asciiStyle];
+              let ascii = "";
+
+              for (let y = 0; y < this.canvas.height; y++) {
+                for (let x = 0; x < this.canvas.width; x++) {
+                  const i = (y * this.canvas.width + x) * 4;
+
+                  // Calculate grayscale value
+                  let gray = (data[i] + data[i + 1] + data[i + 2]) / 3;
+
+                  // Apply brightness and contrast
+                  gray = (gray + brightness) * contrast;
+                  gray = Math.max(0, Math.min(255, gray));
+
+                  // Convert to ASCII character
+                  const charIndex = Math.floor(
+                    (gray / 255) * (chars.length - 1),
+                  );
+                  ascii += chars[chars.length - 1 - charIndex];
+                }
+                ascii += "\n";
+              }
+
+              this.asciiOutput.textContent = ascii;
+            } catch (error) {
+              console.error("Error in ASCII conversion:", error);
+            }
+
+            // Schedule next frame
+            this.animationFrame = requestAnimationFrame(convertFrame);
+          };
+
+          console.log("Starting ASCII conversion loop");
+          convertFrame();
+        }
+      }
+
+      // Initialize the application
+      document.addEventListener("DOMContentLoaded", () => {
+        new ASCIICameraFeed();
+      });
+    </script>
+  </body>
+</html>
