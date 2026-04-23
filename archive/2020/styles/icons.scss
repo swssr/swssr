@@ -1,0 +1,27 @@
+.glyph {
+}
+.glyph--arrow-right {
+  position: relative;
+  display: inline-flex;
+  width: 50%;
+  height: 2px;
+  margin-left: 2rem;
+  background-color: rgba(0, 0, 0, 0.377);
+  padding: 0 2rem;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: -1px;
+    width: 1rem;
+    height: inherit;
+    transform-origin: right;
+    transform: rotate(45deg) translateY(1px);
+    background-color: inherit;
+    display: none;
+  }
+  &::after {
+    transform: rotate(-45deg) translateY(-1px);
+  }
+}

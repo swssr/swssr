@@ -18,6 +18,30 @@ export const defaults = {
   footerCopyright: '© 2026 SIMO NGQUSEKA · SWSSR',
   footerIdle: '— hover a point —',
   footerLinks: 'GitHub|https://github.com/swssr;Behance|https://www.behance.net/swssr;LinkedIn|https://www.linkedin.com/in/swssr',
+  timelineStartYear: 2019,
+  versions: [
+    {
+      year: '2019',
+      title: 'First build',
+      note: 'The first recorded portfolio commit.',
+      theme: 'first',
+      href: 'https://github.com/swssr/swss/commit/9945642'
+    },
+    {
+      year: '2020',
+      title: 'Original static portfolio',
+      note: 'The archived pre-redesign site.',
+      theme: 'classic',
+      href: 'https://github.com/swssr/swss/tree/archive/2020-original'
+    },
+    {
+      year: '2026',
+      title: 'Orbit redesign',
+      note: 'The current SvelteKit site.',
+      theme: 'orbit',
+      href: '/'
+    }
+  ],
   projects: [
     { n: '01', title: 'Blackchild Fairchild', tag: 'WEB / NPO',   year: "'22", angle: -70, color: '#FF5722', video: '', shape: 'torus',    href: 'https://behance.net/swssr' },
     { n: '02', title: 'PorscheNow Busan',    tag: 'AUTO / WEB',  year: "'23", angle: 2,   color: '#0B1733', video: '', shape: 'box',      href: 'https://porsche-microsite.vercel.app/#visit' },

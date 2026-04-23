@@ -23,6 +23,7 @@
   let t = { ...defaults, projects: defaults.projects.map(p => ({ ...p })) };
   let hover = null;
   let editing = false;
+  let versionYear = Number(defaults.versions[defaults.versions.length - 1].year);
 
   const paper    = '#FFFFFF';
   const ink      = '#0B1733';
@@ -40,6 +41,20 @@
   });
 
   $: hoverProject = hover !== null ? t.projects[hover] : null;
+  $: versions = t.versions || defaults.versions;
+  $: timelineStartYear = t.timelineStartYear || defaults.timelineStartYear;
+  $: timelineEndYear = Math.max(...versions.map(version => Number(version.year)));
+  $: timelineYears = Array.from(
+    { length: timelineEndYear - timelineStartYear + 1 },
+    (_, i) => timelineStartYear + i
+  );
+  $: versionsByYear = new Map(versions.map((version, i) => [version.year, { ...version, index: i }]));
+  $: selectedYear = Math.max(timelineStartYear, Math.min(timelineEndYear, Number(versionYear)));
+  $: selectedVersionIndex = versions.reduce(
+    (latest, version, i) => Number(version.year) <= selectedYear ? i : latest,
+    0
+  );
+  $: selectedVersion = versions[selectedVersionIndex] || versions[0];
 
   function projectPos(angle, extra = 0) {
     const a = angle * Math.PI / 180;
@@ -191,6 +206,51 @@
   </footer>
 
 </div>
+
+<aside class="version-timeline" aria-label="Site version timeline">
+  <input
+    class="version-range"
+    type="range"
+    min={timelineStartYear}
+    max={timelineEndYear}
+    step="1"
+    bind:value={versionYear}
+    aria-label="Site version"
+    aria-valuetext={`${selectedVersion.year} ${selectedVersion.title}`}
+  />
+  <div class="version-year-ticks" aria-hidden="true">
+    {#each timelineYears as year}
+      <span class="version-year-tick">{year}</span>
+    {/each}
+  </div>
+  <div class="version-keyframes">
+    {#each timelineYears as year}
+      {@const version = versionsByYear.get(String(year))}
+      <span class="version-keyframe-slot">
+        {#if version}
+          <button
+            type="button"
+            class="version-year"
+            data-active={selectedVersionIndex === version.index}
+            on:click={() => versionYear = Number(version.year)}
+          >
+            {version.year}
+          </button>
+        {/if}
+      </span>
+    {/each}
+  </div>
+  <a class="version-card" href={selectedVersion.href} data-theme={selectedVersion.theme}>
+    <span class="version-preview" aria-hidden="true">
+      <span class="preview-line preview-line-top"></span>
+      <span class="preview-line preview-line-mid"></span>
+      <span class="preview-line preview-line-bottom"></span>
+      <span class="preview-orbit"></span>
+    </span>
+    <span class="version-title">{selectedVersion.title}</span>
+    <span class="version-note">{selectedVersion.note}</span>
+  </a>
+</aside>
 
 <!-- noscript fallback for crawlers -->
 <noscript>
