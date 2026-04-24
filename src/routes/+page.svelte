@@ -21,7 +21,8 @@
   });
 
   let t = { ...defaults, projects: defaults.projects.map(p => ({ ...p })) };
-  let hover = null;
+  let defaultProjectIndex = 0;
+  let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let versionYear = Number(defaults.versions[defaults.versions.length - 1].year);
 
@@ -34,13 +35,20 @@
   const splash   = '#FF5722';
 
   const CX = 720, CY = 470, R = 230;
+  const inactiveMessages = [
+    'Long coffee arc',
+    'Extended side quest',
+    'Year-long yak shave',
+    'Deep tab hibernation',
+    'Still updating dependencies'
+  ];
 
   $: footerLinks = (t.footerLinks || '').split(';').map(s => s.trim()).filter(Boolean).map(pair => {
     const [label, href] = pair.split('|');
     return { label: (label || '').trim(), href: (href || '#').trim() };
   });
 
-  $: hoverProject = hover !== null ? t.projects[hover] : null;
+  $: hoverProject = t.projects[hover];
   $: versions = t.versions || defaults.versions;
   $: timelineStartYear = t.timelineStartYear || defaults.timelineStartYear;
   $: timelineEndYear = Math.max(...versions.map(version => Number(version.year)));
@@ -48,13 +56,14 @@
     { length: timelineEndYear - timelineStartYear + 1 },
     (_, i) => timelineStartYear + i
   );
-  $: versionsByYear = new Map(versions.map((version, i) => [version.year, { ...version, index: i }]));
+  $: versionsByYear = new Map(versions.map(version => [String(version.year), version]));
   $: selectedYear = Math.max(timelineStartYear, Math.min(timelineEndYear, Number(versionYear)));
   $: selectedVersionIndex = versions.reduce(
     (latest, version, i) => Number(version.year) <= selectedYear ? i : latest,
     0
   );
   $: selectedVersion = versions[selectedVersionIndex] || versions[0];
+  $: activeTimelineEntry = versionsByYear.get(String(selectedYear)) || inactiveTimelineEntry(selectedYear);
 
   function projectPos(angle, extra = 0) {
     const a = angle * Math.PI / 180;
@@ -66,6 +75,34 @@
     if (cos < -0.3) return 'right';
     if (cos > 0.3)  return 'left';
     return 'center';
+  }
+
+  function handleTimelineMove(e) {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const progress = 1 - ((e.clientY - rect.top) / rect.height);
+    const year = Math.round(timelineStartYear + progress * (timelineEndYear - timelineStartYear));
+    versionYear = Math.max(timelineStartYear, Math.min(timelineEndYear, year));
+  }
+
+  function yearFade(year) {
+    return Math.max(0.14, 1 - Math.abs(Number(year) - selectedYear) * 0.22);
+  }
+
+  function versionTop(year) {
+    return 100 - ((Number(year) - timelineStartYear) / (timelineEndYear - timelineStartYear)) * 100;
+  }
+
+  function inactiveTimelineEntry(year) {
+    return {
+      year: String(year),
+      title: inactiveMessages[Number(year) % inactiveMessages.length],
+      company: 'No logged activity',
+      period: String(year),
+      note: 'Nothing official on the timeline.',
+      skills: '',
+      theme: 'quiet',
+      inactive: true
+    };
   }
 
   onMount(() => {
@@ -173,7 +210,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
     <div
       on:mouseenter={() => hover = i}
-      on:mouseleave={() => hover = null}
+      on:mouseleave={() => { /** hover = null **/} }
       on:click={() => p.href && window.open(p.href, '_blank', 'noopener')}
       class="project-label"
       class:is-link={p.href}
@@ -207,7 +244,7 @@
 
 </div>
 
-<aside class="version-timeline" aria-label="Site version timeline">
+<aside class="version-timeline" aria-label="Work experience timeline">
   <input
     class="version-range"
     type="range"
@@ -215,41 +252,42 @@
     max={timelineEndYear}
     step="1"
     bind:value={versionYear}
-    aria-label="Site version"
-    aria-valuetext={`${selectedVersion.year} ${selectedVersion.title}`}
+    aria-label="Work experience"
+    aria-valuetext={`${activeTimelineEntry.period} ${activeTimelineEntry.title} at ${activeTimelineEntry.company}`}
+    on:pointermove={handleTimelineMove}
   />
   <div class="version-year-ticks" aria-hidden="true">
     {#each timelineYears as year}
-      <span class="version-year-tick">{year}</span>
-    {/each}
-  </div>
-  <div class="version-keyframes">
-    {#each timelineYears as year}
-      {@const version = versionsByYear.get(String(year))}
-      <span class="version-keyframe-slot">
-        {#if version}
-          <button
-            type="button"
-            class="version-year"
-            data-active={selectedVersionIndex === version.index}
-            on:click={() => versionYear = Number(version.year)}
-          >
-            {version.year}
-          </button>
-        {/if}
+      <span
+        class="version-year-tick"
+        data-active={year === selectedYear}
+        style={`--year-opacity:${yearFade(year)}`}
+      >
+        {year}
       </span>
     {/each}
   </div>
-  <a class="version-card" href={selectedVersion.href} data-theme={selectedVersion.theme}>
-    <span class="version-preview" aria-hidden="true">
-      <span class="preview-line preview-line-top"></span>
-      <span class="preview-line preview-line-mid"></span>
-      <span class="preview-line preview-line-bottom"></span>
-      <span class="preview-orbit"></span>
-    </span>
-    <span class="version-title">{selectedVersion.title}</span>
-    <span class="version-note">{selectedVersion.note}</span>
-  </a>
+  <div class="version-card-track">
+    {#each timelineYears as year}
+      {@const version = versionsByYear.get(String(year)) || inactiveTimelineEntry(year)}
+      <span class="version-card-slot" style={`--card-top:${versionTop(version.year)}%`}>
+        <div
+          class="version-card"
+          data-active={Number(version.year) === selectedYear}
+          data-inactive={version.inactive}
+          data-theme={version.theme}
+        >
+          <span class="version-company">{version.company}</span>
+          <span class="version-title">{version.title}</span>
+          <span class="version-period">{version.period}</span>
+          <span class="version-note">{version.note}</span>
+          {#if version.skills}
+            <span class="version-skills">{version.skills}</span>
+          {/if}
+        </div>
+      </span>
+    {/each}
+  </div>
 </aside>
 
 <!-- noscript fallback for crawlers -->

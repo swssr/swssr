@@ -4,7 +4,7 @@ export const defaults = {
   navWork: 'Work',
   navWriting: 'Lab',
   navContact: 'Contact',
-  rev: 'Durban / ZA · 2026',
+  rev: `Durban / ZA · ${new Date().getFullYear()}`,
   aboutLabel: 'ABOUT',
   aboutTitle: 'Simo Ngquseka — UX/UI designer & developer from Durban.',
   aboutBody: 'I design products and build the tools to build them. Interested in how a designer\'s intent can survive the trip into code.',
@@ -18,28 +18,52 @@ export const defaults = {
   footerCopyright: '© 2026 SIMO NGQUSEKA · SWSSR',
   footerIdle: '— hover a point —',
   footerLinks: 'GitHub|https://github.com/swssr;Behance|https://www.behance.net/swssr;LinkedIn|https://www.linkedin.com/in/swssr',
-  timelineStartYear: 2019,
+  timelineStartYear: 2017,
   versions: [
     {
-      year: '2019',
-      title: 'First build',
-      note: 'The first recorded portfolio commit.',
-      theme: 'first',
-      href: 'https://github.com/swssr/swss/commit/9945642'
+      year: '2017',
+      title: 'Full Stack Development and Design',
+      company: 'Freelance',
+      period: 'Jul 2017 - Sep 2020',
+      note: 'Consulting, ecommerce, landing pages.',
+      skills: 'React, Node.js, MongoDB, Figma',
+      theme: 'first'
     },
     {
       year: '2020',
-      title: 'Original static portfolio',
-      note: 'The archived pre-redesign site.',
-      theme: 'classic',
-      href: 'https://github.com/swssr/swss/tree/archive/2020-original'
+      title: 'JS Frontend Engineer and UI Designer',
+      company: 'Develutions',
+      period: 'Sep 2020 - Nov 2021',
+      note: 'Angular apps inside Flutter shells.',
+      skills: 'Angular, TypeScript, Flutter, Figma',
+      theme: 'classic'
     },
     {
-      year: '2026',
-      title: 'Orbit redesign',
-      note: 'The current SvelteKit site.',
-      theme: 'orbit',
-      href: '/'
+      year: '2021',
+      title: 'Full Stack Engineer and Designer',
+      company: 'Freelance',
+      period: 'Dec 2021 - Apr 2022',
+      note: 'Full-stack builds and product UI.',
+      skills: 'React, Angular, Vue.js, Node.js',
+      theme: 'first'
+    },
+    {
+      year: '2022',
+      title: 'Software Engineer & UI Designer',
+      company: 'AC PTY (LTD)',
+      period: 'Apr 2022 - May 2023',
+      note: 'Security and package management apps with hardware integrations.',
+      skills: 'React, Node.js, React Native, MSSQL',
+      theme: 'classic'
+    },
+    {
+      year: '2023',
+      title: 'Frontend Engineer',
+      company: 'Prompt Global',
+      period: 'Jul 2023 - Present',
+      note: 'Lightweight dashboards and web components.',
+      skills: 'Vanilla JS, ASP.NET, Angular',
+      theme: 'orbit'
     }
   ],
   projects: [
