@@ -72,10 +72,28 @@
     color: #0B1733;
     font-family: var(--sans);
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+    font-kerning: normal;
+    font-optical-sizing: auto;
     overflow: hidden;
     height: 100vh; width: 100vw;
   }
   :global(body) { display: flex; align-items: center; justify-content: center; }
   :global(button, input, textarea, select) { font-family: inherit; }
   :global(a) { color: inherit; text-decoration: none; }
+
+  @media (max-width: 860px), (max-height: 640px) {
+    :global(html, body) {
+      width: 100%;
+      min-height: 100svh;
+      height: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    :global(body) {
+      display: block;
+    }
+  }
 </style>

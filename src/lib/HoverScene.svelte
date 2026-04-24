@@ -71,8 +71,8 @@
   <video
     src={project.video}
     autoplay muted loop playsinline
-    style="width:360px;height:360px;object-fit:cover;border-radius:50%;border:1px solid {project.color}"
-  />
+    style="width:100%;height:100%;object-fit:cover;border-radius:50%;border:1px solid {project.color}"
+  ></video>
 {:else}
-  <div bind:this={mount} style="width:360px;height:360px" />
+  <div bind:this={mount} style="width:100%;height:100%"></div>
 {/if}
