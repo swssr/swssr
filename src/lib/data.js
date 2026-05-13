@@ -9,7 +9,7 @@ export const defaults = {
   aboutTitle: "Simo Ngquseka — UX/UI designer & developer from Durban.",
   aboutBody:
     "I design products and build the tools to build them. Interested in how a designer's intent can survive the trip into code.",
-  availLabel: "",
+  availLabel: "Prompt Global ⋅ Open Source",
   availBody:
     "Taking on product design engagements and small design-engineering partnerships. Prefer teams where design and code sit close together.",
   ctaLabel: "SIMO@SWSSR.CO →",
