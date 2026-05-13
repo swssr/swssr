@@ -14,7 +14,7 @@
     email: 'simo@swssr.co',
     jobTitle: 'UX/UI Designer & Developer',
     description: 'UX/UI designer and developer from Durban, South Africa. Design the product, build the tools.',
-    address: { '@type': 'PostalAddress', addressLocality: 'Durban', addressCountry: 'ZA' },
+    address: { '@type': 'PostalAddress', addressCountry: 'ZA' },
     sameAs: ['https://github.com/swssr', 'https://www.behance.net/swssr', 'https://www.linkedin.com/in/swssr'],
     knowsAbout: ['UX Design', 'UI Design', 'Web Development', 'JavaScript', 'TypeScript', 'Product Design'],
     workExample: defaults.projects.map(p => ({ '@type': 'CreativeWork', name: p.title, url: p.href }))
