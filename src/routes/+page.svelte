@@ -1,10 +1,10 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import { get } from 'svelte/store';
-  import { browser } from '$app/environment';
-  import { defaults } from '$lib/data.js';
-  import TweaksPanel from '$lib/TweaksPanel.svelte';
-  import HoverScene from '$lib/HoverScene.svelte';
+  import { onMount, onDestroy } from "svelte";
+  import { get } from "svelte/store";
+  import { browser } from "$app/environment";
+  import { defaults } from "$lib/data.js";
+  import TweaksPanel from "$lib/TweaksPanel.svelte";
+  import HoverScene from "$lib/HoverScene.svelte";
   import {
     headLook,
     headLookStatus,
@@ -16,63 +16,87 @@
     orbitGestureScale,
     handDrivingHover,
     handPointProjectIndex,
-  } from '$lib/headParallax.js';
-  import './page.css';
+  } from "$lib/headParallax.js";
+  import "./page.css";
 
   const jsonLd = JSON.stringify({
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Simo Ngquseka',
-    url: 'https://www.swssr.co',
-    email: 'simo@swssr.co',
-    jobTitle: 'UX/UI Designer & Developer',
-    description: 'UX/UI designer and developer from Durban, South Africa. Design the product, build the tools.',
-    address: { '@type': 'PostalAddress', addressCountry: 'ZA' },
-    sameAs: ['https://github.com/swssr', 'https://www.behance.net/swssr', 'https://www.linkedin.com/in/swssr'],
-    knowsAbout: ['UX Design', 'UI Design', 'Web Development', 'JavaScript', 'TypeScript', 'Product Design'],
-    workExample: defaults.projects.map(p => ({ '@type': 'CreativeWork', name: p.title, url: p.href }))
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Simo Ngquseka",
+    url: "https://www.swssr.co",
+    email: "simo@swssr.co",
+    jobTitle: "UX/UI Designer & Developer",
+    description:
+      "UX/UI designer and developer from Durban, South Africa. Design the product, build the tools.",
+    address: { "@type": "PostalAddress", addressCountry: "ZA" },
+    sameAs: [
+      "https://github.com/swssr",
+      "https://www.behance.net/swssr",
+      "https://www.linkedin.com/in/swssr",
+    ],
+    knowsAbout: [
+      "UX Design",
+      "UI Design",
+      "Web Development",
+      "JavaScript",
+      "TypeScript",
+      "Product Design",
+    ],
+    workExample: defaults.projects.map((p) => ({
+      "@type": "CreativeWork",
+      name: p.title,
+      url: p.href,
+    })),
   });
 
-  let t = { ...defaults, projects: defaults.projects.map(p => ({ ...p })) };
+  let t = { ...defaults, projects: defaults.projects.map((p) => ({ ...p })) };
   let defaultProjectIndex = 0;
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let mounted = false;
-  let navToast = '';
+  let navToast = "";
   let navToastT = null;
   let brandHintT = null;
-  let versionYear = Number(defaults.versions[defaults.versions.length - 1].year);
+  let versionYear = Number(
+    defaults.versions[defaults.versions.length - 1].year,
+  );
 
-  const paper    = '#FFFFFF';
-  const ink      = '#0B1733';
-  const inkMid   = '#5C6A8A';
-  const inkSoft  = '#AEB6C8';
-  const line     = 'rgba(11,23,51,0.06)';
-  const lineBold = 'rgba(11,23,51,0.14)';
-  const splash   = '#FF5722';
+  const paper = "#FFFFFF";
+  const ink = "#0B1733";
+  const inkMid = "#5C6A8A";
+  const inkSoft = "#AEB6C8";
+  const line = "rgba(11,23,51,0.06)";
+  const lineBold = "rgba(11,23,51,0.14)";
+  const splash = "#FF5722";
 
-  const CX = 720, CY = 470, R = 230;
+  const CX = 720,
+    CY = 470,
+    R = 230;
   const inactiveMessages = [
-    'Long coffee arc',
-    'Extended side quest',
-    'Year-long yak shave',
-    'Deep tab hibernation',
-    'Still updating dependencies'
+    "Long coffee arc",
+    "Extended side quest",
+    "Year-long yak shave",
+    "Deep tab hibernation",
+    "Still updating dependencies",
   ];
 
-  $: footerLinks = (t.footerLinks || '').split(';').map(s => s.trim()).filter(Boolean).map(pair => {
-    const [label, href] = pair.split('|');
-    return { label: (label || '').trim(), href: (href || '#').trim() };
-  });
+  $: footerLinks = (t.footerLinks || "")
+    .split(";")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((pair) => {
+      const [label, href] = pair.split("|");
+      return { label: (label || "").trim(), href: (href || "#").trim() };
+    });
 
   $: hoverProject = t.projects[hover];
-  $: setOrbitProjectAngles(t.projects.map(p => Number(p.angle)));
-  $: setOrbitProjectOpenResolver(i => t.projects[i]?.href ?? null);
+  $: setOrbitProjectAngles(t.projects.map((p) => Number(p.angle)));
+  $: setOrbitProjectOpenResolver((i) => t.projects[i]?.href ?? null);
   $: if (
     browser &&
-    $headLookStatus === 'on' &&
+    $headLookStatus === "on" &&
     $handDrivingHover &&
-    typeof $handPointProjectIndex === 'number' &&
+    typeof $handPointProjectIndex === "number" &&
     t.projects[$handPointProjectIndex]
   ) {
     hover = $handPointProjectIndex;
@@ -80,38 +104,52 @@
 
   $: versions = t.versions || defaults.versions;
   $: timelineStartYear = t.timelineStartYear || defaults.timelineStartYear;
-  $: timelineEndYear = Math.max(...versions.map(version => Number(version.year)));
+  $: timelineEndYear = Math.max(
+    ...versions.map((version) => Number(version.year)),
+  );
   $: timelineYears = Array.from(
     { length: timelineEndYear - timelineStartYear + 1 },
-    (_, i) => timelineStartYear + i
+    (_, i) => timelineStartYear + i,
   );
-  $: versionsByYear = new Map(versions.map(version => [String(version.year), version]));
-  $: selectedYear = Math.max(timelineStartYear, Math.min(timelineEndYear, Number(versionYear)));
+  $: versionsByYear = new Map(
+    versions.map((version) => [String(version.year), version]),
+  );
+  $: selectedYear = Math.max(
+    timelineStartYear,
+    Math.min(timelineEndYear, Number(versionYear)),
+  );
   $: selectedVersionIndex = versions.reduce(
-    (latest, version, i) => Number(version.year) <= selectedYear ? i : latest,
-    0
+    (latest, version, i) => (Number(version.year) <= selectedYear ? i : latest),
+    0,
   );
   $: selectedVersion = versions[selectedVersionIndex] || versions[0];
-  $: activeTimelineEntry = versionsByYear.get(String(selectedYear)) || inactiveTimelineEntry(selectedYear);
+  $: activeTimelineEntry =
+    versionsByYear.get(String(selectedYear)) ||
+    inactiveTimelineEntry(selectedYear);
 
-  $: orbitMotionHeavy = $headLookStatus === 'on';
+  $: orbitMotionHeavy = $headLookStatus === "on";
 
   function projectPos(angle, extra = 0) {
-    const a = angle * Math.PI / 180;
-    return { x: CX + Math.cos(a) * (R + extra), y: CY + Math.sin(a) * (R + extra) };
+    const a = (angle * Math.PI) / 180;
+    return {
+      x: CX + Math.cos(a) * (R + extra),
+      y: CY + Math.sin(a) * (R + extra),
+    };
   }
 
   function labelAlign(angle) {
-    const cos = Math.cos(angle * Math.PI / 180);
-    if (cos < -0.3) return 'right';
-    if (cos > 0.3)  return 'left';
-    return 'center';
+    const cos = Math.cos((angle * Math.PI) / 180);
+    if (cos < -0.3) return "right";
+    if (cos > 0.3) return "left";
+    return "center";
   }
 
   function handleTimelineMove(e) {
     const rect = e.currentTarget.getBoundingClientRect();
-    const progress = 1 - ((e.clientY - rect.top) / rect.height);
-    const year = Math.round(timelineStartYear + progress * (timelineEndYear - timelineStartYear));
+    const progress = 1 - (e.clientY - rect.top) / rect.height;
+    const year = Math.round(
+      timelineStartYear + progress * (timelineEndYear - timelineStartYear),
+    );
     versionYear = Math.max(timelineStartYear, Math.min(timelineEndYear, year));
   }
 
@@ -120,24 +158,29 @@
   }
 
   function versionTop(year) {
-    return 100 - ((Number(year) - timelineStartYear) / (timelineEndYear - timelineStartYear)) * 100;
+    return (
+      100 -
+      ((Number(year) - timelineStartYear) /
+        (timelineEndYear - timelineStartYear)) *
+        100
+    );
   }
 
   function inactiveTimelineEntry(year) {
     return {
       year: String(year),
       title: inactiveMessages[Number(year) % inactiveMessages.length],
-      company: 'No logged activity',
+      company: "No logged activity",
       period: String(year),
-      note: 'Nothing official on the timeline.',
-      skills: '',
-      theme: 'quiet',
-      inactive: true
+      note: "Nothing official on the timeline.",
+      skills: "",
+      theme: "quiet",
+      inactive: true,
     };
   }
 
   async function toggleHeadLook() {
-    if (get(headLookStatus) === 'on') stopHeadLook();
+    if (get(headLookStatus) === "on") stopHeadLook();
     else await startHeadLook();
   }
 
@@ -145,15 +188,15 @@
     navToast = msg;
     if (navToastT) clearTimeout(navToastT);
     navToastT = setTimeout(() => {
-      navToast = '';
+      navToast = "";
       navToastT = null;
     }, 2200);
   }
 
   onMount(() => {
     mounted = true;
-    window.addEventListener('keydown', (e) => {
-      if (e.shiftKey && e.key === 'T') editing = !editing;
+    window.addEventListener("keydown", (e) => {
+      if (e.shiftKey && e.key === "T") editing = !editing;
     });
   });
 
@@ -170,9 +213,15 @@
 
 <svelte:head>
   <title>Simo Ngquseka — SWSSR</title>
-  <meta name="description" content="UX/UI designer & developer from Durban, South Africa. Design the product, build the tools." />
+  <meta
+    name="description"
+    content="UX/UI designer & developer from Durban, South Africa. Design the product, build the tools."
+  />
   <meta property="og:title" content="Simo Ngquseka — SWSSR" />
-  <meta property="og:description" content="UX/UI designer & developer from Durban. Design the product, build the tools." />
+  <meta
+    property="og:description"
+    content="UX/UI designer & developer from Durban. Design the product, build the tools."
+  />
   {@html `<script type="application/ld+json">${jsonLd}</script>`}
 </svelte:head>
 
@@ -185,16 +234,22 @@
   data-line={line}
   data-line-bold={lineBold}
   data-splash={splash}
-  data-motion-active={mounted && $headLookStatus === 'on'}
+  data-motion-active={mounted && $headLookStatus === "on"}
   style="--look-x: {$headLook.x}; --look-y: {$headLook.y}; --orbit-spin-deg: {$orbitSpinDeg}deg; --orbit-scale-gesture: {$orbitGestureScale};"
 >
-
   <div class="soft-grid" aria-hidden="true"></div>
 
   <nav class="top-nav">
     <span class="brand-mark">
       <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
-        <circle cx="8" cy="8" r="7" fill="none" stroke={ink} stroke-width="1.3" />
+        <circle
+          cx="8"
+          cy="8"
+          r="7"
+          fill="none"
+          stroke={ink}
+          stroke-width="1.3"
+        />
         <circle cx="8" cy="8" r="2.5" fill={splash} />
       </svg>
       <button
@@ -205,7 +260,7 @@
           if (brandHintT) clearTimeout(brandHintT);
           brandHintT = setTimeout(() => {
             brandHintT = null;
-            flashNavToast('Double-click name');
+            flashNavToast("Double-click name");
           }, 340);
         }}
         on:dblclick|preventDefault={async () => {
@@ -213,7 +268,7 @@
             clearTimeout(brandHintT);
             brandHintT = null;
           }
-          if (!mounted || get(headLookStatus) === 'loading') return;
+          if (!mounted || get(headLookStatus) === "loading") return;
           await toggleHeadLook();
         }}
       >
@@ -246,109 +301,126 @@
   </aside>
 
   <div class="orbit-gesture-shell">
-  <div class="orbit-ticks" aria-hidden="true"></div>
+    <div class="orbit-ticks" aria-hidden="true"></div>
 
-  <svg class="orbit-svg" aria-hidden="true">
-    <circle
-      class="orbit-ring"
-      cx={CX}
-      cy={CY}
-      r={R}
-      fill="none"
-      stroke={lineBold}
-      stroke-width={orbitMotionHeavy ? 1.2 : 0.75}
-    />
-    {#if hover !== null}
-      {@const p = t.projects[hover]}
-      {@const pos = projectPos(p.angle)}
-      <line
-        class="orbit-spoke"
-        x1={CX}
-        y1={CY}
-        x2={pos.x}
-        y2={pos.y}
-        stroke={p.color}
-        stroke-width={orbitMotionHeavy ? 1.35 : 0.75}
-        stroke-dasharray="3 3"
-        opacity="0.7"
-      />
-    {/if}
-    {#each t.projects as p, i}
-      {@const pos = projectPos(p.angle)}
-      {@const isHover = hover === i}
+    <svg class="orbit-svg" aria-hidden="true">
       <circle
-        class="orbit-project-dot"
-        cx={pos.x}
-        cy={pos.y}
-        r={orbitMotionHeavy ? (isHover ? 7 : 5) : isHover ? 6 : 3.5}
-        fill={isHover ? p.color : ink}
+        class="orbit-ring"
+        cx={CX}
+        cy={CY}
+        r={R}
+        fill="none"
+        stroke={lineBold}
+        stroke-width={orbitMotionHeavy ? 1.2 : 0.75}
       />
-      {#if isHover}
-        <circle
-          cx={pos.x}
-          cy={pos.y}
-          r={orbitMotionHeavy ? 14 : 12}
-          fill="none"
+      {#if hover !== null}
+        {@const p = t.projects[hover]}
+        {@const pos = projectPos(p.angle)}
+        <line
+          class="orbit-spoke"
+          x1={CX}
+          y1={CY}
+          x2={pos.x}
+          y2={pos.y}
           stroke={p.color}
-          stroke-width={orbitMotionHeavy ? 1.05 : 0.75}
-          opacity="0.5"
+          stroke-width={orbitMotionHeavy ? 1.35 : 0.75}
+          stroke-dasharray="3 3"
+          opacity="0.7"
         />
       {/if}
-    {/each}
-  </svg>
-
-  <div class="orbit-center" data-x={CX} data-y={CY}>
-    <div class="center-pane center-idle" data-opacity={hover === null ? 1 : 0}>
-      <p class="center-statement">
-        <span class="minor">{t.centerLine1}</span><br /><span>{t.centerLine2}</span>
-      </p>
-    </div>
-    {#if browser}
-      <div class="center-pane center-hover" data-opacity={hover !== null ? 1 : 0}>
-        {#if hover !== null}
-          <HoverScene project={hoverProject} ink={ink} lookX={$headLook.x} lookY={$headLook.y} headLookOn={$headLookStatus === 'on'} />
+      {#each t.projects as p, i}
+        {@const pos = projectPos(p.angle)}
+        {@const isHover = hover === i}
+        <circle
+          class="orbit-project-dot"
+          cx={pos.x}
+          cy={pos.y}
+          r={orbitMotionHeavy ? (isHover ? 7 : 5) : isHover ? 6 : 3.5}
+          fill={isHover ? p.color : ink}
+        />
+        {#if isHover}
+          <circle
+            cx={pos.x}
+            cy={pos.y}
+            r={orbitMotionHeavy ? 14 : 12}
+            fill="none"
+            stroke={p.color}
+            stroke-width={orbitMotionHeavy ? 1.05 : 0.75}
+            opacity="0.5"
+          />
         {/if}
-      </div>
-    {/if}
-  </div>
+      {/each}
+    </svg>
 
-  {#each t.projects as p, i}
-    {@const isHover = hover === i}
-    <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
-    <div
-      on:mouseenter={() => hover = i}
-      on:mouseleave={() => {}}
-      on:click={() => p.href && window.open(p.href, '_blank', 'noopener')}
-      class="project-label"
-      class:is-link={p.href}
-      data-index={i}
-      data-angle={`${p.angle}deg`}
-      data-align={labelAlign(p.angle)}
-      data-hover={isHover}
-      data-color={isHover ? p.color : inkSoft}
-    >
-      <p class="project-meta">
-        {p.n} · {p.tag} <span>{p.year}</span>
-      </p>
-      <p class="project-title">
-        {p.title}
-      </p>
+    <div class="orbit-center" data-x={CX} data-y={CY}>
+      <div
+        class="center-pane center-idle"
+        data-opacity={hover === null ? 1 : 0}
+      >
+        <p class="center-statement">
+          <span class="minor">{t.centerLine1}</span><br /><span
+            >{t.centerLine2}</span
+          >
+        </p>
+      </div>
+      {#if browser}
+        <div
+          class="center-pane center-hover"
+          data-opacity={hover !== null ? 1 : 0}
+        >
+          {#if hover !== null}
+            <HoverScene
+              project={hoverProject}
+              {ink}
+              lookX={$headLook.x}
+              lookY={$headLook.y}
+              headLookOn={$headLookStatus === "on"}
+            />
+          {/if}
+        </div>
+      {/if}
     </div>
-  {/each}
+
+    {#each t.projects as p, i}
+      {@const isHover = hover === i}
+      <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
+      <div
+        on:mouseenter={() => (hover = i)}
+        on:mouseleave={() => {}}
+        on:click={() => p.href && window.open(p.href, "_blank", "noopener")}
+        class="project-label"
+        class:is-link={p.href}
+        data-index={i}
+        data-angle={`${p.angle}deg`}
+        data-align={labelAlign(p.angle)}
+        data-hover={isHover}
+        data-color={isHover ? p.color : inkSoft}
+      >
+        <p class="project-meta">
+          {p.n} · {p.tag} <span>{p.year}</span>
+        </p>
+        <p class="project-title">
+          {p.title}
+        </p>
+      </div>
+    {/each}
   </div>
 
   <footer class="site-footer">
     <span>{t.footerCopyright}</span>
     <span class="footer-status" data-active={hover !== null}>
-      {hover !== null ? `${t.projects[hover].n} · ${t.projects[hover].title}` : t.footerIdle}
+      {hover !== null
+        ? `${t.projects[hover].n} · ${t.projects[hover].title}`
+        : t.footerIdle}
     </span>
     <span class="footer-links">
       {#each footerLinks as l}
-        <a href={l.href} target="_blank" rel="noopener noreferrer">{l.label} ↗</a>
+        <a href={l.href} target="_blank" rel="noopener noreferrer"
+          >{l.label} ↗</a
+        >
       {/each}
     </span>
   </footer>
-
 </div>
 
 <aside class="version-timeline" aria-label="Work experience timeline">
@@ -376,8 +448,12 @@
   </div>
   <div class="version-card-track">
     {#each timelineYears as year}
-      {@const version = versionsByYear.get(String(year)) || inactiveTimelineEntry(year)}
-      <span class="version-card-slot" style={`--card-top:${versionTop(version.year)}%`}>
+      {@const version =
+        versionsByYear.get(String(year)) || inactiveTimelineEntry(year)}
+      <span
+        class="version-card-slot"
+        style={`--card-top:${versionTop(version.year)}%`}
+      >
         <div
           class="version-card"
           data-active={Number(version.year) === selectedYear}
@@ -400,7 +476,11 @@
 <noscript>
   <div class="noscript-fallback">
     <h1>Simo Ngquseka — SWSSR</h1>
-    <p>UX/UI designer &amp; developer from Durban, South Africa. Open to work · 2026 · <a href="mailto:simo@swssr.co">simo@swssr.co</a></p>
+    <p>
+      UX/UI designer &amp; developer from Durban, South Africa. 2026 · <a
+        href="mailto:simo@swssr.co">simo@swssr.co</a
+      >
+    </p>
     <h2>Selected Work</h2>
     <ul>
       {#each defaults.projects as p}
@@ -411,11 +491,17 @@
     <ul>
       <li><a href="https://github.com/swssr">github.com/swssr</a></li>
       <li><a href="https://www.behance.net/swssr">behance.net/swssr</a></li>
-      <li><a href="https://www.linkedin.com/in/swssr">linkedin.com/in/swssr</a></li>
+      <li>
+        <a href="https://www.linkedin.com/in/swssr">linkedin.com/in/swssr</a>
+      </li>
     </ul>
   </div>
 </noscript>
 
 {#if editing}
-  <TweaksPanel {t} on:update={handleUpdate} on:close={() => editing = false} />
+  <TweaksPanel
+    {t}
+    on:update={handleUpdate}
+    on:close={() => (editing = false)}
+  />
 {/if}
