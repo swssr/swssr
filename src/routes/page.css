@@ -11,6 +11,9 @@
   --position-center-x: 720px;
   --position-center-y: 470px;
   --size-label-radius: 270px;
+  --parallax-grid-pix: 14px;
+  --parallax-orbit-layer-pix: 74px;
+  --orbit-label-scale-inv: 1;
 
   width: 1440px;
   height: 900px;
@@ -28,6 +31,11 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
+    transform: translate3d(
+      calc(var(--look-x, 0) * var(--parallax-grid-pix)),
+      calc(var(--look-y, 0) * var(--parallax-grid-pix)),
+      0
+    );
     background-image:
       linear-gradient(to right, var(--color-line) 0.5px, transparent 0.5px),
       linear-gradient(to bottom, var(--color-line) 0.5px, transparent 0.5px);
@@ -77,6 +85,40 @@
 
   .revision {
     color: var(--color-ink-soft);
+  }
+
+  .nav-trail {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .head-look-btn {
+    appearance: none;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--color-line-bold);
+    background: transparent;
+    color: var(--color-ink-mid);
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .head-look-btn:hover:not(:disabled) {
+    border-color: var(--color-ink-mid);
+    color: var(--color-ink);
+  }
+
+  .head-look-btn:disabled {
+    opacity: 0.65;
+    cursor: wait;
+  }
+
+  .head-look-btn[aria-pressed='true'] {
+    border-color: var(--color-splash);
+    color: var(--color-ink);
   }
 
   .side-column {
@@ -142,6 +184,25 @@
     line-height: 1.2;
     letter-spacing: 0;
     font-weight: 500;
+  }
+
+  .orbit-gesture-shell {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    transform-origin: var(--position-center-x) var(--position-center-y);
+    transform: translate3d(
+        calc(var(--look-x, 0) * var(--parallax-orbit-layer-pix)),
+        calc(var(--look-y, 0) * var(--parallax-orbit-layer-pix)),
+        0
+      )
+      rotate(var(--orbit-spin-deg, 0deg))
+      scale(var(--orbit-scale-gesture, 1));
+  }
+
+  .orbit-gesture-shell .project-label {
+    pointer-events: auto;
   }
 
   .orbit-ticks {
@@ -276,7 +337,8 @@
     position: absolute;
     left: var(--position-label-x);
     top: var(--position-label-y);
-    transform: translate(var(--transform-label-x), -50%);
+    transform: translate(var(--transform-label-x), -50%)
+      rotate(calc(-1 * var(--orbit-spin-deg, 0deg))) scale(var(--orbit-label-scale-inv, 1));
     z-index: 3;
     cursor: default;
     padding: 8px 12px;
@@ -419,6 +481,7 @@
     --position-center-x: 50%;
     --position-center-y: auto;
     --size-label-radius: 0px;
+    --parallax-orbit-layer-pix: clamp(28px, 8.5svw, 62px);
 
     width: min(100%, 42rem);
     min-height: 100svh;
@@ -439,8 +502,6 @@
 
   #stage .top-nav,
   #stage .side-column,
-  #stage .orbit-center,
-  #stage .project-label,
   #stage .site-footer {
     position: relative;
     inset: auto;
@@ -464,6 +525,7 @@
   }
 
   #stage .brand-mark,
+  #stage .nav-trail,
   #stage .revision {
     min-width: 0;
   }
@@ -517,12 +579,42 @@
     display: none;
   }
 
-  #stage .orbit-center {
+  #stage .orbit-gesture-shell {
     order: 3;
+    position: relative;
+    inset: auto;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    min-width: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 4.5svw, 28px);
+    pointer-events: none;
+    transform-origin: 50% 28%;
+    transform: translate3d(
+        calc(var(--look-x, 0) * var(--parallax-orbit-layer-pix)),
+        calc(var(--look-y, 0) * var(--parallax-orbit-layer-pix)),
+        0
+      )
+      rotate(var(--orbit-spin-deg, 0deg))
+      scale(var(--orbit-scale-gesture, 1));
+  }
+
+  #stage .orbit-center {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     width: min(100%, 22rem);
     height: auto;
     aspect-ratio: 1;
     margin: 0 auto;
+    flex-shrink: 0;
+    align-self: center;
   }
 
   #stage .center-statement {
@@ -535,12 +627,14 @@
   }
 
   #stage .project-label {
-    order: 4;
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: rotate(calc(-1 * var(--orbit-spin-deg, 0deg))) scale(var(--orbit-label-scale-inv, 1));
     min-width: 0;
     padding: 0;
     cursor: pointer;
     text-align: left;
-    transform: none;
   }
 
   #stage .project-label:first-of-type {

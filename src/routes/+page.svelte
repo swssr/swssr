@@ -1,9 +1,22 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
+  import { get } from 'svelte/store';
   import { browser } from '$app/environment';
   import { defaults } from '$lib/data.js';
   import TweaksPanel from '$lib/TweaksPanel.svelte';
   import HoverScene from '$lib/HoverScene.svelte';
+  import {
+    headLook,
+    headLookStatus,
+    startHeadLook,
+    stopHeadLook,
+    setOrbitProjectAngles,
+    setOrbitProjectOpenResolver,
+    orbitSpinDeg,
+    orbitGestureScale,
+    handDrivingHover,
+    handPointProjectIndex,
+  } from '$lib/headParallax.js';
   import './page.css';
 
   const jsonLd = JSON.stringify({
@@ -24,6 +37,7 @@
   let defaultProjectIndex = 0;
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
+  let mounted = false;
   let versionYear = Number(defaults.versions[defaults.versions.length - 1].year);
 
   const paper    = '#FFFFFF';
@@ -49,6 +63,21 @@
   });
 
   $: hoverProject = t.projects[hover];
+  $: setOrbitProjectAngles(t.projects.map(p => Number(p.angle)));
+  $: setOrbitProjectOpenResolver(i => t.projects[i]?.href ?? null);
+  $: if (
+    browser &&
+    $headLookStatus === 'on' &&
+    $handDrivingHover &&
+    typeof $handPointProjectIndex === 'number' &&
+    t.projects[$handPointProjectIndex]
+  ) {
+    hover = $handPointProjectIndex;
+  }
+
+  $: orbitLabelScaleInv =
+    typeof $orbitGestureScale === 'number' && $orbitGestureScale > 0.02 ? 1 / $orbitGestureScale : 1;
+
   $: versions = t.versions || defaults.versions;
   $: timelineStartYear = t.timelineStartYear || defaults.timelineStartYear;
   $: timelineEndYear = Math.max(...versions.map(version => Number(version.year)));
@@ -105,11 +134,19 @@
     };
   }
 
+  async function toggleHeadLook() {
+    if (get(headLookStatus) === 'on') stopHeadLook();
+    else await startHeadLook();
+  }
+
   onMount(() => {
+    mounted = true;
     window.addEventListener('keydown', (e) => {
       if (e.shiftKey && e.key === 'T') editing = !editing;
     });
   });
+
+  onDestroy(stopHeadLook);
 
   function handleUpdate(e) {
     t = { ...t, ...e.detail };
@@ -134,6 +171,7 @@
   data-line={line}
   data-line-bold={lineBold}
   data-splash={splash}
+  style="--look-x: {$headLook.x}; --look-y: {$headLook.y}; --orbit-spin-deg: {$orbitSpinDeg}deg; --orbit-scale-gesture: {$orbitGestureScale}; --orbit-label-scale-inv: {orbitLabelScaleInv};"
 >
 
   <!-- soft grid -->
@@ -154,7 +192,26 @@
       <a class="nav-link" href="/">{t.navWriting}</a>
       <a class="nav-link" href="/">{t.navContact}</a>
     </span>
-    <span class="revision">{t.rev}</span>
+    <span class="nav-trail">
+      <button
+        type="button"
+        class="head-look-btn"
+        aria-pressed={mounted && $headLookStatus === 'on'}
+        disabled={!mounted || $headLookStatus === 'loading'}
+        on:click={() => toggleHeadLook()}
+      >
+        {#if !mounted || $headLookStatus === 'loading'}
+          …
+        {:else if $headLookStatus === 'on'}
+          Motion · on
+        {:else if $headLookStatus === 'error'}
+          Motion · retry
+        {:else}
+          Motion · off
+        {/if}
+      </button>
+      <span class="revision">{t.rev}</span>
+    </span>
   </nav>
 
   <!-- left column — about -->
@@ -170,6 +227,7 @@
     <a class="cta-link" href={t.ctaHref}>{t.ctaLabel}</a>
   </aside>
 
+  <div class="orbit-gesture-shell">
   <div class="orbit-ticks" aria-hidden="true"></div>
 
   <svg class="orbit-svg" aria-hidden="true">
@@ -198,7 +256,7 @@
     {#if browser}
       <div class="center-pane center-hover" data-opacity={hover !== null ? 1 : 0}>
         {#if hover !== null}
-          <HoverScene project={hoverProject} {ink} />
+          <HoverScene project={hoverProject} ink={ink} lookX={$headLook.x} lookY={$headLook.y} headLookOn={$headLookStatus === 'on'} />
         {/if}
       </div>
     {/if}
@@ -228,6 +286,7 @@
       </p>
     </div>
   {/each}
+  </div>
 
   <!-- footer -->
   <footer class="site-footer">
