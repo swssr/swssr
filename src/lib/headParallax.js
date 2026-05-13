@@ -4,12 +4,10 @@ export const headLook = writable({ x: 0, y: 0 });
 export const headLookStatus = writable('off');
 
 export const orbitSpinDeg = writable(0);
-/** Smoothed ~0.78–1.32 from two‑wrist separation */
 export const orbitGestureScale = writable(1);
 export const handPointProjectIndex = writable(null);
 export const handDrivingHover = writable(false);
 
-/** @returns {string|null} */
 let projectOpenResolver = () => null;
 
 export function setOrbitProjectOpenResolver(fn) {
@@ -28,7 +26,6 @@ const THUMB_TIP = 4;
 const INDEX_PIP = 6;
 const INDEX_TIP = 8;
 
-/** @type {number[]} */
 let projectAnglesDeg = [];
 
 export function setOrbitProjectAngles(anglesDeg) {
@@ -45,14 +42,39 @@ let smoothed = { x: 0, y: 0 };
 let active = false;
 
 let spinSmoothedDeg = 0;
+let spinOmega = 0;
 let spinPrevRad = null;
 let spreadRef = null;
 let zoomSmooth = 1;
+let prevLoopTs = null;
 
 let pinchHeld = false;
 let pinchCooldownUntil = 0;
 let hoverStableIdx = null;
 let hoverStreak = 0;
+
+let pinchOrbPrevMid = null;
+let pinchOrbPathSum = 0;
+let tangentThrowEMA = 0;
+let pinchSpinGripPrev = false;
+let suppressNextLinkTap = false;
+
+const PINCH_SPIN_MAX_GAP = 0.052;
+const PINCH_DRAG_PATH_OPEN = 0.088;
+
+function bestThumbIndexPinchLm(lmArr, maxGap) {
+  let bestLm = null;
+  let bestD = Infinity;
+  for (const lm of lmArr) {
+    const d = hypo(lm[INDEX_TIP].x - lm[THUMB_TIP].x, lm[INDEX_TIP].y - lm[THUMB_TIP].y);
+    if (d < bestD) {
+      bestD = d;
+      bestLm = lm;
+    }
+  }
+  if (bestLm == null || bestD > maxGap) return null;
+  return { lm: bestLm, gap: bestD };
+}
 
 async function makeMarkers() {
   const { FaceLandmarker, HandLandmarker, FilesetResolver } = await import('@mediapipe/tasks-vision');
@@ -147,12 +169,19 @@ function pickLeftRightHands(lmArr, handedNested) {
 
 function resetGestureState() {
   spinSmoothedDeg = 0;
+  spinOmega = 0;
   spinPrevRad = null;
   spreadRef = null;
   zoomSmooth = 1;
+  prevLoopTs = null;
   pinchHeld = false;
   hoverStableIdx = null;
   hoverStreak = 0;
+  pinchOrbPrevMid = null;
+  pinchOrbPathSum = 0;
+  tangentThrowEMA = 0;
+  pinchSpinGripPrev = false;
+  suppressNextLinkTap = false;
   orbitSpinDeg.set(0);
   orbitGestureScale.set(1);
   handPointProjectIndex.set(null);
@@ -184,6 +213,9 @@ export async function startHeadLook() {
 
     const loop = ts => {
       if (!active || !faceLm || !handLm || !videoEl) return;
+      const frameNorm = prevLoopTs == null ? 1 : Math.min(2.4, (ts - prevLoopTs) / (1000 / 60));
+      prevLoopTs = ts;
+
       if (videoEl.readyState >= 2) {
         const f = faceLm.detectForVideo(videoEl, ts);
         const h = handLm.detectForVideo(videoEl, ts);
@@ -210,10 +242,14 @@ export async function startHeadLook() {
             const wristSpan = hypo(rw.x - lw.x, rw.y - lw.y);
             orbitMode = wristSpan > 0.12;
             if (orbitMode) {
+              pinchOrbPrevMid = null;
+              pinchOrbPathSum = 0;
+              pinchSpinGripPrev = false;
+              tangentThrowEMA *= 0.88;
               if (spreadRef == null || spreadRef < 1e-4) spreadRef = wristSpan;
               const ratioRaw = wristSpan / spreadRef;
               const ratio = Math.min(1.38, Math.max(0.74, ratioRaw));
-              zoomSmooth += (ratio - zoomSmooth) * 0.13;
+              zoomSmooth += (ratio - zoomSmooth) * 0.13 * frameNorm;
               spreadRef += (wristSpan - spreadRef) * 0.05;
 
               const curRad = Math.atan2(rw.y - lw.y, rw.x - lw.x);
@@ -221,7 +257,9 @@ export async function startHeadLook() {
                 let delta = curRad - spinPrevRad;
                 while (delta > Math.PI) delta -= 2 * Math.PI;
                 while (delta < -Math.PI) delta += 2 * Math.PI;
-                spinSmoothedDeg -= delta * (180 / Math.PI) * 1.08;
+                const deltaDeg = -delta * (180 / Math.PI);
+                spinOmega += deltaDeg * 1.12 * Math.min(1.4, frameNorm);
+                spinOmega = Math.max(-38, Math.min(38, spinOmega));
               }
               spinPrevRad = curRad;
             }
@@ -231,9 +269,58 @@ export async function startHeadLook() {
         if (!orbitMode) {
           spinPrevRad = null;
           spreadRef = null;
-          zoomSmooth += (1 - zoomSmooth) * 0.11;
-          if (Math.abs(zoomSmooth - 1) < 0.004) zoomSmooth = 1;
+          zoomSmooth += (1 - zoomSmooth) * Math.min(0.42, 0.26 * frameNorm);
+          if (Math.abs(zoomSmooth - 1) < 0.0055) zoomSmooth = 1;
         }
+
+        let pinchGripSpinFrame = orbitMode;
+        if (!orbitMode && lmArr.length >= 1) {
+          const pin = bestThumbIndexPinchLm(lmArr, PINCH_SPIN_MAX_GAP);
+          const wasOrbPinch = pinchSpinGripPrev;
+          if (pin) {
+            pinchGripSpinFrame = true;
+            const { lm } = pin;
+            const mx = (lm[INDEX_TIP].x + lm[THUMB_TIP].x) * 0.5;
+            const my = (lm[INDEX_TIP].y + lm[THUMB_TIP].y) * 0.5;
+            const rx = mx - 0.5;
+            const ry = my - 0.5;
+            const rLen = hypo(rx, ry);
+
+            if (!wasOrbPinch) {
+              pinchOrbPathSum = 0;
+              tangentThrowEMA *= 0.55;
+              pinchOrbPrevMid = { x: mx, y: my };
+            } else if (pinchOrbPrevMid && rLen > 0.024) {
+              const vx = mx - pinchOrbPrevMid.x;
+              const vy = my - pinchOrbPrevMid.y;
+              pinchOrbPathSum += hypo(vx, vy);
+              const cross = rx * vy - ry * vx;
+              const tanInst = (-cross * 620) / rLen;
+              spinOmega += tanInst * 0.155 * Math.min(1.3, frameNorm);
+              spinOmega = Math.max(-42, Math.min(42, spinOmega));
+              tangentThrowEMA += (tanInst - tangentThrowEMA) * 0.42;
+              pinchOrbPrevMid = { x: mx, y: my };
+            } else if (pinchOrbPrevMid) {
+              pinchOrbPrevMid = { x: mx, y: my };
+            }
+          } else if (wasOrbPinch) {
+            if (pinchOrbPathSum >= PINCH_DRAG_PATH_OPEN) suppressNextLinkTap = true;
+            const burst = tangentThrowEMA * 0.7;
+            spinOmega += Math.max(-26, Math.min(26, burst));
+            tangentThrowEMA *= 0.22;
+            spinOmega = Math.max(-44, Math.min(44, spinOmega));
+            pinchOrbPrevMid = null;
+            pinchOrbPathSum = 0;
+          }
+          pinchSpinGripPrev = !!pin;
+        }
+
+        const frictionGrip = Math.pow(0.987, frameNorm);
+        const frictionCoast = Math.pow(0.942, frameNorm);
+        spinOmega *= pinchGripSpinFrame ? frictionGrip : frictionCoast;
+        if (Math.abs(spinOmega) < 0.04) spinOmega = 0;
+
+        spinSmoothedDeg += spinOmega * Math.min(1.15, frameNorm);
 
         orbitSpinDeg.set(spinSmoothedDeg);
         orbitGestureScale.set(zoomSmooth);
@@ -295,7 +382,8 @@ export async function startHeadLook() {
           if (pinchDist < 0.032 && hoverStableIdx != null && hoverStreak >= 3) pinchHeld = true;
           else if (pinchHeld && pinchDist > 0.055 && hoverStableIdx != null && hoverStreak >= 3) {
             pinchHeld = false;
-            if (nowTap > pinchCooldownUntil && typeof hoverStableIdx === 'number') {
+            if (suppressNextLinkTap) suppressNextLinkTap = false;
+            else if (nowTap > pinchCooldownUntil && typeof hoverStableIdx === 'number') {
               const url = projectOpenResolver(hoverStableIdx);
               if (url && typeof window !== 'undefined')
                 window.open(url, '_blank', 'noopener');
@@ -306,6 +394,9 @@ export async function startHeadLook() {
           pinchHeld = false;
           hoverStreak = 0;
           hoverStableIdx = null;
+          pinchSpinGripPrev = false;
+          pinchOrbPrevMid = null;
+          pinchOrbPathSum = 0;
           handDrivingHover.set(false);
           handPointProjectIndex.set(null);
         }

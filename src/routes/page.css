@@ -1,3 +1,14 @@
+@keyframes nav-toast-fade {
+  0%,
+  76% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 #stage {
   --scale-stage: min(calc(100vw / 1440), calc(100vh / 900));
   --stage-padding-inline: clamp(18px, 6vw, 40px);
@@ -13,7 +24,6 @@
   --size-label-radius: 270px;
   --parallax-grid-pix: 14px;
   --parallax-orbit-layer-pix: 74px;
-  --orbit-label-scale-inv: 1;
 
   width: 1440px;
   height: 900px;
@@ -71,6 +81,23 @@
     letter-spacing: 0;
   }
 
+  .brand-mark button.brand-name {
+    appearance: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+    text-align: inherit;
+    color: inherit;
+  }
+
+  .brand-mark button.brand-name:focus-visible {
+    outline: 2px solid var(--color-splash);
+    outline-offset: 2px;
+  }
+
   .nav-links {
     gap: 28px;
   }
@@ -92,33 +119,21 @@
     align-items: center;
     gap: 12px;
     flex-shrink: 0;
+    position: relative;
   }
 
-  .head-look-btn {
-    appearance: none;
-    padding: 3px 8px;
-    border-radius: 3px;
-    border: 1px solid var(--color-line-bold);
-    background: transparent;
-    color: var(--color-ink-mid);
-    font: inherit;
-    cursor: pointer;
+  .nav-trail .nav-toast {
+    font-family: var(--mono);
+    font-size: 10px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: var(--color-ink-soft);
     white-space: nowrap;
-  }
-
-  .head-look-btn:hover:not(:disabled) {
-    border-color: var(--color-ink-mid);
-    color: var(--color-ink);
-  }
-
-  .head-look-btn:disabled {
-    opacity: 0.65;
-    cursor: wait;
-  }
-
-  .head-look-btn[aria-pressed='true'] {
-    border-color: var(--color-splash);
-    color: var(--color-ink);
+    max-width: min(280px, 38vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    pointer-events: none;
+    animation: nav-toast-fade 2.25s ease forwards;
   }
 
   .side-column {
@@ -201,8 +216,21 @@
       scale(var(--orbit-scale-gesture, 1));
   }
 
+  .orbit-gesture-shell .orbit-ticks {
+    z-index: 2;
+  }
+
+  .orbit-gesture-shell .orbit-svg {
+    z-index: 4;
+  }
+
+  .orbit-gesture-shell .orbit-center {
+    z-index: 6;
+  }
+
   .orbit-gesture-shell .project-label {
     pointer-events: auto;
+    z-index: 1;
   }
 
   .orbit-ticks {
@@ -226,6 +254,26 @@
       transparent 0 226.5px,
       #000 226.5px 233.5px,
       transparent 233.5px
+    );
+  }
+
+  &[data-motion-active='true'] .orbit-ticks {
+    background: repeating-conic-gradient(
+      from 90deg at var(--position-center-x) var(--position-center-y),
+      var(--color-line-bold) 0deg 0.38deg,
+      transparent 0.38deg 30deg
+    );
+    mask: radial-gradient(
+      circle at var(--position-center-x) var(--position-center-y),
+      transparent 0 223.25px,
+      #000 223.25px 236.75px,
+      transparent 236.75px
+    );
+    -webkit-mask: radial-gradient(
+      circle at var(--position-center-x) var(--position-center-y),
+      transparent 0 223.25px,
+      #000 223.25px 236.75px,
+      transparent 236.75px
     );
   }
 
@@ -338,7 +386,7 @@
     left: var(--position-label-x);
     top: var(--position-label-y);
     transform: translate(var(--transform-label-x), -50%)
-      rotate(calc(-1 * var(--orbit-spin-deg, 0deg))) scale(var(--orbit-label-scale-inv, 1));
+      rotate(calc(-1 * var(--orbit-spin-deg, 0deg)));
     z-index: 3;
     cursor: default;
     padding: 8px 12px;
@@ -630,7 +678,7 @@
     position: relative;
     left: auto;
     top: auto;
-    transform: rotate(calc(-1 * var(--orbit-spin-deg, 0deg))) scale(var(--orbit-label-scale-inv, 1));
+    transform: rotate(calc(-1 * var(--orbit-spin-deg, 0deg)));
     min-width: 0;
     padding: 0;
     cursor: pointer;
