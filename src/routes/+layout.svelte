@@ -1,17 +1,3 @@
-<script>
-  import { browser } from '$app/environment';
-  import { onMount } from 'svelte';
-
-  onMount(() => {
-    // Load Three.js globally so HoverScene can use it
-    if (browser && !window.THREE) {
-      const s = document.createElement('script');
-      s.src = 'https://unpkg.com/three@0.160.0/build/three.min.js';
-      document.head.appendChild(s);
-    }
-  });
-</script>
-
 <svelte:head>
   <meta name="p:domain_verify" content="7db4679199f9ff5da00d2e2b5d2bb268" />
   <meta name="yandex-verification" content="15c6a35a530189e4" />

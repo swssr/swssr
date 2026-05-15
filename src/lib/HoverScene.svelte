@@ -1,5 +1,6 @@
 <script>
   import { onDestroy } from 'svelte';
+  import * as THREE from 'three';
 
   export let project;
   export let ink = '#0B1733';
@@ -21,9 +22,6 @@
 
   function init(p) {
     if (cleanup) cleanup();
-
-    const THREE = window.THREE;
-    if (!THREE) return;
 
     const w = 360, h = 360;
     const scene = new THREE.Scene();

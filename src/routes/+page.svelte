@@ -5,17 +5,22 @@
   import { defaults } from "$lib/data.js";
   import TweaksPanel from "$lib/TweaksPanel.svelte";
   import HoverScene from "$lib/HoverScene.svelte";
+  import OrbitCenterEmbed from "$lib/OrbitCenterEmbed.svelte";
+  import LandmarkDebug from "$lib/LandmarkDebug.svelte";
   import {
     headLook,
     headLookStatus,
     startHeadLook,
     stopHeadLook,
     setOrbitProjectAngles,
-    setOrbitProjectOpenResolver,
+    setOrbitPinchCommitHandler,
+    setOrbitGeometry,
     orbitSpinDeg,
     orbitGestureScale,
     handDrivingHover,
     handPointProjectIndex,
+    orbitEmbedDismissPulse,
+    debugMode,
   } from "$lib/headParallax.js";
   import "./page.css";
 
@@ -51,6 +56,11 @@
 
   let t = { ...defaults, projects: defaults.projects.map((p) => ({ ...p })) };
   let defaultProjectIndex = 0;
+  /** Set when user commits via label click or pinch; until then center stays 3D HoverScene. */
+  let centerCommittedIndex = null;
+  let centerExpanded = false;
+  /** Full-viewport embed (iframe focus / inner tap); see .orbit-center--viewport-max */
+  let centerViewportMax = false;
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let mounted = false;
@@ -89,9 +99,52 @@
       return { label: (label || "").trim(), href: (href || "#").trim() };
     });
 
-  $: hoverProject = t.projects[hover];
+  $: if (
+    t.projects.length > 0 &&
+    centerCommittedIndex != null
+  ) {
+    if (centerCommittedIndex >= t.projects.length)
+      centerCommittedIndex = t.projects.length - 1;
+    else if (centerCommittedIndex < 0) centerCommittedIndex = 0;
+  }
+
+  $: committedProject =
+    centerCommittedIndex != null &&
+    t.projects.length > 0 &&
+    centerCommittedIndex >= 0 &&
+    centerCommittedIndex < t.projects.length
+      ? t.projects[centerCommittedIndex]
+      : null;
+
+  $: hoverProject =
+    hover != null && t.projects[hover] ? t.projects[hover] : null;
   $: setOrbitProjectAngles(t.projects.map((p) => Number(p.angle)));
-  $: setOrbitProjectOpenResolver((i) => t.projects[i]?.href ?? null);
+  $: setOrbitPinchCommitHandler(commitOrToggleOrbitCenter);
+  function commitOrToggleOrbitCenter(i) {
+    if (typeof i !== "number" || !t.projects[i]) return;
+    if (centerCommittedIndex == null) {
+      centerCommittedIndex = i;
+      centerExpanded = false;
+      centerViewportMax = false;
+      hover = i;
+      return;
+    }
+    if (centerCommittedIndex === i) centerExpanded = !centerExpanded;
+    else {
+      centerCommittedIndex = i;
+      centerExpanded = false;
+      centerViewportMax = false;
+    }
+    hover = i;
+  }
+
+  function handleProjectLabelActivate(i) {
+    commitOrToggleOrbitCenter(i);
+  }
+
+  $: footerProject =
+    committedProject ??
+    (hover !== null && t.projects[hover] ? t.projects[hover] : null);
   $: if (
     browser &&
     $headLookStatus === "on" &&
@@ -179,6 +232,60 @@
     };
   }
 
+  function clearOrbitEmbedFocus() {
+    centerCommittedIndex = null;
+    centerExpanded = false;
+    centerViewportMax = false;
+  }
+
+  /**
+   * When the embed is viewport-maximized it is moved under document.body; stage “outside”
+   * clicks should not dismiss the commit — use the backdrop or Esc to shrink first.
+   */
+  function reparentToBody(node, active) {
+    let mark = null;
+
+    function apply(on) {
+      if (on) {
+        if (node.parentNode === document.body) return;
+        const parent = node.parentNode;
+        if (!parent) return;
+        mark = document.createComment("");
+        parent.insertBefore(mark, node);
+        document.body.appendChild(node);
+      } else {
+        if (mark?.parentNode && node.parentNode === document.body) {
+          mark.parentNode.insertBefore(node, mark);
+        }
+        mark?.remove();
+        mark = null;
+      }
+    }
+
+    apply(!!active);
+    return {
+      update(on) {
+        apply(!!on);
+      },
+      destroy() {
+        apply(false);
+      },
+    };
+  }
+
+  /** Click/tap outside the preview disc (still allows project labels to switch preview). */
+  function handleStagePointerDownOutside(e) {
+    if (centerCommittedIndex == null) return;
+    if (centerViewportMax) return;
+    const el = e.target;
+    if (typeof Element === "undefined" || !(el instanceof Element)) return;
+    if (el.closest(".orbit-center")) return;
+    if (el.closest(".project-label")) return;
+    clearOrbitEmbedFocus();
+  }
+
+  let unsubOrbitDismiss = () => {};
+
   async function toggleHeadLook() {
     if (get(headLookStatus) === "on") stopHeadLook();
     else await startHeadLook();
@@ -195,12 +302,33 @@
 
   onMount(() => {
     mounted = true;
+    function updateOrbitGeo() {
+      setOrbitGeometry(CX, CY, R, window.innerWidth, window.innerHeight);
+    }
+    updateOrbitGeo();
+    window.addEventListener("resize", updateOrbitGeo);
+
     window.addEventListener("keydown", (e) => {
       if (e.shiftKey && e.key === "T") editing = !editing;
+      if (e.shiftKey && e.key === "D") debugMode.update(v => !v);
+      if (e.key === "Escape" && centerCommittedIndex != null) {
+        e.preventDefault();
+        if (centerViewportMax) centerViewportMax = false;
+        else clearOrbitEmbedFocus();
+      }
+    });
+
+    let lastDismissPulse = 0;
+    unsubOrbitDismiss = orbitEmbedDismissPulse.subscribe((n) => {
+      if (n > 0 && n !== lastDismissPulse) {
+        lastDismissPulse = n;
+        clearOrbitEmbedFocus();
+      }
     });
   });
 
   onDestroy(() => {
+    unsubOrbitDismiss();
     if (navToastT) clearTimeout(navToastT);
     if (brandHintT) clearTimeout(brandHintT);
     stopHeadLook();
@@ -225,6 +353,7 @@
   {@html `<script type="application/ld+json">${jsonLd}</script>`}
 </svelte:head>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   id="stage"
   data-paper={paper}
@@ -235,7 +364,9 @@
   data-line-bold={lineBold}
   data-splash={splash}
   data-motion-active={mounted && $headLookStatus === "on"}
+  data-orbit-embed-active={!!committedProject}
   style="--look-x: {$headLook.x}; --look-y: {$headLook.y}; --orbit-spin-deg: {$orbitSpinDeg}deg; --orbit-scale-gesture: {$orbitGestureScale};"
+  on:pointerdown={handleStagePointerDownOutside}
 >
   <div class="soft-grid" aria-hidden="true"></div>
 
@@ -352,23 +483,27 @@
       {/each}
     </svg>
 
-    <div class="orbit-center" data-x={CX} data-y={CY}>
-      <div
-        class="center-pane center-idle"
-        data-opacity={hover === null ? 1 : 0}
-      >
-        <p class="center-statement">
-          <span class="minor">{t.centerLine1}</span><br /><span
-            >{t.centerLine2}</span
-          >
-        </p>
-      </div>
+    <div
+      class="orbit-center"
+      class:orbit-center--embed={!!committedProject}
+      class:orbit-center--expanded={centerExpanded && !!committedProject}
+      class:orbit-center--viewport-max={centerViewportMax && !!committedProject}
+      data-x={CX}
+      data-y={CY}
+      use:reparentToBody={!!committedProject && centerViewportMax}
+    >
       {#if browser}
-        <div
-          class="center-pane center-hover"
-          data-opacity={hover !== null ? 1 : 0}
-        >
-          {#if hover !== null}
+        {#if committedProject}
+          <div class="center-pane center-hover">
+            <OrbitCenterEmbed
+              project={committedProject}
+              accent={committedProject.color}
+              viewportMax={centerViewportMax}
+              on:requestviewportmax={() => (centerViewportMax = true)}
+            />
+          </div>
+        {:else if hoverProject}
+          <div class="center-pane center-hover">
             <HoverScene
               project={hoverProject}
               {ink}
@@ -376,8 +511,8 @@
               lookY={$headLook.y}
               headLookOn={$headLookStatus === "on"}
             />
-          {/if}
-        </div>
+          </div>
+        {/if}
       {/if}
     </div>
 
@@ -387,9 +522,9 @@
       <div
         on:mouseenter={() => (hover = i)}
         on:mouseleave={() => {}}
-        on:click={() => p.href && window.open(p.href, "_blank", "noopener")}
+        on:click={() => handleProjectLabelActivate(i)}
         class="project-label"
-        class:is-link={p.href}
+        class:is-link={true}
         data-index={i}
         data-angle={`${p.angle}deg`}
         data-align={labelAlign(p.angle)}
@@ -408,9 +543,9 @@
 
   <footer class="site-footer">
     <span>{t.footerCopyright}</span>
-    <span class="footer-status" data-active={hover !== null}>
-      {hover !== null
-        ? `${t.projects[hover].n} · ${t.projects[hover].title}`
+    <span class="footer-status" data-active={footerProject !== null}>
+      {footerProject
+        ? `${footerProject.n} · ${footerProject.title}`
         : t.footerIdle}
     </span>
     <span class="footer-links">
@@ -422,6 +557,15 @@
     </span>
   </footer>
 </div>
+
+{#if browser && committedProject && centerViewportMax}
+  <button
+    type="button"
+    class="orbit-embed-viewport-backdrop"
+    aria-label="Shrink preview"
+    on:pointerdown|stopPropagation={() => (centerViewportMax = false)}
+  ></button>
+{/if}
 
 <aside class="version-timeline" aria-label="Work experience timeline">
   <input
@@ -504,4 +648,8 @@
     on:update={handleUpdate}
     on:close={() => (editing = false)}
   />
+{/if}
+
+{#if $debugMode && $headLookStatus === 'on'}
+  <LandmarkDebug />
 {/if}

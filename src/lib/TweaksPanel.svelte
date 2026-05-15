@@ -15,7 +15,7 @@
     const n = String(t.projects.length + 1).padStart(2, '0');
     const step = 360 / (t.projects.length + 1);
     const next = t.projects.map((p, i) => ({ ...p, angle: Math.round(-70 + i * step) }));
-    next.push({ n, title: 'New project', tag: 'TAG', year: "'26", angle: Math.round(-70 + t.projects.length * step), color: '#0B1733', video: '', shape: 'torus', href: '' });
+    next.push({ n, title: 'New project', tag: 'TAG', year: "'26", angle: Math.round(-70 + t.projects.length * step), color: '#0B1733', video: '', shape: 'torus', href: '', previewImage: '' });
     set({ projects: next });
   };
 
@@ -129,6 +129,7 @@
             </select>
           </div>
           <input class="tw-input" value={p.href || ''} on:input={e => updateProject(i, { href: e.target.value })} placeholder="Project URL" />
+          <input class="tw-input" value={p.previewImage || ''} on:input={e => updateProject(i, { previewImage: e.target.value })} placeholder="Preview image URL (optional; else iframe)" style="margin-top:4px" />
         </div>
       {/each}
       <button class="tw-add" on:click={addProject}>+ ADD PROJECT</button>

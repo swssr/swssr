@@ -80,6 +80,7 @@ export const defaults = {
       video: "",
       shape: "torus",
       href: "https://behance.net/swssr",
+      previewImage: "",
     },
     {
       n: "02",
@@ -91,6 +92,7 @@ export const defaults = {
       video: "",
       shape: "box",
       href: "https://porsche-microsite.vercel.app/#visit",
+      previewImage: "",
     },
     {
       n: "03",
@@ -102,6 +104,7 @@ export const defaults = {
       video: "",
       shape: "ico",
       href: "https://tumi.now.sh",
+      previewImage: "",
     },
     {
       n: "04",
@@ -113,6 +116,7 @@ export const defaults = {
       video: "",
       shape: "cylinder",
       href: "https://www.behance.net/gallery/87868351/MpiloTech",
+      previewImage: "",
     },
     {
       n: "05",
@@ -124,6 +128,7 @@ export const defaults = {
       video: "",
       shape: "octa",
       href: "https://www.behance.net/gallery/87867291/Filr",
+      previewImage: "",
     },
   ],
 };
