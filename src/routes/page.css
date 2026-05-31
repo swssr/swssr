@@ -45,7 +45,12 @@ button.orbit-embed-viewport-backdrop {
 }
 
 #stage {
-  --scale-stage: min(calc(100vw / 1440), calc(100vh / 900));
+  --timeline-width: 150px;
+  --scale-stage: min(
+    calc((100vw - var(--timeline-width)) / 1440),
+    calc(100svh / 900),
+    1
+  );
   --stage-padding-inline: clamp(18px, 6vw, 40px);
   --color-paper: #ffffff;
   --color-ink: #0b1733;
@@ -56,13 +61,15 @@ button.orbit-embed-viewport-backdrop {
   --color-splash: #ff5722;
   --position-center-x: 720px;
   --position-center-y: 470px;
-  --size-label-radius: 270px;
+  --orbit-radius: 200px;
+  --size-label-radius: calc(var(--orbit-radius) + 36px);
   --parallax-grid-pix: 14px;
   --parallax-orbit-layer-pix: 74px;
 
   width: 1440px;
   height: 900px;
   flex-shrink: 0;
+  margin-right: calc(var(--timeline-width) / 2);
   transform: scale(var(--scale-stage));
   transform-origin: center center;
   position: relative;
@@ -204,8 +211,8 @@ button.orbit-embed-viewport-backdrop {
 
   .side-column {
     position: absolute;
-    top: 140px;
-    width: 260px;
+    top: 132px;
+    width: 240px;
     z-index: 2;
 
     &.side-column-left {
@@ -311,15 +318,15 @@ button.orbit-embed-viewport-backdrop {
     );
     mask: radial-gradient(
       circle at var(--position-center-x) var(--position-center-y),
-      transparent 0 226.5px,
-      #000 226.5px 233.5px,
-      transparent 233.5px
+      transparent 0 calc(var(--orbit-radius) - 3.5px),
+      #000 calc(var(--orbit-radius) - 3.5px) calc(var(--orbit-radius) + 3.5px),
+      transparent calc(var(--orbit-radius) + 3.5px)
     );
     -webkit-mask: radial-gradient(
       circle at var(--position-center-x) var(--position-center-y),
-      transparent 0 226.5px,
-      #000 226.5px 233.5px,
-      transparent 233.5px
+      transparent 0 calc(var(--orbit-radius) - 3.5px),
+      #000 calc(var(--orbit-radius) - 3.5px) calc(var(--orbit-radius) + 3.5px),
+      transparent calc(var(--orbit-radius) + 3.5px)
     );
   }
 
@@ -331,15 +338,15 @@ button.orbit-embed-viewport-backdrop {
     );
     mask: radial-gradient(
       circle at var(--position-center-x) var(--position-center-y),
-      transparent 0 223.25px,
-      #000 223.25px 236.75px,
-      transparent 236.75px
+      transparent 0 calc(var(--orbit-radius) - 6.75px),
+      #000 calc(var(--orbit-radius) - 6.75px) calc(var(--orbit-radius) + 6.75px),
+      transparent calc(var(--orbit-radius) + 6.75px)
     );
     -webkit-mask: radial-gradient(
       circle at var(--position-center-x) var(--position-center-y),
-      transparent 0 223.25px,
-      #000 223.25px 236.75px,
-      transparent 236.75px
+      transparent 0 calc(var(--orbit-radius) - 6.75px),
+      #000 calc(var(--orbit-radius) - 6.75px) calc(var(--orbit-radius) + 6.75px),
+      transparent calc(var(--orbit-radius) + 6.75px)
     );
   }
 
@@ -364,8 +371,8 @@ button.orbit-embed-viewport-backdrop {
     transform: translate(-50%, -50%);
     text-align: center;
     z-index: 2;
-    width: 360px;
-    height: 360px;
+    width: 320px;
+    height: 320px;
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -422,13 +429,13 @@ button.orbit-embed-viewport-backdrop {
 
   .center-statement {
     font-family: var(--display);
-    font-size: 38px;
+    font-size: 34px;
     line-height: 1.04;
     color: var(--color-ink);
     letter-spacing: 0;
     font-weight: 400;
     text-transform: uppercase;
-    width: 340px;
+    width: 300px;
     text-wrap: balance;
 
 
@@ -471,8 +478,9 @@ button.orbit-embed-viewport-backdrop {
       rotate(calc(-1 * var(--orbit-spin-deg, 0deg)));
     z-index: 3;
     cursor: default;
-    padding: 8px 12px;
-    min-width: 170px;
+    padding: 8px 10px;
+    min-width: 150px;
+    max-width: 190px;
 
     &.is-link {
       cursor: pointer;
@@ -608,6 +616,7 @@ button.orbit-embed-viewport-backdrop {
 
 @media (max-width: 860px), (max-height: 640px) {
   #stage {
+    --timeline-width: 0px;
     --position-center-x: 50%;
     --position-center-y: auto;
     --size-label-radius: 0px;

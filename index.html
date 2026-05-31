@@ -347,7 +347,12 @@
     function fitStage() {
       const stage = document.getElementById('stage');
       if (!stage) return;
-      const scale = Math.min(window.innerWidth / 1440, window.innerHeight / 900);
+      const timelineWidth = 150;
+      const scale = Math.min(
+        (window.innerWidth - timelineWidth) / 1440,
+        window.innerHeight / 900,
+        1
+      );
       stage.style.transform = `scale(${scale})`;
     }
     window.addEventListener('resize', fitStage);
@@ -430,7 +435,7 @@
     }
 
     function Orbit({ projects, hover, setHover, ink, inkMid, inkSoft, lineBold, paper, centerEyebrow, centerLine1, centerLine2 }) {
-      const cx = 720, cy = 470, r = 230;
+      const cx = 720, cy = 470, r = 200;
       return (
         <>
           <svg style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 1 }}>
@@ -469,7 +474,7 @@
           <div style={{
             position: 'absolute', left: cx, top: cy,
             transform: 'translate(-50%, -50%)',
-            textAlign: 'center', zIndex: 2, width: 360, height: 360,
+            textAlign: 'center', zIndex: 2, width: 320, height: 320,
             pointerEvents: 'none',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
@@ -486,7 +491,7 @@
                 fontFamily: 'var(--display)', fontSize: 34, lineHeight: 1.1,
                 color: ink, letterSpacing: '-0.015em', fontWeight: 400,
                 textTransform: 'uppercase',
-                width: 320,
+                width: 300,
               }}>
                 {centerLine1}<br />
                 <span style={{ fontWeight: 600 }}>{centerLine2}</span>
@@ -515,7 +520,7 @@
 
           {projects.map((p, i) => {
             const a = p.angle * Math.PI / 180;
-            const labelR = r + 40;
+            const labelR = r + 36;
             const lx = cx + Math.cos(a) * labelR;
             const ly = cy + Math.sin(a) * labelR;
             const isHover = hover === i;
@@ -532,7 +537,7 @@
                   position: 'absolute', left: lx, top: ly,
                   transform: `translate(${tx}, -50%)`,
                   zIndex: 3, cursor: p.href ? 'pointer' : 'default',
-                  textAlign: align, padding: '8px 12px', minWidth: 170,
+                  textAlign: align, padding: '8px 10px', minWidth: 150, maxWidth: 190,
                 }}
               >
                 <div style={{
@@ -611,7 +616,7 @@
           </div>
 
           {/* left column — about */}
-          <div style={{ position: 'absolute', left: 40, top: 140, width: 260, zIndex: 2 }}>
+          <div style={{ position: 'absolute', left: 40, top: 132, width: 240, zIndex: 2 }}>
             <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: inkSoft, letterSpacing: '0.2em', marginBottom: 14 }}>
               {t.aboutLabel}
             </div>
@@ -624,7 +629,7 @@
           </div>
 
           {/* right column — availability */}
-          <div style={{ position: 'absolute', right: 40, top: 140, width: 260, zIndex: 2, textAlign: 'right' }}>
+          <div style={{ position: 'absolute', right: 40, top: 132, width: 240, zIndex: 2, textAlign: 'right' }}>
             <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: splash, letterSpacing: '0.2em', marginBottom: 14 }}>
               {t.availLabel}
             </div>

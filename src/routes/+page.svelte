@@ -81,7 +81,7 @@
 
   const CX = 720,
     CY = 470,
-    R = 230;
+    R = 200;
   const inactiveMessages = [
     "Long coffee arc",
     "Extended side quest",
