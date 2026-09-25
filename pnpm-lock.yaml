@@ -19,8 +19,8 @@ importers:
         specifier: ^0.10.35
         version: 0.10.35
       three:
-        specifier: ^0.160.0
-        version: 0.160.1
+        specifier: ^0.186.1
+        version: 0.186.1
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.0
@@ -549,8 +549,8 @@ packages:
     resolution: {integrity: sha512-q8DFohk6vUswSng95IZb9nzWJnbINZsK7OiM1snAa3qCjJBL0ZQpvMyAaVXjUukdM75J/m8UE8xwqat8Ors/zQ==}
     engines: {node: '>=18'}
 
-  three@0.160.1:
-    resolution: {integrity: sha512-Bgl2wPJypDOZ1stAxwfWAcJ0WQf7QzlptsxkjYiURPz+n5k4RBDLsq+6f9Y75TYxn6aHLcWz+JNmwTOXWrQTBQ==}
+  three@0.186.1:
+    resolution: {integrity: sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==}
 
   tinyglobby@0.2.16:
     resolution: {integrity: sha512-pn99VhoACYR8nFHhxqix+uvsbXineAasWm5ojXoN8xEwK5Kd3/TrhNn1wByuD52UxWRLy8pu+kRMniEi6Eq9Zg==}
@@ -1042,7 +1042,7 @@ snapshots:
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  three@0.160.1: {}
+  three@0.186.1: {}
 
   tinyglobby@0.2.16:
     dependencies:

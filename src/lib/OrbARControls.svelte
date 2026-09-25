@@ -9,6 +9,7 @@
 
   let mount;
   let xrSupported = false;
+  let quickLookSupported = false;
   let checked = false;
   let running = false;
   let status = '';
@@ -20,6 +21,7 @@
   $: arHref = usdzHref || `/ar/project-${project?.n || 'orb'}.usdz`;
 
   onMount(async () => {
+    quickLookSupported = document.createElement('a').relList.supports?.('ar') ?? false;
     try {
       xrSupported = !!(navigator.xr && await navigator.xr.isSessionSupported('immersive-ar'));
     } catch {
@@ -98,61 +100,111 @@
   }
 </script>
 
-<div class="ar-controls" bind:this={mount}>
-  <button
-    type="button"
-    class="ar-button"
-    disabled={!checked || !xrSupported || running}
-    on:click={startWebXR}
-  >
-    WebXR
-  </button>
-  <a class="ar-button" rel="ar" href={arHref}>
-    <img
-      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
-      alt=""
-      aria-hidden="true"
-    />
-    Quick Look
-  </a>
-  {#if status}
-    <span class="ar-status" role="status">{status}</span>
-  {/if}
-</div>
+{#if checked && (xrSupported || quickLookSupported)}
+  <div class="ar-controls" style:--color-accent={accent} bind:this={mount}>
+    {#if xrSupported}
+      <button
+        type="button"
+        class="ar-button"
+        disabled={running}
+        on:click={startWebXR}
+      >
+        WebXR
+      </button>
+    {/if}
+    {#if quickLookSupported}
+      <a class="ar-button" rel="ar" href={arHref}>
+        <img
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
+          alt=""
+          aria-hidden="true"
+        />
+        Quick Look
+      </a>
+    {/if}
+    {#if status}
+      <span class="ar-status" role="status">{status}</span>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .ar-controls {
     position: absolute;
     left: 50%;
-    bottom: 18px;
+    bottom: 16px;
     z-index: 4;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 18px;
+    padding: 8px 10px 0;
+    border-top: 1px solid var(--color-accent);
     transform: translateX(-50%);
     pointer-events: auto;
   }
 
+  .ar-controls::before,
+  .ar-controls::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 5px;
+    height: 5px;
+    border: 1px solid var(--color-accent);
+    border-radius: 50%;
+    background: var(--color-paper, #fff);
+  }
+
+  .ar-controls::before {
+    left: 0;
+  }
+
+  .ar-controls::after {
+    right: 0;
+  }
+
   .ar-button {
     appearance: none;
-    border: 1px solid color-mix(in srgb, var(--color-ink, #0b1733) 18%, transparent);
-    border-radius: 4px;
-    padding: 7px 10px;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--color-ink, #0b1733);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--color-ink-mid, #5c6a8a);
     font-family: var(--mono, ui-monospace, monospace);
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1;
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 4px 18px rgba(11, 23, 51, 0.08);
+    transition: color 0.18s ease, opacity 0.18s ease;
+  }
+
+  .ar-button::before {
+    content: '';
+    width: 3px;
+    height: 3px;
+    flex: 0 0 3px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .ar-button:hover,
+  .ar-button:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .ar-button:focus-visible {
+    outline: 1px solid var(--color-accent);
+    outline-offset: 4px;
   }
 
   .ar-button:disabled {
     cursor: not-allowed;
-    opacity: 0.42;
+    opacity: 0.34;
   }
 
   .ar-button img {
