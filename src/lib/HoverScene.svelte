@@ -1,6 +1,7 @@
 <script>
   import { onDestroy } from 'svelte';
   import * as THREE from 'three';
+  import { createProjectOrbGroup, disposeOrbGroup } from './orbMesh.js';
 
   export let project;
   export let ink = '#0B1733';
@@ -33,25 +34,7 @@
     renderer.setClearColor(0x000000, 0);
     mount.appendChild(renderer.domElement);
 
-    let geom;
-    switch (p.shape) {
-      case 'box':      geom = new THREE.BoxGeometry(1.5, 1.5, 1.5); break;
-      case 'ico':      geom = new THREE.IcosahedronGeometry(1.1, 0); break;
-      case 'cylinder': geom = new THREE.CylinderGeometry(0.9, 0.9, 1.6, 32); break;
-      case 'octa':     geom = new THREE.OctahedronGeometry(1.2, 0); break;
-      case 'knot':     geom = new THREE.TorusKnotGeometry(0.8, 0.26, 80, 12); break;
-      default:         geom = new THREE.TorusGeometry(1, 0.32, 16, 64); break;
-    }
-    const mat = new THREE.MeshBasicMaterial({ color: new THREE.Color(p.color), wireframe: true, transparent: true, opacity: 0.85 });
-    const mesh = new THREE.Mesh(geom, mat);
-
-    const coreGeom = new THREE.SphereGeometry(0.12, 16, 16);
-    const coreMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(ink) });
-    const core = new THREE.Mesh(coreGeom, coreMat);
-
-    const group = new THREE.Group();
-    group.add(mesh);
-    group.add(core);
+    const group = createProjectOrbGroup(p, ink);
     scene.add(group);
 
     const headTilt = 0.58;
@@ -82,10 +65,7 @@
     cleanup = () => {
       cancelAnimationFrame(raf);
       renderer.dispose();
-      geom.dispose();
-      mat.dispose();
-      coreGeom.dispose();
-      coreMat.dispose();
+      disposeOrbGroup(group);
       if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
       cleanup = null;
     };

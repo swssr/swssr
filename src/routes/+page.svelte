@@ -5,6 +5,7 @@
   import { defaults } from "$lib/data.js";
   import TweaksPanel from "$lib/TweaksPanel.svelte";
   import HoverScene from "$lib/HoverScene.svelte";
+  import OrbARControls from "$lib/OrbARControls.svelte";
   import OrbitCenterEmbed from "$lib/OrbitCenterEmbed.svelte";
   import LandmarkDebug from "$lib/LandmarkDebug.svelte";
   import {
@@ -64,6 +65,7 @@
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let mounted = false;
+  let stageScale = null;
   let navToast = "";
   let navToastT = null;
   let brandHintT = null;
@@ -304,6 +306,10 @@
     mounted = true;
     function updateOrbitGeo() {
       setOrbitGeometry(CX, CY, R, window.innerWidth, window.innerHeight);
+      stageScale = Math.min(
+        (window.innerWidth * 0.9) / 1440,
+        (window.innerHeight * 0.9) / 900,
+      );
     }
     updateOrbitGeo();
     window.addEventListener("resize", updateOrbitGeo);
@@ -365,6 +371,7 @@
   data-splash={splash}
   data-motion-active={mounted && $headLookStatus === "on"}
   data-orbit-embed-active={!!committedProject}
+  style:--scale-stage={stageScale}
   style="--look-x: {$headLook.x}; --look-y: {$headLook.y}; --orbit-spin-deg: {$orbitSpinDeg}deg; --orbit-scale-gesture: {$orbitGestureScale};"
   on:pointerdown={handleStagePointerDownOutside}
 >
@@ -511,6 +518,7 @@
               lookY={$headLook.y}
               headLookOn={$headLookStatus === "on"}
             />
+            <OrbARControls project={hoverProject} {ink} />
           </div>
         {/if}
       {/if}
