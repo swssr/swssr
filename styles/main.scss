@@ -9,6 +9,12 @@
   --nav-height: 8.22vh;
 }
 
+:root {
+  * {
+    outline: 1px solid red;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 4px;

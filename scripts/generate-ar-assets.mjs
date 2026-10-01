@@ -1,4 +1,6 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { createCanvas, Image, loadImage } from '@napi-rs/canvas';
 import * as THREE from 'three';
 import { USDZExporter } from 'three/examples/jsm/exporters/USDZExporter.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
@@ -9,6 +11,12 @@ const outDir = new URL('../static/ar/', import.meta.url);
 const ink = '#0B1733';
 const exporter = new USDZExporter();
 const orbName = 'ProjectOrb';
+const backdropImage = await loadImage(fileURLToPath(new URL('../static/ar/site-backdrop.png', import.meta.url)));
+const backdropTexture = new THREE.Texture(backdropImage);
+backdropTexture.colorSpace = THREE.SRGBColorSpace;
+backdropTexture.needsUpdate = true;
+globalThis.HTMLImageElement = Image;
+globalThis.document = { createElement: () => createCanvas(1, 1) };
 const spin = new THREE.AnimationClip('spin', 6, [
   new THREE.QuaternionKeyframeTrack(`${orbName}.quaternion`, [0, 1.5, 3, 4.5, 6], [
     0, 0, 0, 1,
@@ -69,6 +77,21 @@ for (const project of defaults.projects) {
   ring.material.metalness = 0;
   ring.material.roughness = 0.8;
   ring.material.emissive.set(project.color);
+
+  if (project.n === '01') {
+    const backdrop = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.2, 0.75),
+      new THREE.MeshStandardMaterial({
+        map: backdropTexture,
+        metalness: 0,
+        roughness: 1,
+      }),
+    );
+    backdrop.position.z = -0.08;
+    orb.position.z = 0.25;
+    orb.scale.setScalar(0.22);
+    scene.add(backdrop);
+  }
 
   scene.add(light);
   scene.add(orb);

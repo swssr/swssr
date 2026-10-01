@@ -1,7 +1,10 @@
-import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { sveltekit } from "@sveltejs/kit/vite";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [sveltekit()],
-  optimizeDeps: { exclude: ['@mediapipe/tasks-vision'] },
+  optimizeDeps: { exclude: ["@mediapipe/tasks-vision"] },
+  build: {
+    sourcemap: false,
+  },
 });
