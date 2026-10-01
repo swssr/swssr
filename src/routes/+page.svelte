@@ -6,7 +6,7 @@
   import TweaksPanel from "$lib/TweaksPanel.svelte";
   import HoverScene from "$lib/HoverScene.svelte";
   import OrbARControls from "$lib/OrbARControls.svelte";
-  import OrbitCenterEmbed from "$lib/OrbitCenterEmbed.svelte";
+  import ProjectDetails from "$lib/ProjectDetails.svelte";
   import LandmarkDebug from "$lib/LandmarkDebug.svelte";
   import {
     headLook,
@@ -57,11 +57,7 @@
 
   let t = { ...defaults, projects: defaults.projects.map((p) => ({ ...p })) };
   let defaultProjectIndex = 0;
-  /** Set when user commits via label click or pinch; until then center stays 3D HoverScene. */
   let centerCommittedIndex = null;
-  let centerExpanded = false;
-  /** Full-viewport embed (iframe focus / inner tap); see .orbit-center--viewport-max */
-  let centerViewportMax = false;
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let mounted = false;
@@ -101,10 +97,7 @@
       return { label: (label || "").trim(), href: (href || "#").trim() };
     });
 
-  $: if (
-    t.projects.length > 0 &&
-    centerCommittedIndex != null
-  ) {
+  $: if (t.projects.length > 0 && centerCommittedIndex != null) {
     if (centerCommittedIndex >= t.projects.length)
       centerCommittedIndex = t.projects.length - 1;
     else if (centerCommittedIndex < 0) centerCommittedIndex = 0;
@@ -124,19 +117,7 @@
   $: setOrbitPinchCommitHandler(commitOrToggleOrbitCenter);
   function commitOrToggleOrbitCenter(i) {
     if (typeof i !== "number" || !t.projects[i]) return;
-    if (centerCommittedIndex == null) {
-      centerCommittedIndex = i;
-      centerExpanded = false;
-      centerViewportMax = false;
-      hover = i;
-      return;
-    }
-    if (centerCommittedIndex === i) centerExpanded = !centerExpanded;
-    else {
-      centerCommittedIndex = i;
-      centerExpanded = false;
-      centerViewportMax = false;
-    }
+    centerCommittedIndex = i;
     hover = i;
   }
 
@@ -236,54 +217,6 @@
 
   function clearOrbitEmbedFocus() {
     centerCommittedIndex = null;
-    centerExpanded = false;
-    centerViewportMax = false;
-  }
-
-  /**
-   * When the embed is viewport-maximized it is moved under document.body; stage “outside”
-   * clicks should not dismiss the commit — use the backdrop or Esc to shrink first.
-   */
-  function reparentToBody(node, active) {
-    let mark = null;
-
-    function apply(on) {
-      if (on) {
-        if (node.parentNode === document.body) return;
-        const parent = node.parentNode;
-        if (!parent) return;
-        mark = document.createComment("");
-        parent.insertBefore(mark, node);
-        document.body.appendChild(node);
-      } else {
-        if (mark?.parentNode && node.parentNode === document.body) {
-          mark.parentNode.insertBefore(node, mark);
-        }
-        mark?.remove();
-        mark = null;
-      }
-    }
-
-    apply(!!active);
-    return {
-      update(on) {
-        apply(!!on);
-      },
-      destroy() {
-        apply(false);
-      },
-    };
-  }
-
-  /** Click/tap outside the preview disc (still allows project labels to switch preview). */
-  function handleStagePointerDownOutside(e) {
-    if (centerCommittedIndex == null) return;
-    if (centerViewportMax) return;
-    const el = e.target;
-    if (typeof Element === "undefined" || !(el instanceof Element)) return;
-    if (el.closest(".orbit-center")) return;
-    if (el.closest(".project-label")) return;
-    clearOrbitEmbedFocus();
   }
 
   let unsubOrbitDismiss = () => {};
@@ -314,15 +247,11 @@
     updateOrbitGeo();
     window.addEventListener("resize", updateOrbitGeo);
 
-    window.addEventListener("keydown", (e) => {
+    function handleKeyDown(e) {
       if (e.shiftKey && e.key === "T") editing = !editing;
-      if (e.shiftKey && e.key === "D") debugMode.update(v => !v);
-      if (e.key === "Escape" && centerCommittedIndex != null) {
-        e.preventDefault();
-        if (centerViewportMax) centerViewportMax = false;
-        else clearOrbitEmbedFocus();
-      }
-    });
+      if (e.shiftKey && e.key === "D") debugMode.update((v) => !v);
+    }
+    window.addEventListener("keydown", handleKeyDown);
 
     let lastDismissPulse = 0;
     unsubOrbitDismiss = orbitEmbedDismissPulse.subscribe((n) => {
@@ -331,6 +260,10 @@
         clearOrbitEmbedFocus();
       }
     });
+    return () => {
+      window.removeEventListener("resize", updateOrbitGeo);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   });
 
   onDestroy(() => {
@@ -359,7 +292,6 @@
   {@html `<script type="application/ld+json">${jsonLd}</script>`}
 </svelte:head>
 
-<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   id="stage"
   data-paper={paper}
@@ -373,7 +305,6 @@
   data-orbit-embed-active={!!committedProject}
   style:--scale-stage={stageScale}
   style="--look-x: {$headLook.x}; --look-y: {$headLook.y}; --orbit-spin-deg: {$orbitSpinDeg}deg; --orbit-scale-gesture: {$orbitGestureScale};"
-  on:pointerdown={handleStagePointerDownOutside}
 >
   <div class="soft-grid" aria-hidden="true"></div>
 
@@ -490,26 +421,9 @@
       {/each}
     </svg>
 
-    <div
-      class="orbit-center"
-      class:orbit-center--embed={!!committedProject}
-      class:orbit-center--expanded={centerExpanded && !!committedProject}
-      class:orbit-center--viewport-max={centerViewportMax && !!committedProject}
-      data-x={CX}
-      data-y={CY}
-      use:reparentToBody={!!committedProject && centerViewportMax}
-    >
+    <div class="orbit-center" data-x={CX} data-y={CY}>
       {#if browser}
-        {#if committedProject}
-          <div class="center-pane center-hover">
-            <OrbitCenterEmbed
-              project={committedProject}
-              accent={committedProject.color}
-              viewportMax={centerViewportMax}
-              on:requestviewportmax={() => (centerViewportMax = true)}
-            />
-          </div>
-        {:else if hoverProject}
+        {#if hoverProject && !committedProject}
           <div class="center-pane center-hover">
             <HoverScene
               project={hoverProject}
@@ -526,8 +440,9 @@
 
     {#each t.projects as p, i}
       {@const isHover = hover === i}
-      <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
-      <div
+      <button
+        type="button"
+        aria-haspopup="dialog"
         on:mouseenter={() => (hover = i)}
         on:mouseleave={() => {}}
         on:click={() => handleProjectLabelActivate(i)}
@@ -539,13 +454,13 @@
         data-hover={isHover}
         data-color={isHover ? p.color : inkSoft}
       >
-        <p class="project-meta">
+        <span class="project-meta">
           {p.n} · {p.tag} <span>{p.year}</span>
-        </p>
-        <p class="project-title">
+        </span>
+        <span class="project-title">
           {p.title}
-        </p>
-      </div>
+        </span>
+      </button>
     {/each}
   </div>
 
@@ -566,13 +481,13 @@
   </footer>
 </div>
 
-{#if browser && committedProject && centerViewportMax}
-  <button
-    type="button"
-    class="orbit-embed-viewport-backdrop"
-    aria-label="Shrink preview"
-    on:pointerdown|stopPropagation={() => (centerViewportMax = false)}
-  ></button>
+{#if browser && committedProject}
+  <ProjectDetails
+    projects={t.projects}
+    selectedIndex={centerCommittedIndex}
+    on:select={(e) => commitOrToggleOrbitCenter(e.detail)}
+    on:close={clearOrbitEmbedFocus}
+  />
 {/if}
 
 <aside class="version-timeline" aria-label="Work experience timeline">
@@ -658,6 +573,6 @@
   />
 {/if}
 
-{#if $debugMode && $headLookStatus === 'on'}
+{#if $debugMode && $headLookStatus === "on"}
   <LandmarkDebug />
 {/if}

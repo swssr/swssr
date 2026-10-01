@@ -1,12 +1,19 @@
 {
   "name": "portfolio",
-  "private": true,
   "version": "3.0.0",
+  "private": true,
+  "homepage": "https://github.com/swssr/swss#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swssr/swss.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.35",
@@ -17,16 +24,12 @@
     "@sveltejs/adapter-static": "^3.0.0",
     "@sveltejs/kit": "^2.0.0",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "oxfmt": "^0.71.0",
     "svelte": "^5.46.4",
     "vite": "^8.0.0"
   },
   "engines": {
     "node": ">=20.19.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/swssr/swss.git"
-  },
-  "homepage": "https://github.com/swssr/swss#readme",
   "packageManager": "pnpm@10.33.1"
 }
