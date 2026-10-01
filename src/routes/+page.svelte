@@ -478,7 +478,7 @@
         class:is-link={true}
         data-index={i}
         data-angle={`${p.angle}deg`}
-        data-align={labelAlign(p.angle)}
+        data-align={labelAlign(Number(p.angle) + $orbitSpinDeg)}
         data-hover={isHover}
         data-color={isHover ? p.color : inkSoft}
         style:view-transition-name={committedProject

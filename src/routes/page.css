@@ -459,8 +459,9 @@
     position: absolute;
     left: var(--position-label-x);
     top: var(--position-label-y);
-    transform: translate(var(--transform-label-x), -50%)
-      rotate(calc(-1 * var(--orbit-spin-deg, 0deg)));
+    transform-origin: 0 0;
+    transform: rotate(calc(-1 * var(--orbit-spin-deg, 0deg)))
+      translate(var(--transform-label-x), -50%);
     z-index: 3;
     cursor: default;
     padding: 8px 10px;
@@ -521,14 +522,17 @@
     }
 
     &[data-align="left"] {
+      --transform-label-x: 0;
       text-align: left;
     }
 
     &[data-align="center"] {
+      --transform-label-x: -50%;
       text-align: center;
     }
 
     &[data-align="right"] {
+      --transform-label-x: -100%;
       text-align: right;
     }
 
@@ -765,6 +769,7 @@
     position: relative;
     left: auto;
     top: auto;
+    transform-origin: center;
     transform: rotate(calc(-1 * var(--orbit-spin-deg, 0deg)));
     min-width: 0;
     padding: 0;
