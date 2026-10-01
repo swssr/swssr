@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from "svelte";
+  import { onMount, onDestroy, tick } from "svelte";
   import { get } from "svelte/store";
   import { browser } from "$app/environment";
   import { defaults } from "$lib/data.js";
@@ -58,6 +58,7 @@
   let t = { ...defaults, projects: defaults.projects.map((p) => ({ ...p })) };
   let defaultProjectIndex = 0;
   let centerCommittedIndex = null;
+  let projectDetails;
   let hover = defaultProjectIndex % t.projects.length;
   let editing = false;
   let mounted = false;
@@ -117,8 +118,25 @@
   $: setOrbitPinchCommitHandler(commitOrToggleOrbitCenter);
   function commitOrToggleOrbitCenter(i) {
     if (typeof i !== "number" || !t.projects[i]) return;
-    centerCommittedIndex = i;
-    hover = i;
+    return changeProject(i);
+  }
+
+  async function changeProject(index) {
+    if (index === centerCommittedIndex) return;
+    const update = async () => {
+      centerCommittedIndex = index;
+      if (index != null) hover = index;
+      await tick();
+      projectDetails.scrollSelection();
+    };
+    if (
+      !document.startViewTransition ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      await update();
+      return;
+    }
+    await document.startViewTransition(update).finished;
   }
 
   function handleProjectLabelActivate(i) {
@@ -216,7 +234,7 @@
   }
 
   function clearOrbitEmbedFocus() {
-    centerCommittedIndex = null;
+    if (centerCommittedIndex != null) projectDetails.close();
   }
 
   let unsubOrbitDismiss = () => {};
@@ -421,7 +439,12 @@
       {/each}
     </svg>
 
-    <div class="orbit-center" data-x={CX} data-y={CY}>
+    <div
+      class="orbit-center"
+      data-x={CX}
+      data-y={CY}
+      style:view-transition-name={committedProject ? "none" : "project-preview"}
+    >
       {#if browser}
         {#if hoverProject && !committedProject}
           <div class="center-pane center-hover">
@@ -453,6 +476,9 @@
         data-align={labelAlign(p.angle)}
         data-hover={isHover}
         data-color={isHover ? p.color : inkSoft}
+        style:view-transition-name={committedProject
+          ? "none"
+          : `project-label-${i}`}
       >
         <span class="project-meta">
           {p.n} · {p.tag} <span>{p.year}</span>
@@ -481,12 +507,12 @@
   </footer>
 </div>
 
-{#if browser && committedProject}
+{#if browser}
   <ProjectDetails
+    bind:this={projectDetails}
     projects={t.projects}
     selectedIndex={centerCommittedIndex}
-    on:select={(e) => commitOrToggleOrbitCenter(e.detail)}
-    on:close={clearOrbitEmbedFocus}
+    {changeProject}
   />
 {/if}
 

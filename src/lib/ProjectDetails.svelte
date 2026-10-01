@@ -1,31 +1,33 @@
 <script>
-  import { createEventDispatcher, onMount, onDestroy, tick } from "svelte";
-  import { fade } from "svelte/transition";
+  import { onDestroy } from "svelte";
   import OrbitCenterEmbed from "./OrbitCenterEmbed.svelte";
 
   export let projects;
   export let selectedIndex;
-
-  const dispatch = createEventDispatcher();
-  const easing = "cubic-bezier(0.2, 0.85, 0.2, 1)";
+  export let changeProject;
   let dialog;
   let rail;
-  let preview;
   let path;
   let origin;
-  let sourceLabels;
   let frame;
   let duration = 650;
   let closing = false;
   let destroyed = false;
   let unwrapped = false;
 
-  $: project = projects[selectedIndex];
+  let lastIndex = 0;
+
+  $: if (selectedIndex != null) lastIndex = selectedIndex;
+  $: project = projects[lastIndex];
+  $: if (dialog && rail && selectedIndex != null && !dialog.open) open();
 
   async function select(index) {
-    if (closing) return;
-    dispatch("select", (index + projects.length) % projects.length);
-    await tick();
+    if (closing || selectedIndex == null) return;
+    await changeProject((index + projects.length) % projects.length);
+  }
+
+  export function scrollSelection() {
+    if (selectedIndex == null) return;
     rail
       .querySelector("[aria-current]")
       .scrollIntoView({ block: "nearest", inline: "nearest" });
@@ -42,6 +44,9 @@
   }
 
   function unwrap(reverse = false) {
+    duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? 0
+      : 650;
     const markers = [...rail.querySelectorAll(".project-marker")].map((node) =>
       node.getBoundingClientRect(),
     );
@@ -80,85 +85,30 @@
     });
   }
 
-  function animateLabels(reverse = false) {
-    return [...rail.querySelectorAll(".project-entry")].map((node, i) => {
-      const target = node.getBoundingClientRect();
-      const source = sourceLabels[i];
-      const from = {
-        transform: `translate(${source.left - target.left}px, ${source.top - target.top}px)`,
-      };
-      const to = { transform: "translate(0, 0)" };
-      return node.animate(reverse ? [to, from] : [from, to], {
-        duration,
-        easing,
-        fill: "both",
-      }).finished;
-    });
-  }
-
-  async function close() {
-    if (closing) return;
+  export async function close() {
+    if (closing || selectedIndex == null) return;
     closing = true;
     unwrapped = false;
     origin = document.querySelector(".orbit-ring").getBoundingClientRect();
     if (!origin.width)
       origin = document.querySelector(".orbit-center").getBoundingClientRect();
-    sourceLabels = [...document.querySelectorAll("#stage .project-label")].map(
-      (node) => node.getBoundingClientRect(),
-    );
-    await Promise.allSettled([
-      unwrap(true),
-      ...animateLabels(true),
-      preview.animate(
-        [
-          { opacity: 1, transform: "scale(1)" },
-          { opacity: 0, transform: "scale(0.88)" },
-        ],
-        {
-          duration: duration * 0.55,
-          easing,
-          fill: "forwards",
-        },
-      ).finished,
-    ]);
+    await Promise.all([unwrap(true), changeProject(null)]);
     if (destroyed) return;
     dialog.close();
-    dispatch("close");
+    closing = false;
   }
 
-  onMount(() => {
+  function open() {
+    unwrapped = false;
     origin = document.querySelector(".orbit-ring").getBoundingClientRect();
     if (!origin.width)
       origin = document.querySelector(".orbit-center").getBoundingClientRect();
-    sourceLabels = [...document.querySelectorAll("#stage .project-label")].map(
-      (node) => node.getBoundingClientRect(),
-    );
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-      duration = 0;
     dialog.showModal();
-    rail
-      .querySelector("[aria-current]")
-      .scrollIntoView({ block: "nearest", inline: "nearest" });
+    scrollSelection();
     unwrap().then(() => {
       if (!closing) unwrapped = true;
     });
-    Promise.allSettled(animateLabels());
-    const center = document
-      .querySelector(".orbit-center")
-      .getBoundingClientRect();
-    const square = preview.getBoundingClientRect();
-    preview.animate(
-      [
-        {
-          opacity: 0,
-          transform: `translate(${center.left + center.width / 2 - square.left - square.width / 2}px, ${center.top + center.height / 2 - square.top - square.height / 2}px) scale(${center.width / square.width})`,
-          borderRadius: "50%",
-        },
-        { opacity: 1, transform: "translateY(0) scale(1)", borderRadius: "0" },
-      ],
-      { duration, easing },
-    );
-  });
+  }
 
   onDestroy(() => {
     destroyed = true;
@@ -169,6 +119,7 @@
 <dialog
   bind:this={dialog}
   class="project-details"
+  data-open={selectedIndex != null}
   aria-labelledby="project-details-title"
   style:--project-accent={project.color}
   on:cancel|preventDefault={close}
@@ -177,82 +128,98 @@
     if (event.target === dialog) close();
   }}
 >
-  <svg class="unwrap-line" class:unwrapped aria-hidden="true"
-    ><path
-      bind:this={path}
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1"
-    /></svg
-  >
-  <header class="details-header">
-    <span>SWSSR <span class="header-divider">/</span> Selected work</span>
-    <button
-      type="button"
-      class="close-project"
-      aria-label="Close project"
-      on:click={close}>Close <span aria-hidden="true">×</span></button
+  {#if selectedIndex != null || closing}
+    <svg class="unwrap-line" class:unwrapped aria-hidden="true"
+      ><path
+        bind:this={path}
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+      /></svg
     >
-  </header>
-  <div class="details-layout">
-    <nav
-      bind:this={rail}
-      class="project-timeline"
-      class:unwrapped
-      aria-label="Projects"
-    >
-      {#each projects as item, i}
-        <button
-          type="button"
-          class="project-entry"
-          aria-current={selectedIndex === i ? "true" : undefined}
-          style:--entry-accent={item.color}
-          on:click={() => select(i)}
-        >
-          <span class="project-marker" aria-hidden="true"></span>
-          <span class="entry-meta"
-            >{item.n} · {item.tag} <span>{item.year}</span></span
+    <header class="details-header">
+      <span>SWSSR <span class="header-divider">/</span> Selected work</span>
+      <button
+        type="button"
+        class="close-project"
+        aria-label="Close project"
+        on:click={close}>Close <span aria-hidden="true">×</span></button
+      >
+    </header>
+    <div class="details-layout">
+      <nav
+        bind:this={rail}
+        class="project-timeline"
+        class:unwrapped
+        aria-label="Projects"
+      >
+        {#each projects as item, i}
+          <button
+            type="button"
+            class="project-entry"
+            aria-current={selectedIndex === i ? "true" : undefined}
+            style:--entry-accent={item.color}
+            style:view-transition-name={selectedIndex != null
+              ? `project-label-${i}`
+              : "none"}
+            on:click={() => select(i)}
           >
-          <span class="entry-title">{item.title}</span>
-        </button>
-      {/each}
-    </nav>
-    <section class="project-view" aria-label="Project preview">
-      <div class="preview-heading">
-        <div aria-live="polite" aria-atomic="true">
-          <p class="entry-meta">{project.tag} · {project.year}</p>
-          <h2 id="project-details-title">{project.title}</h2>
-        </div>
-        {#if project.href}<a
-            href={project.href}
-            target="_blank"
-            rel="noopener noreferrer">Open project ↗</a
-          >{/if}
-      </div>
-      <div bind:this={preview} class="project-square">
-        {#key selectedIndex}
-          <div class="project-media" in:fade={{ duration: duration ? 180 : 0 }}>
-            <OrbitCenterEmbed {project} accent={project.color} />
+            <span class="project-marker" aria-hidden="true"></span>
+            <span class="entry-meta"
+              >{item.n} · {item.tag} <span>{item.year}</span></span
+            >
+            <span class="entry-title">{item.title}</span>
+          </button>
+        {/each}
+      </nav>
+      <section class="project-view" aria-label="Project preview">
+        <div class="preview-heading">
+          <div
+            aria-live="polite"
+            aria-atomic="true"
+            style:view-transition-name={selectedIndex != null
+              ? "project-heading"
+              : "none"}
+          >
+            <p class="entry-meta">{project.tag} · {project.year}</p>
+            <h2 id="project-details-title">{project.title}</h2>
           </div>
-        {/key}
-      </div>
-      <footer class="preview-controls">
-        <span>{project.n} / {String(projects.length).padStart(2, "0")}</span>
-        <div>
-          <button
-            type="button"
-            aria-label="Previous project"
-            on:click={() => select(selectedIndex - 1)}>←</button
-          >
-          <button
-            type="button"
-            aria-label="Next project"
-            on:click={() => select(selectedIndex + 1)}>→</button
-          >
+          {#if project.href}<a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer">Open project ↗</a
+            >{/if}
         </div>
-      </footer>
-    </section>
-  </div>
+        <div
+          class="project-square"
+          style:view-transition-name={selectedIndex != null
+            ? "project-preview"
+            : "none"}
+        >
+          {#key selectedIndex}
+            <div class="project-media">
+              <OrbitCenterEmbed {project} accent={project.color} />
+            </div>
+          {/key}
+        </div>
+        <footer class="preview-controls">
+          <span>{project.n} / {String(projects.length).padStart(2, "0")}</span>
+          <div>
+            <button
+              type="button"
+              aria-label="Previous project"
+              on:click={() => select(selectedIndex - 1)}>←</button
+            >
+            <button
+              type="button"
+              aria-label="Next project"
+              on:click={() => select(selectedIndex + 1)}>→</button
+            >
+          </div>
+        </footer>
+      </section>
+    </div>
+  {/if}
 </dialog>
 
 <style>
@@ -269,6 +236,11 @@
     overflow-y: auto;
     background: transparent;
     color: #0b1733;
+  }
+
+  .project-details[data-open="false"] .details-header,
+  .project-details[data-open="false"] .details-layout {
+    visibility: hidden;
   }
 
   .project-details::backdrop {
@@ -332,10 +304,10 @@
   .details-layout {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(220px, 1fr) minmax(0, 2.2fr);
+    grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
     align-items: center;
     gap: clamp(24px, 4vw, 64px);
-    width: min(100%, 1120px);
+    width: min(100%, 1440px);
     min-height: calc(100% - 44px);
     margin: auto;
     padding: 12px 0;
@@ -416,7 +388,7 @@
 
   .project-view {
     min-width: 0;
-    width: min(100%, calc(100svh - 260px));
+    width: min(100%, calc((100svh - 260px) * 4 / 3));
   }
 
   .preview-heading {
@@ -440,7 +412,7 @@
 
   .project-square {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
     background: #f7f8fa;
     box-shadow: 0 20px 70px rgba(11, 23, 51, 0.07);
