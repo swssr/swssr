@@ -127,6 +127,7 @@
       centerCommittedIndex = index;
       if (index != null) hover = index;
       await tick();
+      if (index != null) projectDetails.open();
       projectDetails.scrollSelection();
     };
     if (
@@ -466,7 +467,11 @@
       <button
         type="button"
         aria-haspopup="dialog"
-        on:mouseenter={() => (hover = i)}
+        on:mouseenter={() => {
+          hover = i;
+          projectDetails.preload(i);
+        }}
+        on:focus={() => projectDetails.preload(i)}
         on:mouseleave={() => {}}
         on:click={() => handleProjectLabelActivate(i)}
         class="project-label"

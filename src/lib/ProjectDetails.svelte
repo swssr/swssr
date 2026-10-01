@@ -1,5 +1,5 @@
 <script>
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
   import OrbitCenterEmbed from "./OrbitCenterEmbed.svelte";
 
   export let projects;
@@ -16,15 +16,28 @@
   let unwrapped = false;
 
   let lastIndex = 0;
+  let loadedProjects = [];
 
   $: if (selectedIndex != null) lastIndex = selectedIndex;
+  $: if (selectedIndex != null) preload(selectedIndex);
   $: project = projects[lastIndex];
-  $: if (dialog && rail && selectedIndex != null && !dialog.open) open();
 
   async function select(index) {
     if (closing || selectedIndex == null) return;
     await changeProject((index + projects.length) % projects.length);
   }
+
+  export function preload(index) {
+    if (!loadedProjects.includes(index))
+      loadedProjects = [...loadedProjects, index];
+  }
+
+  onMount(() => {
+    const timer = setTimeout(() => {
+      projects.forEach((_, index) => preload(index));
+    }, 0);
+    return () => clearTimeout(timer);
+  });
 
   export function scrollSelection() {
     if (selectedIndex == null) return;
@@ -98,7 +111,8 @@
     closing = false;
   }
 
-  function open() {
+  export function open() {
+    if (dialog.open) return;
     unwrapped = false;
     origin = document.querySelector(".orbit-ring").getBoundingClientRect();
     if (!origin.width)
@@ -120,6 +134,7 @@
   bind:this={dialog}
   class="project-details"
   data-open={selectedIndex != null}
+  inert={selectedIndex == null}
   aria-labelledby="project-details-title"
   style:--project-accent={project.color}
   on:cancel|preventDefault={close}
@@ -128,7 +143,7 @@
     if (event.target === dialog) close();
   }}
 >
-  {#if selectedIndex != null || closing}
+  {#if loadedProjects.length}
     <svg class="unwrap-line" class:unwrapped aria-hidden="true"
       ><path
         bind:this={path}
@@ -162,6 +177,8 @@
             style:view-transition-name={selectedIndex != null
               ? `project-label-${i}`
               : "none"}
+            on:mouseenter={() => preload(i)}
+            on:focus={() => preload(i)}
             on:click={() => select(i)}
           >
             <span class="project-marker" aria-hidden="true"></span>
@@ -196,11 +213,19 @@
             ? "project-preview"
             : "none"}
         >
-          {#key selectedIndex}
-            <div class="project-media">
-              <OrbitCenterEmbed {project} accent={project.color} />
+          {#each loadedProjects as index (index)}
+            <div
+              class="project-media"
+              class:active={selectedIndex === index}
+              inert={selectedIndex !== index}
+              aria-hidden={selectedIndex !== index}
+            >
+              <OrbitCenterEmbed
+                project={projects[index]}
+                accent={projects[index].color}
+              />
             </div>
-          {/key}
+          {/each}
         </div>
         <footer class="preview-controls">
           <span>{project.n} / {String(projects.length).padStart(2, "0")}</span>
@@ -241,6 +266,12 @@
   .project-details[data-open="false"] .details-header,
   .project-details[data-open="false"] .details-layout {
     visibility: hidden;
+  }
+
+  .project-details:not([open]) {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .project-details::backdrop {
@@ -411,6 +442,7 @@
   }
 
   .project-square {
+    position: relative;
     width: 100%;
     aspect-ratio: 4 / 3;
     overflow: hidden;
@@ -419,8 +451,17 @@
   }
 
   .project-media {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .project-media.active {
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .preview-controls {
